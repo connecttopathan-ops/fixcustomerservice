@@ -1,16 +1,30 @@
 # Fix Customer Service — Abdullah Khan
 
-> One-person customer service operations practice in Dubai, UAE, working with businesses worldwide. Abdullah Khan has built and run a customer service department in the UAE for seven years and now helps businesses fix their support: faster replies, lower cost per contact, fewer repeat questions, better reviews, and a team setup that scales without linear hiring.
+> One-person customer service operations practice in Dubai, UAE, working with businesses worldwide. Abdullah Khan has spent thirteen years in customer service, the last seven building and running the function at a fintech in Dubai, and now helps businesses fix their support: faster replies, lower cost per contact, fewer repeat questions, better reviews, and a team setup that scales without linear hiring.
 
-## What this site offers
-- A free 30-minute diagnostic call: the visitor's three biggest customer service problems, identified honestly
-- A one-week "look": counting incoming messages, response times, missed enquiries, and cost
-- A fixed-price "fix": shared inbox setup, automated answers to repeat questions, reply-time targets, complaint handling, team structure and training
-- Optional monthly follow-up: reporting, quality checks, and tuning
+Engagements run in three stages, and a client can stop after any of them: a free 30-minute diagnostic call that names the three biggest problems honestly; a one-week "look" that counts incoming messages, response times, missed enquiries and cost; and a fixed-price "fix" covering shared inbox setup, automated answers to repeat questions, reply-time targets, complaint handling, team structure and training. Optional monthly follow-up adds reporting, quality checks and tuning.
 
-## Who it is for
-Businesses of any size and industry, from a few hundred to hundreds of thousands of customer messages a month. Based in Dubai; works remotely across the UAE and internationally.
+For businesses of any size and industry, from a few hundred to hundreds of thousands of customer messages a month. Based in Dubai, working remotely across the UAE and internationally.
+
+## Pages
+
+- [Fix Customer Service](https://fixcustomerservice.com/): Single-page site covering the symptoms of broken support, what it costs, how the work runs, past results, and how to get in touch.
+- [Privacy](https://fixcustomerservice.com/privacy): What data the contact form collects and how it is handled.
+
+## Key sections
+
+- [Symptom checklist](https://fixcustomerservice.com/#checks): The signs of a support operation that has outgrown its setup.
+- [What it costs](https://fixcustomerservice.com/#cost): Putting a number on slow replies and missed enquiries, including the knock-on effect on reviews and repeat business.
+- [How the work runs](https://fixcustomerservice.com/#how): The three stages, what changes at each size of business, and how the options compare.
+- [Results](https://fixcustomerservice.com/#proof): Two rebuilds and what measurably changed, including moving 1.5 million cardholders from email queues to a multilingual WhatsApp chatbot.
+- [Get in touch](https://fixcustomerservice.com/#talk): Contact form and free 30-minute diagnostic call.
 
 ## Contact
-- Website: https://fixcustomerservice.com/
-- WhatsApp and contact form on the page
+
+- [WhatsApp](https://wa.me/971522771875): Fastest route. Send roughly what is going on and get a reply the same day.
+- [Abdullah Khan on LinkedIn](https://www.linkedin.com/in/abdullahkhan08/): Professional background and work history.
+
+## Optional
+
+- [Edenred case study](https://www.infobip.com/customer/edenred): Third-party writeup of the WhatsApp migration described in the results section.
+- [Sitemap](https://fixcustomerservice.com/sitemap.xml): Machine-readable list of pages.
