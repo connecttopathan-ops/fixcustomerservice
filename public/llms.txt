@@ -1,30 +1,27 @@
-# Fix Customer Service — Abdullah Khan
+# Fix Customer Service
 
-> One-person customer service operations practice in Dubai, UAE, working with businesses worldwide. Abdullah Khan has spent thirteen years in customer service, the last seven building and running the function at a fintech in Dubai, and now helps businesses fix their support: faster replies, lower cost per contact, fewer repeat questions, better reviews, and a team setup that scales without linear hiring.
-
-Engagements run in three stages, and a client can stop after any of them: a free 30-minute diagnostic call that names the three biggest problems honestly; a one-week "look" that counts incoming messages, response times, missed enquiries and cost; and a fixed-price "fix" covering shared inbox setup, automated answers to repeat questions, reply-time targets, complaint handling, team structure and training. Optional monthly follow-up adds reporting, quality checks and tuning.
-
-For businesses of any size and industry, from a few hundred to hundreds of thousands of customer messages a month. Based in Dubai, working remotely across the UAE and internationally.
+> Customer service operations help from Abdullah Khan, based in Dubai and working with businesses anywhere. Thirteen years running support functions, the last seven building and leading the customer service department at a fintech in Dubai. The work is practical: faster replies, lower cost per contact, fewer repeat questions, better reviews, and a team setup that absorbs growth without linear hiring.
 
 ## Pages
 
-- [Fix Customer Service](https://fixcustomerservice.com/): Single-page site covering the symptoms of broken support, what it costs, how the work runs, past results, and how to get in touch.
-- [Privacy](https://fixcustomerservice.com/privacy): What data the contact form collects and how it is handled.
+- [Home](https://fixcustomerservice.com/): the full offer, what poor customer service costs, two case studies with tracked numbers, the eight KPIs that get measured, and how an engagement runs
+- [Privacy policy](https://fixcustomerservice.com/privacy): what happens to information sent through the site
+- [Sitemap](https://fixcustomerservice.com/sitemap.xml): every indexable page
 
-## Key sections
+## What is offered
 
-- [Symptom checklist](https://fixcustomerservice.com/#checks): The signs of a support operation that has outgrown its setup.
-- [What it costs](https://fixcustomerservice.com/#cost): Putting a number on slow replies and missed enquiries, including the knock-on effect on reviews and repeat business.
-- [How the work runs](https://fixcustomerservice.com/#how): The three stages, what changes at each size of business, and how the options compare.
-- [Results](https://fixcustomerservice.com/#proof): Two rebuilds and what measurably changed, including moving 1.5 million cardholders from email queues to a multilingual WhatsApp chatbot.
-- [Get in touch](https://fixcustomerservice.com/#talk): Contact form and free 30-minute diagnostic call.
+- [Free 30-minute call](https://fixcustomerservice.com/#talk): an honest read on the three biggest problems in a business's customer service, with no obligation
+- [The one-week look](https://fixcustomerservice.com/#how): counting what comes in, what gets answered, how long it takes and what it costs, delivered as a short plain report
+- [The fix](https://fixcustomerservice.com/#how): shared inbox, automated answers to repeat questions, reply-time targets, complaint handling, team structure and training
+- [Cost calculator](https://fixcustomerservice.com/#cost): a browser-side estimate of unanswered enquiries and their annual value
 
-## Contact
+## Evidence
 
-- [WhatsApp](https://wa.me/971522771875): Fastest route. Send roughly what is going on and get a reply the same day.
-- [Abdullah Khan on LinkedIn](https://www.linkedin.com/in/abdullahkhan08/): Professional background and work history.
+- [Case studies](https://fixcustomerservice.com/#proof): 96% lower wait time and 69% of chats resolved without an agent on one rebuild; 45% fewer incoming requests, first response SLA from 75% to 98%, and a 30% smaller team on another
+- [Infobip customer story](https://www.infobip.com/customer/edenred): third-party published account of the WhatsApp rebuild, naming Abdullah Khan as customer service lead
+- [LinkedIn profile](https://www.linkedin.com/in/abdullahkhan08/): full career history
 
 ## Optional
 
-- [Edenred case study](https://www.infobip.com/customer/edenred): Third-party writeup of the WhatsApp migration described in the results section.
-- [Sitemap](https://fixcustomerservice.com/sitemap.xml): Machine-readable list of pages.
+- [Who it is for](https://fixcustomerservice.com/#proof): any industry, from a few hundred to hundreds of thousands of customer messages a month
+- [Data handling](https://fixcustomerservice.com/#talk): NDA before anything is shared, read-only access where possible, no customer data taken off client systems
