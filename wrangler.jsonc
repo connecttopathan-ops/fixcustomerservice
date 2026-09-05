@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fix-cs-cx-ab",
+  "compatibility_date": "2026-09-05",
+
+  // Static-assets-only Worker: no `main` entrypoint, Cloudflare serves
+  // everything in ./public directly from its edge.
+  "assets": {
+    "directory": "./public",
+
+    // Serve /404.html for unmatched paths instead of a bare Cloudflare 404.
+    "not_found_handling": "404-page",
+
+    // "/privacy" resolves to privacy.html, and privacy.html redirects
+    // to the extensionless URL. Matches the canonical tags and sitemap.
+    "html_handling": "auto-trailing-slash"
+  }
+}
