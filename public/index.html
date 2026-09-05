@@ -106,13 +106,22 @@
   .ic.on-teal{color:var(--teal)}
 
   /* nav */
-  .top{display:flex;justify-content:space-between;align-items:baseline;padding:28px 0}
+  .topbar{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+  [id]{scroll-margin-top:84px}
+  .top{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
   .top .brand{display:block;line-height:0}
   .top .brand img{height:28px;width:auto;display:block}
   .top nav{display:flex;gap:28px}
   .top nav a{text-decoration:none;font-weight:500;color:var(--grey);font-size:.97rem}
   .top nav a:hover{color:var(--black)}
-  .top nav a.strong{color:var(--black);font-weight:700;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px;text-decoration-color:var(--mark)}
+  .top nav a.strong{color:var(--black);font-weight:700;background:var(--marker);
+    padding:9px 16px;border-radius:4px}
+  .top nav a.strong:hover{background:var(--gold)}
+  .top nav{align-items:center}
+  .eyebrow .sno{color:var(--gold);font-weight:800}
+  .calcband .eyebrow{color:#A9B8B2}
+  .calcband .eyebrow .sno{color:var(--marker)}
 
   /* buttons — one filled style, one quiet */
   .btn{display:inline-block;background:var(--black);color:#fff;text-decoration:none;font-weight:700;font-size:1.06rem;
@@ -254,17 +263,21 @@
   .verify a:hover,.check-note a:hover,.contact .or a:hover{background-size:100% 3px}
 
   .chartfig .anim{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
-  .chartfig.go .anim{transition:stroke-dashoffset 1.5s cubic-bezier(.3,.6,.2,1);stroke-dashoffset:0}
-  .chartfig .dot,.chartfig .flag{opacity:0;transition:opacity .5s ease .9s}
-  .chartfig .fade{opacity:0;transition:opacity .9s ease .35s}
+  .chartfig.go .anim{transition:stroke-dashoffset 1.4s cubic-bezier(.3,.6,.2,1) var(--d,0s);stroke-dashoffset:0}
+  .chartfig .dot{opacity:0;transition:opacity .5s ease calc(1s + var(--d,0s))}
+  .chartfig .lbl{opacity:0;transition:opacity .6s ease calc(1.15s + var(--d,0s))}
+  .chartfig .flag{opacity:0;transform:translateY(-8px);
+    transition:opacity .55s ease 1.5s,transform .55s cubic-bezier(.2,.7,.2,1.3) 1.5s}
+  .chartfig .fade{opacity:0;transition:opacity .9s ease .6s}
   .chartfig.go .fade{opacity:1}
-  .chartfig.go .dot,.chartfig.go .flag{opacity:1}
+  .chartfig.go .dot,.chartfig.go .lbl{opacity:1}
+  .chartfig.go .flag{opacity:1;transform:none}
 
   @media (prefers-reduced-motion:reduce){
     .rv{opacity:1;transform:none;transition:none}
     .btn:hover,.work > div:hover,.case:hover{transform:none;box-shadow:none}
     .chartfig .anim{stroke-dasharray:none;stroke-dashoffset:0}
-    .chartfig .dot,.chartfig .flag,.chartfig .fade{opacity:1}
+    .chartfig .dot,.chartfig .flag,.chartfig .fade,.chartfig .lbl{opacity:1;transform:none;transition:none}
     .chk .box i{opacity:1}
   }
 
@@ -477,6 +490,7 @@
 </head>
 <body>
 
+<header class="topbar">
 <div class="wrap top">
   <a class="brand" href="#top" aria-label="fixcustomerservice home"><img src="logo-horizontal.svg" alt="fixcustomerservice" width="481" height="90" decoding="async" fetchpriority="high"></a>
   <nav>
@@ -486,6 +500,7 @@
     <a class="strong" href="#talk">Book a call</a>
   </nav>
 </div>
+</header>
 
 <div class="wrap hero">
   <div class="hero-grid">
@@ -512,7 +527,7 @@
   <div class="wrap">
     <div class="check-head">
       <div>
-        <p class="eyebrow">Start here</p>
+        <p class="eyebrow"><span class="sno">01</span> &middot; Start here</p>
         <h2>Tick the ones that are true.</h2>
       </div>
       <div class="counter"><span id="count">0 of 12</span><em id="verdict">Tap the ones you recognise.</em></div>
@@ -538,6 +553,7 @@
 <div class="calcband" id="cost">
   <div class="wrap">
     <p class="eyebrow" style="color:#93A29C">Your numbers</p>
+    <p class="eyebrow"><span class="sno">02</span> &middot; Your numbers</p>
     <h2>Put a number on it.</h2>
     <p class="lead">Fifteen seconds, using your own figures. This is usually the moment it stops being a someday problem.</p>
     <div class="calcgrid">
@@ -580,7 +596,7 @@
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">The rest of the damage</p>
+    <p class="eyebrow"><span class="sno">03</span> &middot; The rest of the damage</p>
     <h2>It doesn't stop at lost sales.</h2>
     <div class="impacts">
       <div class="impact">
@@ -621,7 +637,7 @@
 
 <section class="paper">
   <div class="wrap">
-    <p class="eyebrow">What changes</p>
+    <p class="eyebrow"><span class="sno">04</span> &middot; What changes</p>
     <h2>Same messages. Different setup.</h2>
     <div class="flow">
       <div class="flow-col">
@@ -672,7 +688,7 @@
 
 <section class="paper">
   <div class="wrap">
-    <p class="eyebrow">Where it shows up in public</p>
+    <p class="eyebrow"><span class="sno">05</span> &middot; Where it shows up in public</p>
     <h2>Your next customer reads your last customer's bad day.</h2>
     <p class="lead">Almost every one-star review is about service rather than the product. Here is the same business, six months apart.</p>
 
@@ -722,7 +738,7 @@
 
 <section id="proof">
   <div class="wrap">
-    <p class="eyebrow">Case studies</p>
+    <p class="eyebrow"><span class="sno">06</span> &middot; Case studies</p>
     <h2>Two rebuilds, and what changed.</h2>
     <p class="lead">Both from the same fintech in Dubai, where we rebuilt the support function. The numbers come from tracked KPIs, not estimates.</p>
     <div class="cases">
@@ -762,11 +778,11 @@
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">What changes</p>
+    <p class="eyebrow"><span class="sno">07</span> &middot; What changes</p>
     <h2>Fix the drivers and the rest follows.</h2>
     <p class="lead">Contact rate falls first. Queries follow. Only then does the team get smaller, and satisfaction goes up rather than down, because the contacts that remain get handled properly.</p>
     <figure class="chartfig">
-      <svg viewBox="0 0 1000 420" role="img" aria-label="Illustrative chart: after support is rebuilt, contact rate falls about 60 percent, queries fall about 45 percent, the number of people needed falls about 30 percent, and CSAT rises from roughly 72 to 91 percent over twelve months" preserveAspectRatio="xMidYMid meet"><line x1="54" y1="362.0" x2="868" y2="362.0" stroke="#EDE7DC" stroke-width="1"/><text x="44" y="366.0" text-anchor="end" font-size="11" fill="#8A857A">0</text><line x1="54" y1="284.5" x2="868" y2="284.5" stroke="#EDE7DC" stroke-width="1"/><text x="44" y="288.5" text-anchor="end" font-size="11" fill="#8A857A">25</text><line x1="54" y1="207.0" x2="868" y2="207.0" stroke="#EDE7DC" stroke-width="1"/><text x="44" y="211.0" text-anchor="end" font-size="11" fill="#8A857A">50</text><line x1="54" y1="129.5" x2="868" y2="129.5" stroke="#EDE7DC" stroke-width="1"/><text x="44" y="133.5" text-anchor="end" font-size="11" fill="#8A857A">75</text><line x1="54" y1="52.0" x2="868" y2="52.0" stroke="#EDE7DC" stroke-width="1"/><text x="44" y="56.0" text-anchor="end" font-size="11" fill="#8A857A">100</text><rect x="54" y="52" width="237.4" height="310" fill="#F7F3EA"/><line x1="291.4" y1="42" x2="291.4" y2="362" stroke="#141310" stroke-width="2" stroke-dasharray="5 4"/><rect x="290.4" y="20" width="150" height="22" fill="#FBDD5C" rx="3"/><text x="300.4" y="36" font-size="12" font-weight="700" fill="#141310">Support rebuilt here</text><text x="62" y="352" font-size="11" fill="#8A857A">Before</text><path class="anim" d="M54.0,52.0 C87.9,52.0 87.9,52.0 121.8,52.0 C155.8,52.0 155.8,55.1 189.7,55.1 C223.6,55.1 223.6,52.0 257.5,52.0 C291.4,52.0 291.4,76.8 325.3,76.8 C359.2,76.8 359.2,114.0 393.2,114.0 C427.1,114.0 427.1,151.2 461.0,151.2 C494.9,151.2 494.9,182.2 528.8,182.2 C562.8,182.2 562.8,207.0 596.7,207.0 C630.6,207.0 630.6,222.5 664.5,222.5 C698.4,222.5 698.4,231.8 732.3,231.8 C766.2,231.8 766.2,238.0 800.2,238.0 C834.1,238.0 834.1,241.1 868.0,241.1" fill="none" stroke="#B4472E" stroke-width="3" stroke-linecap="round"/><circle class="dot" cx="868.0" cy="241.1" r="4.5" fill="#B4472E"/><text x="880.0" y="239.1" font-size="12.5" font-weight="700" fill="#B4472E">Contact rate</text><text x="880.0" y="254.1" font-size="11.5" fill="#5F594F">−61%</text><path class="anim" d="M54.0,52.0 C87.9,52.0 87.9,48.9 121.8,48.9 C155.8,48.9 155.8,55.1 189.7,55.1 C223.6,55.1 223.6,52.0 257.5,52.0 C291.4,52.0 291.4,67.5 325.3,67.5 C359.2,67.5 359.2,92.3 393.2,92.3 C427.1,92.3 427.1,123.3 461.0,123.3 C494.9,123.3 494.9,148.1 528.8,148.1 C562.8,148.1 562.8,166.7 596.7,166.7 C630.6,166.7 630.6,179.1 664.5,179.1 C698.4,179.1 698.4,185.3 732.3,185.3 C766.2,185.3 766.2,188.4 800.2,188.4 C834.1,188.4 834.1,191.5 868.0,191.5" fill="none" stroke="#141310" stroke-width="2.2" stroke-linecap="round"/><circle class="dot" cx="868.0" cy="191.5" r="4.5" fill="#141310"/><text x="880.0" y="189.5" font-size="12.5" font-weight="700" fill="#141310">Queries received</text><text x="880.0" y="204.5" font-size="11.5" fill="#5F594F">−45%</text><path class="fade" d="M54.0,52.0 C87.9,52.0 87.9,52.0 121.8,52.0 C155.8,52.0 155.8,52.0 189.7,52.0 C223.6,52.0 223.6,52.0 257.5,52.0 C291.4,52.0 291.4,52.0 325.3,52.0 C359.2,52.0 359.2,52.0 393.2,52.0 C427.1,52.0 427.1,73.7 461.0,73.7 C494.9,73.7 494.9,73.7 528.8,73.7 C562.8,73.7 562.8,92.3 596.7,92.3 C630.6,92.3 630.6,92.3 664.5,92.3 C698.4,92.3 698.4,114.0 732.3,114.0 C766.2,114.0 766.2,135.7 800.2,135.7 C834.1,135.7 834.1,145.0 868.0,145.0" fill="none" stroke="#8A857A" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="6 4"/><circle class="dot" cx="868.0" cy="145.0" r="4.5" fill="#8A857A"/><text x="880.0" y="143.0" font-size="12.5" font-weight="700" fill="#8A857A">People needed</text><text x="880.0" y="158.0" font-size="11.5" fill="#5F594F">−30%</text><path class="anim" d="M54.0,138.8 C87.9,138.8 87.9,141.9 121.8,141.9 C155.8,141.9 155.8,135.7 189.7,135.7 C223.6,135.7 223.6,138.8 257.5,138.8 C291.4,138.8 291.4,132.6 325.3,132.6 C359.2,132.6 359.2,123.3 393.2,123.3 C427.1,123.3 427.1,110.9 461.0,110.9 C494.9,110.9 494.9,101.6 528.8,101.6 C562.8,101.6 562.8,95.4 596.7,95.4 C630.6,95.4 630.6,89.2 664.5,89.2 C698.4,89.2 698.4,86.1 732.3,86.1 C766.2,86.1 766.2,83.0 800.2,83.0 C834.1,83.0 834.1,79.9 868.0,79.9" fill="none" stroke="#0E6B58" stroke-width="3" stroke-linecap="round"/><circle class="dot" cx="868.0" cy="79.9" r="4.5" fill="#0E6B58"/><text x="880.0" y="77.9" font-size="12.5" font-weight="700" fill="#0E6B58">CSAT</text><text x="880.0" y="92.9" font-size="11.5" fill="#5F594F">91%</text><text x="54.0" y="384.0" text-anchor="middle" font-size="11.5" fill="#5F594F">Month 0</text><text x="461.0" y="384.0" text-anchor="middle" font-size="11.5" fill="#5F594F">Month 6</text><text x="868.0" y="384.0" text-anchor="middle" font-size="11.5" fill="#5F594F">Month 12</text><text x="44" y="38" text-anchor="end" font-size="11" font-weight="700" fill="#141310">Index</text><text x="868" y="38" text-anchor="end" font-size="11" fill="#A39D91">Typical pattern over 12 months</text></svg>
+      <svg viewBox="0 0 1000 420" role="img" aria-label="Illustrative chart: after support is rebuilt, contact rate falls about 60 percent, queries fall about 45 percent, the number of people needed falls about 30 percent, and CSAT rises from roughly 72 to 91 percent over twelve months" preserveAspectRatio="xMidYMid meet"><line x1="54" y1="362.0" x2="868" y2="362.0" stroke="#EDE7DC" stroke-width="1"/><text x="44" y="366.0" text-anchor="end" font-size="11" fill="#8A857A">0</text><line x1="54" y1="284.5" x2="868" y2="284.5" stroke="#EDE7DC" stroke-width="1"/><text x="44" y="288.5" text-anchor="end" font-size="11" fill="#8A857A">25</text><line x1="54" y1="207.0" x2="868" y2="207.0" stroke="#EDE7DC" stroke-width="1"/><text x="44" y="211.0" text-anchor="end" font-size="11" fill="#8A857A">50</text><line x1="54" y1="129.5" x2="868" y2="129.5" stroke="#EDE7DC" stroke-width="1"/><text x="44" y="133.5" text-anchor="end" font-size="11" fill="#8A857A">75</text><line x1="54" y1="52.0" x2="868" y2="52.0" stroke="#EDE7DC" stroke-width="1"/><text x="44" y="56.0" text-anchor="end" font-size="11" fill="#8A857A">100</text><rect x="54" y="52" width="237.4" height="310" fill="#F7F3EA"/><line class="flag" x1="291.4" y1="42" x2="291.4" y2="362" stroke="#141310" stroke-width="2" stroke-dasharray="5 4"/><rect class="flag" x="290.4" y="20" width="150" height="22" fill="#FBDD5C" rx="3"/><text class="flag" x="300.4" y="36" font-size="12" font-weight="700" fill="#141310">Support rebuilt here</text><text x="62" y="352" font-size="11" fill="#8A857A">Before</text><path class="anim" style="--d:0s" d="M54.0,52.0 C87.9,52.0 87.9,52.0 121.8,52.0 C155.8,52.0 155.8,55.1 189.7,55.1 C223.6,55.1 223.6,52.0 257.5,52.0 C291.4,52.0 291.4,76.8 325.3,76.8 C359.2,76.8 359.2,114.0 393.2,114.0 C427.1,114.0 427.1,151.2 461.0,151.2 C494.9,151.2 494.9,182.2 528.8,182.2 C562.8,182.2 562.8,207.0 596.7,207.0 C630.6,207.0 630.6,222.5 664.5,222.5 C698.4,222.5 698.4,231.8 732.3,231.8 C766.2,231.8 766.2,238.0 800.2,238.0 C834.1,238.0 834.1,241.1 868.0,241.1" fill="none" stroke="#B4472E" stroke-width="3" stroke-linecap="round"/><circle class="dot" style="--d:0s" cx="868.0" cy="241.1" r="4.5" fill="#B4472E"/><text class="lbl" style="--d:0s" x="880.0" y="239.1" font-size="12.5" font-weight="700" fill="#B4472E">Contact rate</text><text class="lbl" x="880.0" y="254.1" font-size="11.5" fill="#5F594F">−61%</text><path class="anim" style="--d:.35s" d="M54.0,52.0 C87.9,52.0 87.9,48.9 121.8,48.9 C155.8,48.9 155.8,55.1 189.7,55.1 C223.6,55.1 223.6,52.0 257.5,52.0 C291.4,52.0 291.4,67.5 325.3,67.5 C359.2,67.5 359.2,92.3 393.2,92.3 C427.1,92.3 427.1,123.3 461.0,123.3 C494.9,123.3 494.9,148.1 528.8,148.1 C562.8,148.1 562.8,166.7 596.7,166.7 C630.6,166.7 630.6,179.1 664.5,179.1 C698.4,179.1 698.4,185.3 732.3,185.3 C766.2,185.3 766.2,188.4 800.2,188.4 C834.1,188.4 834.1,191.5 868.0,191.5" fill="none" stroke="#141310" stroke-width="2.2" stroke-linecap="round"/><circle class="dot" style="--d:.35s" cx="868.0" cy="191.5" r="4.5" fill="#141310"/><text class="lbl" style="--d:.35s" x="880.0" y="189.5" font-size="12.5" font-weight="700" fill="#141310">Queries received</text><text class="lbl" x="880.0" y="204.5" font-size="11.5" fill="#5F594F">−45%</text><path class="fade" d="M54.0,52.0 C87.9,52.0 87.9,52.0 121.8,52.0 C155.8,52.0 155.8,52.0 189.7,52.0 C223.6,52.0 223.6,52.0 257.5,52.0 C291.4,52.0 291.4,52.0 325.3,52.0 C359.2,52.0 359.2,52.0 393.2,52.0 C427.1,52.0 427.1,73.7 461.0,73.7 C494.9,73.7 494.9,73.7 528.8,73.7 C562.8,73.7 562.8,92.3 596.7,92.3 C630.6,92.3 630.6,92.3 664.5,92.3 C698.4,92.3 698.4,114.0 732.3,114.0 C766.2,114.0 766.2,135.7 800.2,135.7 C834.1,135.7 834.1,145.0 868.0,145.0" fill="none" stroke="#8A857A" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="6 4"/><circle class="dot" cx="868.0" cy="145.0" r="4.5" fill="#8A857A"/><text class="lbl" x="880.0" y="143.0" font-size="12.5" font-weight="700" fill="#8A857A">People needed</text><text class="lbl" x="880.0" y="158.0" font-size="11.5" fill="#5F594F">−30%</text><path class="anim" style="--d:.7s" d="M54.0,138.8 C87.9,138.8 87.9,141.9 121.8,141.9 C155.8,141.9 155.8,135.7 189.7,135.7 C223.6,135.7 223.6,138.8 257.5,138.8 C291.4,138.8 291.4,132.6 325.3,132.6 C359.2,132.6 359.2,123.3 393.2,123.3 C427.1,123.3 427.1,110.9 461.0,110.9 C494.9,110.9 494.9,101.6 528.8,101.6 C562.8,101.6 562.8,95.4 596.7,95.4 C630.6,95.4 630.6,89.2 664.5,89.2 C698.4,89.2 698.4,86.1 732.3,86.1 C766.2,86.1 766.2,83.0 800.2,83.0 C834.1,83.0 834.1,79.9 868.0,79.9" fill="none" stroke="#0E6B58" stroke-width="3" stroke-linecap="round"/><circle class="dot" style="--d:.7s" cx="868.0" cy="79.9" r="4.5" fill="#0E6B58"/><text class="lbl" style="--d:.7s" x="880.0" y="77.9" font-size="12.5" font-weight="700" fill="#0E6B58">CSAT</text><text class="lbl" x="880.0" y="92.9" font-size="11.5" fill="#5F594F">91%</text><text x="54.0" y="384.0" text-anchor="middle" font-size="11.5" fill="#5F594F">Month 0</text><text x="461.0" y="384.0" text-anchor="middle" font-size="11.5" fill="#5F594F">Month 6</text><text x="868.0" y="384.0" text-anchor="middle" font-size="11.5" fill="#5F594F">Month 12</text><text x="44" y="38" text-anchor="end" font-size="11" font-weight="700" fill="#141310">Index</text><text x="868" y="38" text-anchor="end" font-size="11" fill="#A39D91">Typical pattern over 12 months</text></svg>
       <figcaption><b>This is the order things move in.</b> It's the part most businesses get backwards. They cut headcount first, then wonder why service collapses.</figcaption>
     </figure>
   </div>
@@ -786,7 +802,7 @@
 
 <section class="paper">
   <div class="wrap">
-    <p class="eyebrow">The work</p>
+    <p class="eyebrow"><span class="sno">08</span> &middot; The work</p>
     <h2>What the work involves.</h2>
     <p class="lead">Not advice, the work itself. Most businesses need some of this, not all of it.</p>
     <div class="work">
@@ -810,7 +826,7 @@
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">By size</p>
+    <p class="eyebrow"><span class="sno">09</span> &middot; By size</p>
     <h2>It breaks differently at every size.</h2>
     <div class="bands">
       <div class="band">
@@ -847,7 +863,7 @@
 
 <section class="paper" id="how">
   <div class="wrap">
-    <p class="eyebrow">How it works</p>
+    <p class="eyebrow"><span class="sno">10</span> &middot; How it works</p>
     <h2>Three stages. You can stop after any of them.</h2>
     <div class="how">
       <div>
@@ -888,7 +904,7 @@
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">Your options</p>
+    <p class="eyebrow"><span class="sno">11</span> &middot; Your options</p>
     <h2>Honestly, here's how the options compare.</h2>
     <table class="compare"><tr><th></th><th>Hire a support manager</th><th>Hire an agency</th><th class="me">Working with us</th></tr><tr><td data-l="">Cost</td><td data-l="Hire a support manager">AED 15,000 to 25,000 a month, plus visa, plus the months it takes to find them</td><td data-l="Hire an agency">A setup fee, then a retainer. Junior people usually do the work.</td><td class="me" data-l="Work with me">A fixed price agreed before anything starts. A monthly fee only if you want ongoing support.</td></tr><tr><td data-l="">Who does the work</td><td data-l="Hire a support manager">Whoever you manage to hire</td><td data-l="Hire an agency">An account manager, then someone you never meet</td><td class="me" data-l="Work with me">The person who advises you is the person who builds it.</td></tr><tr><td data-l="">Time to results</td><td data-l="Hire a support manager">Three to six months, if they're good</td><td data-l="Hire an agency">Depends on the retainer</td><td class="me" data-l="Work with me">First fixes live within weeks</td></tr><tr><td data-l="">What you're left with</td><td data-l="Hire a support manager">A person, who might leave</td><td data-l="Hire an agency">A dependency</td><td class="me" data-l="Work with me">A setup your own team can run on its own</td></tr></table>
   </div>
@@ -896,7 +912,7 @@
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">The numbers that matter</p>
+    <p class="eyebrow"><span class="sno">12</span> &middot; The numbers that matter</p>
     <h2>Eight numbers. Each one is money.</h2>
     <p class="lead">These are the numbers we measure and move. Most businesses track none of them, which is why support problems stay invisible until they show up in the revenue figures.</p>
     <table class="compare kpi"><tr><th>The number</th><th>What it means</th><th>What it does to the business</th></tr><tr><td data-l="The number">First reply time</td><td data-l="What it means">How long a customer waits for any human response</td><td class="me" data-l="What it does to the business">Sales go to whoever answered first. Slow replies lose ready buyers before you know they existed.</td></tr><tr><td data-l="The number">Contact rate</td><td data-l="What it means">How many messages you get per order or per customer</td><td class="me" data-l="What it does to the business">The cost driver behind everything. Cut it and every other number improves without hiring.</td></tr><tr><td data-l="The number">First contact resolution</td><td data-l="What it means">How often an issue is sorted in one conversation</td><td class="me" data-l="What it does to the business">Low means each problem costs you three conversations instead of one, and the customer is angrier at the end.</td></tr><tr><td data-l="The number">Cost per contact</td><td data-l="What it means">Total support cost divided by messages handled</td><td class="me" data-l="What it does to the business">Tells you whether growth is affordable. If it doesn't fall as you grow, your margin shrinks with every new customer.</td></tr><tr><td data-l="The number">Missed and abandoned</td><td data-l="What it means">Calls and messages that never got a reply at all</td><td class="me" data-l="What it does to the business">Straight lost revenue, and usually the source of your worst reviews.</td></tr><tr><td data-l="The number">SLA hit rate</td><td data-l="What it means">How often you keep the reply time you promised</td><td class="me" data-l="What it does to the business">Broken promises cost more than never promising. Corporate clients cancel contracts over this one.</td></tr><tr><td data-l="The number">Review rating and volume</td><td data-l="What it means">Your Google score, how many reviews, how recent</td><td class="me" data-l="What it does to the business">Decides whether new customers choose you, and where you appear in local search. Cheaper than ads and more durable.</td></tr><tr><td data-l="The number">Repeat purchase and churn</td><td data-l="What it means">Whether customers come back after contacting you</td><td class="me" data-l="What it does to the business">One bad experience can cost you every order that customer would have placed after it.</td></tr></table>
@@ -906,7 +922,7 @@
 
 <section class="paper">
   <div class="wrap">
-    <p class="eyebrow">Who you'd work with</p>
+    <p class="eyebrow"><span class="sno">13</span> &middot; Who you'd work with</p>
     <h2>Who you would be working with.</h2>
     <div class="bio">
       <img class="photo" src="abdullah.jpg" srcset="abdullah-small.jpg 300w, abdullah.jpg 600w" sizes="(max-width:820px) 150px, 190px" width="600" height="720" loading="lazy" decoding="async" alt="Abdullah Khan, customer service operations consultant based in Dubai">
@@ -925,7 +941,7 @@
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">Before you let a stranger near your customers</p>
+    <p class="eyebrow"><span class="sno">14</span> &middot; Before you let a stranger near your customers</p>
     <h2>Your data, handled properly.</h2>
     <div class="trust">
       <div>
@@ -946,7 +962,7 @@
 
 <section class="paper">
   <div class="narrow">
-    <p class="eyebrow">Questions</p>
+    <p class="eyebrow"><span class="sno">15</span> &middot; Questions</p>
     <h2>What people ask first.</h2>
     <div style="margin-top:38px">
       <details><summary>What does it cost?</summary><p>Fixed price, agreed before anything starts. Never hourly, never a surprise. The size depends on how big your operation is and how much of the work your own team takes on. We'll give you a straight number on the free call, and the first look is small enough that most businesses treat it as a test.</p></details>
@@ -963,7 +979,7 @@
 
 <section id="talk">
   <div class="wrap">
-    <p class="eyebrow">Get in touch</p>
+    <p class="eyebrow"><span class="sno">16</span> &middot; Get in touch</p>
     <h2>Let's talk about your customer service.</h2>
     <div class="contact">
       <div class="wa">
