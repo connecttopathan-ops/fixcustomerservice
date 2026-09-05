@@ -8,7 +8,9 @@ Sheet. Until the two secrets below are set, the form returns
 ## 1. Create the sheet
 
 1. Create a Google Sheet (name it whatever you like, e.g. "Website leads").
-2. **Extensions → Apps Script**.
+2. **Extensions → Apps Script**. This creates a script bound to that sheet,
+   which is what lets `SpreadsheetApp.getActiveSpreadsheet()` find it. A
+   standalone script created from script.google.com will not work.
 3. Delete the placeholder `myFunction` and paste the contents of
    `scripts/google-apps-script.gs`.
 4. Replace `REPLACE_WITH_A_LONG_RANDOM_STRING` at the top with a long random
@@ -18,7 +20,9 @@ Sheet. Until the two secrets below are set, the form returns
    openssl rand -hex 32
    ```
 
-   Keep it — you need the same value in step 3.
+   Keep it — you need the same value in step 3. Do not paste it into a chat,
+   an issue, or a screenshot: it is the only thing standing between the
+   public internet and your sheet.
 5. Save.
 
 The script creates a `Leads` tab with a header row on the first submission;
@@ -64,9 +68,29 @@ curl -X POST https://fixcustomerservice.com/api/lead \
 
 ## Whenever you change the Apps Script
 
-Editing the script is not enough — **Deploy → Manage deployments → edit →
-Version: New version**. Without that, the old code keeps running. The URL
-stays the same, so the Worker secret does not need updating.
+Saving the file changes nothing that is live. The `/exec` URL keeps serving
+whichever version was current when you last deployed, so every edit needs a
+redeploy:
+
+**Deploy → Manage deployments → pencil icon on the existing deployment →
+Version: New version → Deploy.**
+
+Use the pencil on the deployment you already have. **Deploy → New deployment**
+looks similar but creates a second, independent web app with its own URL, and
+leaves the first one running the old code. If that happens you have two live
+endpoints, one of them stale:
+
+- Point `SHEETS_WEBHOOK_URL` at the new URL, and
+- **Deploy → Manage deployments → old deployment → ⋮ → Archive**, or it keeps
+  accepting submissions with whatever secret the old code carried.
+
+Updating an existing deployment keeps the same URL, so the Worker secret does
+not need changing.
+
+To check which version is actually live, post to the URL with a deliberately
+wrong secret. `{"ok":false,"error":"unauthorized"}` proves the deployment is
+reachable and running a version whose secret is not the one you sent. Nothing
+is written to the sheet.
 
 ## Running it locally
 
