@@ -25,3 +25,8 @@
 
 - [Who it is for](https://fixcustomerservice.com/#proof): any industry, from a few hundred to hundreds of thousands of customer messages a month
 - [Data handling](https://fixcustomerservice.com/#talk): NDA before anything is shared, read-only access where possible, no customer data taken off client systems
+
+## Writing
+
+- [Reply time is not the real problem](https://fixcustomerservice.com/blog/reply-time-is-not-the-real-problem): Faster replies fix the symptom. Look at contact rate and first contact resolution first, or you will pay to answer messages you should never receive.
+- [How to calculate cost per contact](https://fixcustomerservice.com/blog/how-to-calculate-cost-per-contact): Work out what each customer message really costs you, using figures you already have. No new tooling, about twenty minutes.

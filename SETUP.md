@@ -113,3 +113,57 @@ Then `npx wrangler dev`.
 | `400 missing_fields` | Name, business, email or concern was empty |
 
 Worker-side errors are logged. Watch them live with `npx wrangler tail`.
+
+---
+
+# Adding a blog post
+
+Posts are markdown files in `content/posts/`, one per post. The HTML is
+generated and committed, so serving the site never needs a build step.
+
+1. Create `content/posts/<slug>.md` with front matter:
+
+   ```yaml
+   ---
+   title: How to calculate cost per contact
+   description: A benefit-led summary, under 155 characters.
+   slug: how-to-calculate-cost-per-contact
+   date: 2026-09-10
+   updated: 2026-09-10
+   tags: [metrics, cost]
+   readingMinutes: 6
+   ---
+   ```
+
+   Body headings start at `##`. The `#` level is the post title, added for you.
+
+2. Run the build and commit what it changes:
+
+   ```
+   npm install     # first time only
+   npm run build
+   ```
+
+It regenerates `public/blog.html`, `public/blog/<slug>.html`,
+`public/customer-service-audit.html`, `public/sitemap.xml`, the `## Writing`
+section of `public/llms.txt`, and the "Latest writing" block on the homepage
+between the `<!-- BLOG:START -->` and `<!-- BLOG:END -->` markers.
+
+The build refuses to run on a duplicate slug, a missing description, a
+description over 155 characters, a malformed date, or a title that would
+exceed 60 characters once " | Fix Customer Service" is appended. That suffix
+costs 23 characters, so keep titles to about 37.
+
+With no posts at all, the homepage block, the sitemap entries and the
+`## Writing` section disappear rather than rendering empty.
+
+## How the chrome stays in sync
+
+`scripts/lib/shell.mjs` reads the stylesheet, header and footer straight out
+of `public/index.html` at build time, so generated pages cannot drift from the
+homepage. Editing the homepage styles and re-running the build updates every
+generated page. Relative asset paths and same-page anchors are rewritten to
+absolute, because a relative `src` under `/blog/` would otherwise 404.
+
+Remember to bump `<meta name="build">` in `public/index.html` so a deploy can
+be confirmed from view-source.

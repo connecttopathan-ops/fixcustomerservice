@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="Thirteen years running support operations. Any business, any size.">
 <meta name="twitter:image" content="https://fixcustomerservice.com/og-image.jpg">
 <meta name="theme-color" content="#141310">
-<meta name="build" content="2026-09-05-v8">
+<meta name="build" content="2026-09-05-v9">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -329,6 +329,10 @@
   /* three */
   .three{display:grid;grid-template-columns:repeat(3,1fr);gap:52px;margin-top:52px}
   .three p{font-size:1.02rem;color:var(--grey);margin:14px 0 0}
+  .latest .when{font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin:0 0 10px}
+  .latest h3{font-size:1.22rem;font-weight:800;letter-spacing:-.02em;line-height:1.2;margin:0}
+  .latest h3 a{color:var(--ink);text-decoration:none;border-bottom:3px solid transparent}
+  .latest h3 a:hover{border-bottom-color:var(--mark)}
 
   /* proof */
   .cases{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:52px}
@@ -501,6 +505,7 @@
 <div class="wrap top">
   <a class="brand" href="#top" aria-label="fixcustomerservice home"><img src="logo-horizontal.svg" alt="fixcustomerservice" width="481" height="90" decoding="async" fetchpriority="high"></a>
   <nav>
+    <a href="/customer-service-audit">The audit</a>
     <a href="#cost">What it's costing you</a>
     <a href="#proof">Case studies</a>
     <a href="#how">How it works</a>
@@ -985,9 +990,31 @@
   </div>
 </section>
 
+<!-- BLOG:START -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow"><span class="sno">16</span> &middot; Latest writing</p>
+    <h2>Notes on running customer service.</h2>
+    <div class="three latest">
+      <div>
+        <p class="when"><time datetime="2026-09-12">12 September 2026</time></p>
+        <h3><a href="/blog/reply-time-is-not-the-real-problem">Reply time is not the real problem</a></h3>
+        <p>Faster replies fix the symptom. Look at contact rate and first contact resolution first, or you will pay to answer messages you should never receive.</p>
+      </div>
+      <div>
+        <p class="when"><time datetime="2026-09-08">8 September 2026</time></p>
+        <h3><a href="/blog/how-to-calculate-cost-per-contact">How to calculate cost per contact</a></h3>
+        <p>Work out what each customer message really costs you, using figures you already have. No new tooling, about twenty minutes.</p>
+      </div>
+    </div>
+    <p class="check-note" style="margin-top:38px"><a href="/blog">Read everything&nbsp;&rarr;</a></p>
+  </div>
+</section>
+<!-- BLOG:END -->
+
 <section id="talk">
   <div class="wrap">
-    <p class="eyebrow"><span class="sno">16</span> &middot; Get in touch</p>
+    <p class="eyebrow"><span class="sno">17</span> &middot; Get in touch</p>
     <h2>Let's talk about your customer service.</h2>
     <div class="contact">
       <div class="wa">
@@ -1037,7 +1064,7 @@
       </form>
 
       <div class="booked" id="lead-done" hidden>
-        <h3>Thanks &mdash; that is with us.</h3>
+        <h3>Thanks, that is with us.</h3>
         <p>You will hear back within one working day. If you would rather lock in the call now, pick a time that suits you:</p>
         <a class="btn" id="lead-calendly" href="https://calendly.com/strivetoripple/30min">Book your 30-minute call</a>
         <p class="privacy-line">Nothing is charged, and there is no obligation after the call.</p>

@@ -1,0 +1,11 @@
+{
+  "name": "fixcustomerservice",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "marked": "^14.1.3"
+  }
+}
