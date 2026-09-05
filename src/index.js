@@ -26,11 +26,11 @@ const LIMITS = {
 const REQUIRED = ['name', 'business', 'email', 'concern'];
 
 const VOLUMES = new Set([
-  'A few hundred',
-  'A few thousand',
-  'Tens of thousands',
-  'Hundreds of thousands',
-  'No idea',
+  '0-1k',
+  '1k-10k',
+  '10k-50k',
+  '50k-100k',
+  '100k+',
 ]);
 
 export default {
