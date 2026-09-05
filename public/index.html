@@ -396,6 +396,13 @@
   form input,form select{width:100%;padding:15px;border:1.5px solid var(--black);border-radius:4px;font:inherit;font-size:1rem;margin-bottom:18px;background:#fff}
   form .btn{width:100%;text-align:center}
   .privacy-line{font-size:.9rem;color:var(--grey);margin-top:16px}
+  form textarea{width:100%;padding:15px;border:1.5px solid var(--black);border-radius:4px;font:inherit;font-size:1rem;margin-bottom:18px;background:#fff;resize:vertical}
+  form label .opt{font-weight:400;color:var(--grey)}
+  form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .form-error{background:#FDECEA;border:1.5px solid #C0392B;color:#7B241C;border-radius:4px;padding:12px 14px;margin:0 0 18px;font-size:.95rem}
+  .booked h3{font-size:1.35rem;margin:0 0 12px}
+  .booked p{color:var(--grey);margin:0 0 20px}
+  .booked .btn{width:100%;text-align:center}
 
   footer{border-top:1px solid var(--rule);padding:34px 0 112px;color:var(--grey);font-size:.92rem}
   footer a{color:var(--grey)}
@@ -962,17 +969,28 @@
       <div class="wa">
         <p>Fastest way: send a WhatsApp message with roughly what's going on. You'll get a reply the same day.</p>
         <a class="btn" href="https://wa.me/971522771875?text=Hi%20Abdullah%2C%20I%27d%20like%20to%20talk%20about%20our%20customer%20service.">Message us on WhatsApp</a>
-        <p class="or">Prefer to put it straight in the diary? <a href="https://calendly.com/strivetoripple/30min">Pick a time →</a></p>
+        <p class="or">Prefer to put it straight in the diary? Fill in the form and the booking link comes up straight away.</p>
         <p class="or">Or leave your details and you'll hear back within one working day.</p><p class="or" style="margin-top:18px"><b style="color:var(--ink)">What happens next:</b> a reply the same day, a 30-minute call at a time that suits you, then an honest read on your three biggest problems. Nothing is charged until you agree a fixed price.</p>
       </div>
-      <form action="https://formspree.io/f/YOUR-FORM-ID" method="POST">
+      <form id="lead-form" action="/api/lead" method="POST">
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+
         <label for="n">Your name</label>
         <input id="n" name="name" type="text" autocomplete="name" required>
-        <label for="c">Your business</label>
+
+        <label for="c">Business name</label>
         <input id="c" name="business" type="text" autocomplete="organization" required>
-        <label for="p">Phone or email</label>
-        <input id="p" name="contact" type="text" required>
-        <label for="v">Roughly how many customer messages a month?</label>
+
+        <label for="w">Business website <span class="opt">optional</span></label>
+        <input id="w" name="website" type="text" autocomplete="url" placeholder="yourbusiness.com">
+
+        <label for="e">Email address</label>
+        <input id="e" name="email" type="email" autocomplete="email" required>
+
+        <label for="p">Phone or WhatsApp <span class="opt">optional</span></label>
+        <input id="p" name="phone" type="tel" autocomplete="tel">
+
+        <label for="v">Roughly how many customer queries a month?</label>
         <select id="v" name="volume">
           <option>A few hundred</option>
           <option>A few thousand</option>
@@ -980,9 +998,25 @@
           <option>Hundreds of thousands</option>
           <option>No idea</option>
         </select>
-        <button class="btn" type="submit">Get in touch</button>
+
+        <label for="q">What is the main problem right now?</label>
+        <textarea id="q" name="concern" rows="4" required placeholder="Replies take too long, messages get missed, reviews are slipping..."></textarea>
+
+        <div class="hp" aria-hidden="true">
+          <label for="rc">Referral code</label>
+          <input id="rc" name="referral_code" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="btn" type="submit" id="lead-submit">Get in touch</button>
         <p class="privacy-line">Your details go nowhere else. No mailing list.</p>
       </form>
+
+      <div class="booked" id="lead-done" hidden>
+        <h3>Thanks &mdash; that is with us.</h3>
+        <p>You will hear back within one working day. If you would rather lock in the call now, pick a time that suits you:</p>
+        <a class="btn" id="lead-calendly" href="https://calendly.com/strivetoripple/30min">Book your 30-minute call</a>
+        <p class="privacy-line">Nothing is charged, and there is no obligation after the call.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1073,5 +1107,83 @@
 })();
 </script>
 
+<script>
+(function () {
+  var form = document.getElementById('lead-form');
+  if (!form) return;
+
+  var done = document.getElementById('lead-done');
+  var errorBox = document.getElementById('form-error');
+  var submit = document.getElementById('lead-submit');
+  var calendly = document.getElementById('lead-calendly');
+  var CALENDLY_BASE = calendly.getAttribute('href');
+
+  var MESSAGES = {
+    missing_fields: 'Please fill in the required fields.',
+    invalid_email: 'That email address does not look right.',
+    not_configured: 'The form is not connected yet. Please message on WhatsApp instead.',
+    upstream_error: 'Something went wrong saving that. Please try again, or message on WhatsApp.',
+    upstream_unreachable: 'Something went wrong saving that. Please try again, or message on WhatsApp.'
+  };
+
+  // A submission that failed without JS comes back with this in the URL.
+  if (new URLSearchParams(location.search).get('submit') === 'failed') {
+    showError(MESSAGES.upstream_error);
+  }
+
+  form.addEventListener('submit', function (event) {
+    if (!form.reportValidity()) return;
+    event.preventDefault();
+
+    hideError();
+    submit.disabled = true;
+    submit.textContent = 'Sending...';
+
+    var data = {};
+    new FormData(form).forEach(function (value, key) { data[key] = value; });
+
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(function (response) {
+        return response.json().catch(function () { return { ok: false }; });
+      })
+      .then(function (result) {
+        if (!result.ok) throw new Error(result.error || 'upstream_error');
+        showBooking(data);
+      })
+      .catch(function (err) {
+        showError(MESSAGES[err.message] || MESSAGES.upstream_error);
+        submit.disabled = false;
+        submit.textContent = 'Get in touch';
+      });
+  });
+
+  function showBooking(data) {
+    // Save them retyping what they just told us.
+    var params = new URLSearchParams();
+    if (data.name) params.set('name', data.name);
+    if (data.email) params.set('email', data.email);
+    var query = params.toString();
+    calendly.setAttribute('href', query ? CALENDLY_BASE + '?' + query : CALENDLY_BASE);
+
+    form.hidden = true;
+    done.hidden = false;
+    done.setAttribute('tabindex', '-1');
+    done.focus();
+  }
+
+  function showError(message) {
+    errorBox.textContent = message;
+    errorBox.hidden = false;
+  }
+
+  function hideError() {
+    errorBox.hidden = true;
+  }
+})();
+</script>
 </body>
 </html>

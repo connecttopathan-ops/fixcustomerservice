@@ -1,11 +1,18 @@
 {
   "name": "fix-cs-cx-ab",
+  "main": "src/index.js",
   "compatibility_date": "2026-09-01",
   "assets": {
-    // Site files live in public/ so that wrangler.jsonc and .gitignore are
+    // Site files live in public/ so that wrangler.jsonc, src/ and scripts/ are
     // not uploaded as publicly fetchable URLs. Pointing this at "./" would
     // serve the homepage from /public/ and break every path on the site.
     "directory": "./public",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+
+    // Everything except /api/* is served straight from the asset layer without
+    // waking the Worker. Without this, not_found_handling would answer
+    // /api/lead with the 404 page instead of running the handler.
+    "run_worker_first": ["/api/*"]
   }
 }
