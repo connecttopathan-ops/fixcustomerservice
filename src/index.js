@@ -11,7 +11,9 @@
  */
 
 const MAX_BODY_BYTES = 16 * 1024;
-const UPSTREAM_TIMEOUT_MS = 8000;
+const UPSTREAM_TIMEOUT_MS = 12000;
+const UPSTREAM_ATTEMPTS = 3;
+const UPSTREAM_RETRY_DELAY_MS = 600;
 const SITE_ORIGIN = 'https://fixcustomerservice.com';
 
 const LIMITS = {
@@ -101,24 +103,50 @@ async function handleLead(request, env) {
     userAgent: clean(request.headers.get('user-agent'), 300),
   };
 
-  try {
-    const upstream = await fetch(env.SHEETS_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
-    });
-
-    if (!upstream.ok) {
-      console.error(`Sheets webhook returned ${upstream.status}`);
-      return respond(wantsHtml, { ok: false, error: 'upstream_error' }, 502);
-    }
-  } catch (err) {
-    console.error(`Sheets webhook failed: ${err.message}`);
-    return respond(wantsHtml, { ok: false, error: 'upstream_unreachable' }, 502);
+  const sent = await sendToSheet(env.SHEETS_WEBHOOK_URL, payload);
+  if (!sent.ok) {
+    return respond(wantsHtml, { ok: false, error: sent.error }, 502);
   }
 
   return respond(wantsHtml, { ok: true }, 200);
+}
+
+/**
+ * Apps Script is slow and intermittently unavailable: measured responses run
+ * 2-5s, with occasional timeouts and 5xx. A dropped submission here is a lost
+ * enquiry, so retry rather than fail on the first attempt.
+ *
+ * A retry can duplicate a row if the upstream actually recorded the write but
+ * the response never arrived. At this volume a duplicate lead is cheap to spot
+ * and a lost one is not, so that trade is deliberate.
+ */
+async function sendToSheet(url, payload) {
+  let error = 'upstream_unreachable';
+
+  for (let attempt = 1; attempt <= UPSTREAM_ATTEMPTS; attempt++) {
+    try {
+      const upstream = await fetch(url, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
+      });
+
+      if (upstream.ok) return { ok: true };
+
+      error = 'upstream_error';
+      console.error(`Sheets webhook returned ${upstream.status} (attempt ${attempt})`);
+    } catch (err) {
+      error = 'upstream_unreachable';
+      console.error(`Sheets webhook failed: ${err.message} (attempt ${attempt})`);
+    }
+
+    if (attempt < UPSTREAM_ATTEMPTS) {
+      await new Promise((resolve) => setTimeout(resolve, UPSTREAM_RETRY_DELAY_MS * attempt));
+    }
+  }
+
+  return { ok: false, error };
 }
 
 async function readBody(request, contentType) {
