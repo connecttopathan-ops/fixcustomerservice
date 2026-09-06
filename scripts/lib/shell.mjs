@@ -12,6 +12,17 @@ import path from 'node:path';
 
 export const SITE = 'https://fixcustomerservice.com';
 
+/** Google Ads tag. Kept here so every generated page carries the same one. */
+const GTAG = `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18431660031"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18431660031');
+</script>`;
+
 const FONTS = [
   '<link rel="preconnect" href="https://fonts.googleapis.com">',
   '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
@@ -48,7 +59,7 @@ export async function loadShell(root) {
   const footer = between(html, '<footer>', '</footer>', 'the footer');
   const sticky = absolutise(between(html, '<div class="sticky">', '</div>', 'the sticky bar'));
 
-  return { style, header, footer, sticky, fonts: FONTS };
+  return { style, header, footer, sticky, fonts: FONTS, gtag: GTAG };
 }
 
 const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
@@ -69,6 +80,7 @@ export function renderPage(shell, { title, description, canonical, head = '', bo
 <link rel="canonical" href="${canonical}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#141310">
+${shell.gtag}
 ${head}
 ${shell.fonts}
 ${shell.style}
