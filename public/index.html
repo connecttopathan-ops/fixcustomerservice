@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="Thirteen years running support operations. Any business, any size.">
 <meta name="twitter:image" content="https://fixcustomerservice.com/og-image.jpg">
 <meta name="theme-color" content="#141310">
-<meta name="build" content="2026-09-05-v9">
+<meta name="build" content="2026-09-05-v10">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -176,6 +176,9 @@
   .calcgrid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;margin-top:56px;align-items:start}
   .calcband label{display:block;font-weight:700;font-size:.98rem;margin:0 0 9px}
   .fld{margin-bottom:26px}
+  .curline{display:flex;gap:10px;align-items:stretch}
+  .curline select{flex:0 0 116px;width:116px}
+  .curline input{flex:1 1 auto;min-width:0}
   .calcband input,.calcband select{width:100%;padding:15px;border:0;border-bottom:2px solid #3A4A44;border-radius:0;
     font:inherit;font-size:1.05rem;background:#16221E;color:#fff}
   .calcband input:focus,.calcband select:focus{border-bottom-color:var(--gold)}
@@ -587,9 +590,57 @@
           <p class="hint">Not when the shop is open. When someone is genuinely replying.</p>
         </div>
         <div class="fld">
-          <label for="val">What is one new customer worth to you? (AED)</label>
-          <input id="val" type="number" min="0" step="50" value="500" inputmode="numeric">
-          <p class="hint">A typical order, or the first year if they subscribe.</p>
+          <label for="val">What is one new customer worth to you?</label>
+          <div class="curline">
+            <select id="cur" aria-label="Currency">
+              <option value="AED">AED</option>
+              <option value="SAR">SAR</option>
+              <option value="QAR">QAR</option>
+              <option value="KWD">KWD</option>
+              <option value="BHD">BHD</option>
+              <option value="OMR">OMR</option>
+              <option value="EGP">EGP</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+              <option value="CHF">CHF</option>
+              <option value="CAD">CAD</option>
+              <option value="AUD">AUD</option>
+              <option value="NZD">NZD</option>
+              <option value="INR">INR</option>
+              <option value="PKR">PKR</option>
+              <option value="BDT">BDT</option>
+              <option value="LKR">LKR</option>
+              <option value="PHP">PHP</option>
+              <option value="IDR">IDR</option>
+              <option value="MYR">MYR</option>
+              <option value="SGD">SGD</option>
+              <option value="THB">THB</option>
+              <option value="VND">VND</option>
+              <option value="CNY">CNY</option>
+              <option value="JPY">JPY</option>
+              <option value="KRW">KRW</option>
+              <option value="TRY">TRY</option>
+              <option value="ZAR">ZAR</option>
+              <option value="NGN">NGN</option>
+              <option value="KES">KES</option>
+              <option value="GHS">GHS</option>
+              <option value="MAD">MAD</option>
+              <option value="BRL">BRL</option>
+              <option value="MXN">MXN</option>
+              <option value="ARS">ARS</option>
+              <option value="CLP">CLP</option>
+              <option value="COP">COP</option>
+              <option value="PLN">PLN</option>
+              <option value="SEK">SEK</option>
+              <option value="NOK">NOK</option>
+              <option value="DKK">DKK</option>
+              <option value="CZK">CZK</option>
+              <option value="RON">RON</option>
+            </select>
+            <input id="val" type="number" min="0" step="50" value="500" inputmode="numeric">
+          </div>
+          <p class="hint">A typical order, or the first year if they subscribe. Everything stays in your currency, nothing is converted.</p>
         </div>
       </div>
 
@@ -597,7 +648,7 @@
         <p class="big" id="r-lost">0</p>
         <p class="cap">messages a month arrive when nobody is answering</p>
         <div class="second">
-          <p class="big" id="r-money">AED 0</p>
+          <p class="big" id="r-money">0</p>
           <p class="cap">a year, if just <b>one in ten</b> of them was someone ready to buy</p>
         </div>
         <p class="assume">Two of your own numbers, and one assumption kept deliberately low. Change the one-in-ten to whatever fits your business and the figure moves with it. Most owners say it's higher.</p>
@@ -919,7 +970,7 @@
   <div class="wrap">
     <p class="eyebrow"><span class="sno">11</span> &middot; Your options</p>
     <h2>Honestly, here's how the options compare.</h2>
-    <table class="compare"><tr><th></th><th>Hire a support manager</th><th>Hire an agency</th><th class="me">Working with us</th></tr><tr><td data-l="">Cost</td><td data-l="Hire a support manager">AED 15,000 to 25,000 a month, plus visa, plus the months it takes to find them</td><td data-l="Hire an agency">A setup fee, then a retainer. Junior people usually do the work.</td><td class="me" data-l="Work with me">A fixed price agreed before anything starts. A monthly fee only if you want ongoing support.</td></tr><tr><td data-l="">Who does the work</td><td data-l="Hire a support manager">Whoever you manage to hire</td><td data-l="Hire an agency">An account manager, then someone you never meet</td><td class="me" data-l="Work with me">The person who advises you is the person who builds it.</td></tr><tr><td data-l="">Time to results</td><td data-l="Hire a support manager">Three to six months, if they're good</td><td data-l="Hire an agency">Depends on the retainer</td><td class="me" data-l="Work with me">First fixes live within weeks</td></tr><tr><td data-l="">What you're left with</td><td data-l="Hire a support manager">A person, who might leave</td><td data-l="Hire an agency">A dependency</td><td class="me" data-l="Work with me">A setup your own team can run on its own</td></tr></table>
+    <table class="compare"><tr><th></th><th>Hire a support manager</th><th>Hire an agency</th><th class="me">Working with us</th></tr><tr><td data-l="">Cost</td><td data-l="Hire a support manager">A full-time salary, plus benefits, plus the months it takes to find them</td><td data-l="Hire an agency">A setup fee, then a retainer. Junior people usually do the work.</td><td class="me" data-l="Work with me">A fixed price agreed before anything starts. A monthly fee only if you want ongoing support.</td></tr><tr><td data-l="">Who does the work</td><td data-l="Hire a support manager">Whoever you manage to hire</td><td data-l="Hire an agency">An account manager, then someone you never meet</td><td class="me" data-l="Work with me">The person who advises you is the person who builds it.</td></tr><tr><td data-l="">Time to results</td><td data-l="Hire a support manager">Three to six months, if they're good</td><td data-l="Hire an agency">Depends on the retainer</td><td class="me" data-l="Work with me">First fixes live within weeks</td></tr><tr><td data-l="">What you're left with</td><td data-l="Hire a support manager">A person, who might leave</td><td data-l="Hire an agency">A dependency</td><td class="me" data-l="Work with me">A setup your own team can run on its own</td></tr></table>
   </div>
 </section>
 
@@ -1136,24 +1187,76 @@
   /* calculator */
   var f=['msgs','hours','val'].map(function(id){return document.getElementById(id)});
   var lost=document.getElementById('r-lost'), money=document.getElementById('r-money');
+  var curSel=document.getElementById('cur');
   var BUYERS=0.1;
-  function fmt(n){return n.toLocaleString('en-AE',{maximumFractionDigits:0})}
-  var cur={a:0,b:0};
-  function tween(el,key,to,prefix){
-    var from=cur[key], t0=performance.now(), dur=rm?0:600;
+
+  /* The figures here are the visitor's own money, so nothing is converted and
+     no exchange rate is involved. All we need is which currency to label and
+     format them in: guessed from the browser, remembered once changed, and
+     always overridable, because where someone is reading from is not
+     necessarily where their business banks. */
+  var REGION_CUR={AE:'AED',SA:'SAR',QA:'QAR',KW:'KWD',BH:'BHD',OM:'OMR',EG:'EGP',
+    US:'USD',GB:'GBP',IE:'EUR',DE:'EUR',FR:'EUR',ES:'EUR',IT:'EUR',NL:'EUR',BE:'EUR',
+    PT:'EUR',AT:'EUR',GR:'EUR',FI:'EUR',SK:'EUR',SI:'EUR',LT:'EUR',LV:'EUR',EE:'EUR',
+    CY:'EUR',MT:'EUR',LU:'EUR',CH:'CHF',CA:'CAD',AU:'AUD',NZ:'NZD',
+    IN:'INR',PK:'PKR',BD:'BDT',LK:'LKR',PH:'PHP',ID:'IDR',MY:'MYR',SG:'SGD',
+    TH:'THB',VN:'VND',CN:'CNY',JP:'JPY',KR:'KRW',TR:'TRY',
+    ZA:'ZAR',NG:'NGN',KE:'KES',GH:'GHS',MA:'MAD',
+    BR:'BRL',MX:'MXN',AR:'ARS',CL:'CLP',CO:'COP',
+    PL:'PLN',SE:'SEK',NO:'NOK',DK:'DKK',CZ:'CZK',RO:'RON'};
+
+  function offered(code){
+    for(var i=0;i<curSel.options.length;i++){ if(curSel.options[i].value===code) return true; }
+    return false;
+  }
+  function guessCurrency(){
+    var langs=navigator.languages||[navigator.language||'en'];
+    for(var i=0;i<langs.length;i++){
+      try{
+        var r=new Intl.Locale(langs[i]).maximize().region;
+        if(r&&REGION_CUR[r]) return REGION_CUR[r];
+      }catch(e){}
+    }
+    return 'USD';
+  }
+  var CURRENCY;
+  try{ CURRENCY=localStorage.getItem('fcs-currency'); }catch(e){}
+  if(!CURRENCY||!offered(CURRENCY)) CURRENCY=guessCurrency();
+  if(!offered(CURRENCY)) CURRENCY='USD';
+  curSel.value=CURRENCY;
+
+  function asMoney(n){
+    try{
+      return new Intl.NumberFormat(undefined,{style:'currency',currency:CURRENCY,
+        maximumFractionDigits:0,minimumFractionDigits:0}).format(n);
+    }catch(e){
+      return CURRENCY+' '+n.toLocaleString(undefined,{maximumFractionDigits:0});
+    }
+  }
+  function asCount(n){ return n.toLocaleString(undefined,{maximumFractionDigits:0}); }
+
+  var tw={a:0,b:0};
+  function tween(el,key,to,money){
+    var from=tw[key], t0=performance.now(), dur=rm?0:600;
     (function step(t){
       var k=dur?Math.min(1,((t||performance.now())-t0)/dur):1;
       k=1-Math.pow(1-k,3);
-      el.textContent=prefix+fmt(Math.round(from+(to-from)*k));
-      if(k<1) requestAnimationFrame(step); else cur[key]=to;
+      var n=Math.round(from+(to-from)*k);
+      el.textContent=money?asMoney(n):asCount(n);
+      if(k<1) requestAnimationFrame(step); else tw[key]=to;
     })(t0);
   }
   function run(){
     var m=parseFloat(f[0].value)||0, out=parseFloat(f[1].value), v=parseFloat(f[2].value)||0;
     var missed=Math.round(m*out);
-    tween(lost,'a',missed,'');
-    tween(money,'b',Math.round(missed*BUYERS*v*12),'AED ');
+    tween(lost,'a',missed,false);
+    tween(money,'b',Math.round(missed*BUYERS*v*12),true);
   }
+  curSel.addEventListener('change',function(){
+    CURRENCY=curSel.value;
+    try{ localStorage.setItem('fcs-currency',CURRENCY); }catch(e){}
+    run();
+  });
   f.forEach(function(el){el.addEventListener('input',run);el.addEventListener('change',run)});
   run();
 })();
