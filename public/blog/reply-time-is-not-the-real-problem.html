@@ -256,19 +256,23 @@
   .flow-tag{font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
   .flow-tag.rust{color:var(--rust)}.flow-tag.teal{color:var(--teal)}
   .flow-sub{color:var(--grey);font-size:.95rem}
-  .chip{display:inline-block;border:1.5px solid var(--ink);border-radius:4px;padding:8px 13px;font-size:.93rem;font-weight:600;background:#fff;white-space:nowrap}
+  .chip{display:inline-flex;align-items:center;gap:9px;border:1.5px solid var(--ink);border-radius:4px;padding:8px 12px;font-size:.93rem;font-weight:600;background:#fff;white-space:nowrap}
+  .cic{width:17px;height:17px;flex:0 0 auto;stroke:currentColor;stroke-width:1.7;fill:none;
+       stroke-linecap:round;stroke-linejoin:round;display:block;overflow:visible}
+  .inbox{display:flex;align-items:flex-start;gap:12px}
+  .inbox .cic{width:22px;height:22px;margin-top:2px}
   .flow-rows{display:grid;gap:12px}
-  .flow-row{display:grid;grid-template-columns:118px 1fr 1fr;align-items:center;gap:12px}
-  .flow-row .chip{width:118px;text-align:center}
+  .flow-row{display:grid;grid-template-columns:152px 1fr 1fr;align-items:center;gap:12px}
+  .flow-row .chip{width:100%}
   .arr{position:relative;height:0;display:block}
   .arr.dashed{border-top:2px dashed var(--rust);opacity:.7}
   .arr.solid{border-top:2px solid var(--teal)}
   .arr::after{content:"";position:absolute;right:-1px;top:-5px;width:8px;height:8px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg)}
   .arr.dashed::after{color:var(--rust)}.arr.solid::after{color:var(--teal)}
   .dest{font-size:.92rem;color:var(--grey);border:1.5px dashed #D9BDB4;border-radius:4px;padding:8px 12px;background:#fff}
-  .flow-merge{display:grid;grid-template-columns:118px 32px 1.25fr 32px 1fr;align-items:center;gap:12px}
+  .flow-merge{display:grid;grid-template-columns:152px 32px 1.25fr 32px 1fr;align-items:center;gap:12px}
   .chips{display:grid;gap:12px}
-  .chips .chip{width:118px;text-align:center}
+  .chips .chip{width:100%}
   .inbox{background:var(--gold);border:2px solid var(--ink);border-radius:5px;padding:16px 16px}
   .inbox b{display:block;font-size:1rem;margin-bottom:4px}
   .inbox span{font-size:.88rem;line-height:1.35;display:block}
@@ -513,9 +517,27 @@
     .calcgrid{gap:44px}
     .bio{grid-template-columns:1fr}
     .flow{grid-template-columns:1fr;gap:44px}
-    .flow-row{grid-template-columns:104px 1fr 1fr;gap:8px}
-    .flow-row .chip,.chips .chip{width:104px;padding:7px 8px;font-size:.86rem}
-    .flow-merge{grid-template-columns:104px 22px 1fr;gap:8px}
+    .flow-row{grid-template-columns:132px 1fr 1fr;gap:8px}
+    /* below ~360px the widened channel column no longer leaves room for the
+       arrow and destination side by side, so the arrow is dropped */
+    @media (max-width:360px){
+      /* minmax(0,...) so the track can shrink below the destination text's
+         min-content width, which otherwise forces the row wider than 320px */
+      /* the outer grid track sizes to max-content unless told it may shrink,
+         which is what pushes the whole diagram past a 320px viewport */
+      .flow{grid-template-columns:minmax(0,1fr)}
+      .flow-col{min-width:0}
+      .flow-row{grid-template-columns:120px minmax(0,1fr);gap:7px}
+      .dest{overflow-wrap:anywhere}
+      .flow-row .arr{display:none}
+      .flow-merge{grid-template-columns:120px 18px minmax(0,1fr);gap:7px}
+      .flow-merge > *,.outs,.inbox{min-width:0}
+      .flow-row .chip,.chips .chip{font-size:.82rem;padding:7px 8px;gap:6px}
+      .dest{font-size:.86rem;padding:7px 9px}
+    }
+    .flow-row .chip,.chips .chip{width:100%;padding:7px 9px;font-size:.86rem;gap:7px}
+    .cic{width:15px;height:15px}
+    .flow-merge{grid-template-columns:132px 22px 1fr;gap:8px}
     .flow-merge .arr:nth-child(4),.flow-merge .outs{grid-column:1/-1}
     .flow-merge .arr:nth-child(4){display:none}
     .outs{grid-template-columns:1fr 1fr;margin-top:6px}
