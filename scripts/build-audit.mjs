@@ -173,7 +173,7 @@ const body = `
   <div class="wrap">
     <p class="eyebrow"><span class="sno">05</span> &middot; What it led to</p>
     <h2>Two rebuilds that started this way.</h2>
-    <p class="lead">Both from the same fintech in Dubai, where we rebuilt the support function. The numbers come from tracked KPIs, not estimates.</p>
+    <p class="lead">Both from the same Dubai fintech. The work behind these cases was led by our founder while heading the support function, and the numbers come from tracked KPIs, not estimates.</p>
     <div class="audit-proof">
       <div>
         <b>96%</b><span>decrease in average wait time after the WhatsApp rebuild</span>
