@@ -58,7 +58,7 @@ export async function loadShell(root) {
   const header = absolutise(between(html, '<header class="topbar">', '</header>', 'the header'));
   const footer = between(html, '<footer>', '</footer>', 'the footer');
   const sticky = absolutise(between(html, '<div class="sticky">', '</div>', 'the sticky bar'));
-  const waFloat = between(html, '<a class="wa-float"', '</a>', 'the WhatsApp widget');
+  const waFloat = between(html, '<!-- WA:START -->', '<!-- WA:END -->', 'the WhatsApp widget');
 
   return { style, header, footer, sticky, waFloat, fonts: FONTS, gtag: GTAG };
 }
