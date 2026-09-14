@@ -31,7 +31,7 @@
 <meta name="twitter:description" content="Thirteen years running support operations. Any business, any size.">
 <meta name="twitter:image" content="https://fixcustomerservice.com/og-image.jpg">
 <meta name="theme-color" content="#141310">
-<meta name="build" content="2026-09-14-v14">
+<meta name="build" content="2026-09-14-v15">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -146,9 +146,12 @@
   .btn-quiet:hover{background:var(--mark)}
 
   /* hero */
-  .hero{padding-top:56px;padding-bottom:64px}
+  .hero{padding-top:36px;padding-bottom:0}
+  .hero-copy{padding-bottom:52px}
+  .hero h1{font-size:clamp(2.15rem,4.5vw,3.6rem)}
+  .hero .eyebrow{margin-bottom:14px;font-size:.76rem;letter-spacing:.09em;white-space:nowrap}
   .wrap.hero{max-width:1180px}
-  .hero-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:44px;align-items:center}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:44px;align-items:end}
   /* hero collage */
   .hero-visual{position:relative;min-height:580px}
   .stage{position:relative;height:580px}
@@ -159,14 +162,16 @@
   .quarter{position:absolute;left:-2%;bottom:-4%;width:300px;height:300px;border-radius:50%;background:#F9E389}
   .tri{position:absolute;left:10%;bottom:0;width:120px;height:120px;background:var(--ink);clip-path:polygon(0 100%,100% 100%,0 0);opacity:.9}
   .agent-cut{position:absolute;bottom:0;right:0;height:92%;width:auto;z-index:2;
-    filter:drop-shadow(0 16px 30px rgba(20,19,16,.25))}
+    filter:drop-shadow(0 16px 30px rgba(20,19,16,.25));
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 30px);
+    mask-image:linear-gradient(to right,transparent,#000 30px)}
   .tickfly{position:absolute;top:64px;left:-30px;z-index:4;width:40px;height:40px;border-radius:50%;
     background:var(--ink);display:grid;place-items:center;color:var(--marker);font-size:20px;font-weight:800}
   .fbadge{position:absolute;z-index:3}
   .fb1{top:96px;left:-8px;max-width:240px;background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 12px 28px rgba(20,19,16,.16)}
   .fb1 b{display:block;font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.05}
   .fb1 span{display:block;font-size:14px;font-weight:600;color:var(--grey);margin-top:2px}
-  .verify{display:inline-block;margin-top:10px;font-size:11.5px;font-weight:700;background:var(--marker);color:var(--ink);padding:3px 9px;border-radius:5px;text-decoration:none}
+  .vtag{display:inline-block;margin-top:10px;font-size:11.5px;font-weight:700;background:var(--marker);color:var(--ink);padding:3px 9px;border-radius:5px;text-decoration:none;line-height:1.4}
   .fb2{top:280px;right:-10px;background:var(--ink);border-radius:10px;padding:14px 18px}
   .fb2 b{display:block;font-size:26px;font-weight:800;color:var(--marker);line-height:1.05}
   .fb2 span{display:block;font-size:13px;font-weight:600;color:#D8D3C6;margin-top:2px}
@@ -193,10 +198,12 @@
     background:#25D366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(20,19,16,.3);transition:transform .15s ease}
   .wa-float:hover{transform:scale(1.07)}
   .wa-float svg{width:32px;height:32px;fill:#fff}
-  .hero h1{max-width:15ch}
-  .hero .lead{font-size:1.3rem;margin-top:34px;color:var(--black);max-width:29em}
-  .hero .cta{margin-top:38px;display:flex;align-items:center;flex-wrap:wrap}
-  .hero small{display:block;color:var(--grey);margin-top:22px;font-size:.97rem;max-width:34em}
+  .hero h1{max-width:none}
+  .hero .lead{font-size:1.08rem;margin-top:22px;color:var(--black);max-width:52ch}
+  .hero .cta{margin-top:28px;display:flex;align-items:center;flex-wrap:wrap}
+  .hero .cta .btn{padding:16px 24px;font-size:1rem}
+  .hero .cta .btn-quiet{font-size:.97rem;margin-left:20px;padding:16px 4px}
+  .hero small{display:block;color:var(--grey);margin-top:16px;font-size:.9rem;max-width:44em}
   .hero-band{display:flex;gap:0;flex-wrap:wrap;margin-top:76px;border-top:1px solid var(--rule)}
   .hero-band span{padding:22px 34px 22px 0;color:var(--grey);font-size:.95rem;border-right:1px solid var(--rule);margin-right:34px}
   .hero-band span:last-child{border-right:0;margin-right:0}
@@ -517,6 +524,7 @@
     .calcband .hint,.privacy-line{font-size:.92rem}
     section,.calcband{padding:68px 0}
     .hero{padding-top:22px;padding-bottom:0}
+    .hero-copy{padding-bottom:0}
     .top nav{display:none}
     .top .brand img{height:26px}
     .revs,.revwhy{grid-template-columns:1fr;gap:16px}
@@ -555,6 +563,8 @@
     .how > div{grid-template-columns:28px 1fr;gap:16px;padding:24px 0}
     .how .num{font-size:1rem}
     .hero-grid{grid-template-columns:1fr;gap:44px}
+    .hero-grid{grid-template-columns:minmax(0,1fr)}
+    .hero .eyebrow{white-space:normal}
     .hero-copy{display:contents}
     .hero .eyebrow{order:1}
     .hero h1{order:2;margin-bottom:6px}
@@ -564,8 +574,8 @@
     .hero .cta{order:5}
     .hero small{order:6}
     .hero-visual{order:7;min-height:0}
-    .stage{height:430px}
-    .agent-cut{right:50%;transform:translateX(50%)}
+    .stage{height:min(400px,102vw)}
+    .agent-cut{height:auto;width:min(100%,420px);right:50%;transform:translateX(50%)}
     .fbadge,.tickfly{display:none}
     .mbadge{display:block}
     .strip-in{grid-template-columns:1fr 1fr;gap:16px}
@@ -632,7 +642,7 @@
         <img class="agent-cut" src="hero-agent-cutout.webp" width="856" height="760"
              alt="A support agent wearing a headset" fetchpriority="high">
         <span class="tickfly" aria-hidden="true">&#10003;</span>
-        <div class="fbadge fb1"><b>&minus;96%</b><span>average wait time</span><a class="verify" href="https://www.infobip.com/customer/edenred">Published case study</a></div>
+        <div class="fbadge fb1"><b>&minus;96%</b><span>average wait time</span><a class="vtag" href="https://www.infobip.com/customer/edenred">Published case study</a></div>
         <div class="fbadge fb2"><b>45%</b><span>fewer incoming requests</span></div>
         <div class="fbadge fb3"><b>30%</b><span>smaller team, same service</span></div>
         <div class="mbadge mb1"><b>69%</b><span>of chats resolved with no agent</span></div>
