@@ -576,22 +576,28 @@
     .how > div{grid-template-columns:28px 1fr;gap:16px;padding:24px 0}
     .how .num{font-size:1rem}
     .hero-grid{grid-template-columns:1fr;gap:44px}
-    .hero-grid{grid-template-columns:minmax(0,1fr)}
+    /* stacked hero: the desktop column gap must not become a row gap
+       between every element, spacing is each element's own margin */
+    .hero-grid{grid-template-columns:minmax(0,1fr);gap:0}
     .hero .eyebrow{white-space:normal}
     .hero-copy{display:contents}
-    .hero .eyebrow{order:1}
-    .hero h1{order:2;margin-bottom:6px}
-    .kchips{order:3;display:flex;gap:10px;overflow-x:auto;padding:10px 2px 14px;-webkit-overflow-scrolling:touch}
-    .kchips .kchip{flex:0 0 auto}
-    .hero .lead{order:4}
-    .hero .cta{order:5}
-    .hero small{order:6}
-    .hero-visual{order:7;min-height:0}
+    .hero .eyebrow{order:1;margin-bottom:10px}
+    .hero h1{order:2;margin-bottom:2px}
+    .kchips{order:3;display:flex;gap:8px;padding:14px 0 8px}
+    .kchips .kchip{flex:1 1 0;min-width:0;padding:10px 9px;box-shadow:3px 3px 0 var(--ink)}
+    .kchips .kchip b{font-size:1.15rem}
+    .kchips .kchip span{font-size:.68rem;line-height:1.3;margin-top:3px}
+    .hero .lead{order:4;margin-top:10px}
+    .hero .cta{order:5;margin-top:20px}
+    .hero small{order:6;margin-top:12px}
+    .hero-visual{order:7;min-height:0;margin-top:26px}
     .stage{height:min(400px,102vw)}
     .agent-cut{height:auto;width:min(100%,420px);right:50%;transform:translateX(50%)}
     .fbadge,.tickfly{display:none}
     .mbadge{display:block}
-    .strip-in{grid-template-columns:1fr 1fr;gap:16px}
+    .strip-in{grid-template-columns:1fr 1fr;gap:18px 18px;padding-top:24px;padding-bottom:24px}
+    .cred b{font-size:.95rem;margin-bottom:2px}
+    .cred span{font-size:.78rem;line-height:1.45;display:block}
     .wa-float{width:54px;height:54px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom))}
     .btn-quiet{margin:16px 0 0;display:block;text-align:center;border:2px solid var(--black);border-radius:4px;padding:17px}
     .compare,.compare tbody,.compare tr,.compare td{display:block;width:100%}
