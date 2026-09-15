@@ -202,7 +202,7 @@ const body = `
     <p>Start with the free call. You'll leave it knowing your three biggest problems and roughly what they're costing, whether we end up working together or not.</p>
     <div class="acts">
       <a class="btn" href="/#talk">Book a free 30-minute call</a>
-      <a class="wa2" href="https://wa.me/971522771875?text=Hi%20Abdullah%2C%20I%27d%20like%20to%20talk%20about%20a%20customer%20service%20audit.">Or send a WhatsApp instead</a>
+      <a class="wa2" href="https://wa.me/971522771875?text=Hi%2C%20I%27d%20like%20to%20talk%20about%20our%20customer%20service.">Or send a WhatsApp instead</a>
     </div>
     <small>Only a few clients are taken on at a time, so the diary is genuinely limited.</small>
   </div>

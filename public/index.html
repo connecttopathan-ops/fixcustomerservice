@@ -31,7 +31,7 @@
 <meta name="twitter:description" content="Thirteen years running support operations. Any business, any size.">
 <meta name="twitter:image" content="https://fixcustomerservice.com/og-image.jpg">
 <meta name="theme-color" content="#141310">
-<meta name="build" content="2026-09-14-v18">
+<meta name="build" content="2026-09-15-v19">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -244,32 +244,56 @@
   .hero-band b{display:block;color:var(--black);font-weight:800;font-size:1.35rem;letter-spacing:-.02em;margin-bottom:2px}
 
   /* interactive checklist */
-  .checkgrid{display:grid;grid-template-columns:minmax(270px,350px) 1fr;gap:60px;align-items:start}
-  .check-sub{color:var(--grey);margin:18px 0 0;min-height:2.6em}
-  .counter{margin:14px 0 0;font-weight:800}
-  .counter #count{display:inline-block;font-size:64px;line-height:1;letter-spacing:-.02em}
-  .counter em{font-style:normal;font-weight:400;font-size:1.02rem;color:var(--grey);margin-left:8px}
+  .check-topline{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-top:18px}
+  .check-sub{color:var(--grey);margin:0;max-width:34em}
+  .progress{display:flex;align-items:center;gap:14px}
+  .segs{display:flex;gap:5px}
+  .segs i{width:26px;height:12px;border:1.5px solid var(--ink);border-radius:4px;background:#fff;transition:background .16s ease}
+  .segs i.on{background:var(--gold)}
+  .seglabel{font-size:1rem;color:var(--grey);visibility:hidden;white-space:nowrap}
+  .seglabel b{font-weight:800;color:var(--ink)}
+  .seglabel.show{visibility:visible}
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
+  .chk{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:#fff;border:1.5px solid var(--rule);border-radius:10px;
+    padding:16px 18px;font:inherit;font-size:1.02rem;font-weight:500;cursor:pointer;color:var(--ink);line-height:1.45;
+    transition:border-color .16s ease,background .16s ease,transform .16s ease,box-shadow .16s ease}
+  .chk:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 4px 0 rgba(20,19,16,.08)}
+  .chk .chip{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:#F9E389;display:grid;place-items:center;color:var(--ink);transition:background .16s ease}
+  .chk .chip svg{width:18px;height:18px;display:block}
+  .chk-text{flex:1 1 auto;min-width:0}
+  .chk .box{flex:0 0 auto;width:22px;height:22px;border:2px solid var(--ink);border-radius:5px;background:#fff;color:var(--gold);
+    display:grid;place-items:center;transition:background .16s ease,border-color .16s ease}
+  .chk .box svg{width:13px;height:11px;display:block;opacity:0;transform:scale(.5);transition:opacity .16s ease,transform .16s ease}
+  .chk[aria-pressed="true"]{background:#F9E389;border-color:var(--ink)}
+  .chk[aria-pressed="true"] .chip{background:var(--gold)}
+  .chk[aria-pressed="true"] .box{background:var(--ink);border-color:var(--ink)}
+  .chk[aria-pressed="true"] .box svg{opacity:1;transform:scale(1)}
+  @keyframes chkpop{0%{transform:scale(.96)}55%{transform:scale(1.02)}100%{transform:scale(1)}}
+  .chk.pop{animation:chkpop .16s ease}
+  .verdict-wrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:44px;align-items:center;margin-top:34px}
+  .verdict{border-radius:14px;padding:26px 28px;border:1.5px dashed var(--faint);background:transparent;
+    transition:background .2s ease,border-color .2s ease,color .2s ease}
+  .verdict[data-tier="mid"]{border:1.5px solid var(--ink);background:#F9E389}
+  .verdict[data-tier="high"]{border:1.5px solid var(--ink);background:var(--ink);color:#fff}
+  .vlabel{font-size:.75rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin:0 0 10px}
+  .verdict[data-tier="high"] .vlabel{color:var(--gold)}
+  .vtext{margin:0;font-size:1.06rem;line-height:1.55;min-height:4.65em;transition:opacity .15s ease}
+  .vtext.fade{opacity:0}
+  .vtext mark{background:var(--marker);color:var(--ink);padding:.05em .15em}
+  .check-ctas{display:flex;flex-direction:column;align-items:flex-start;gap:18px;min-height:122px;justify-content:center}
+  .score-wa{opacity:0;pointer-events:none;transform:translateY(4px);transition:opacity .2s ease,transform .2s ease,background .2s ease}
+  .score-wa.show{opacity:1;pointer-events:auto;transform:none}
   .check-note{margin-top:22px;font-size:1.02rem;color:var(--grey);max-width:26em}
   .check-note mark{background:var(--marker);color:var(--ink);padding:.05em .15em}
-  .check-cta{margin-top:18px}
+  .check-cta{margin:0}
   .check-cta a{font-weight:700;color:var(--black);text-decoration:none;border-bottom:3px solid var(--mark)}
-  .checks{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:start}
-  .chk{display:flex;gap:16px;align-items:flex-start;width:100%;text-align:left;background:#fff;border:1px solid var(--rule);border-radius:6px;
-    padding:18px;font:inherit;font-size:1.02rem;font-weight:500;cursor:pointer;color:var(--black);line-height:1.45}
-  .chk:hover{background:rgba(240,183,30,.10);border-color:var(--faint)}
-  .chk[aria-pressed="true"]{border-color:var(--gold)}
-  .chk .box{flex:0 0 auto;width:20px;height:20px;border:2.5px solid var(--black);border-radius:3px;margin-top:.16em;
-    display:grid;place-items:center;font-size:.85rem;font-weight:800;line-height:1}
-  .chk[aria-pressed="true"] .box{background:var(--gold);border-color:var(--gold)}
-  .chk .box i{visibility:hidden;font-style:normal}
-  .chk[aria-pressed="true"] .box i{visibility:visible}
 
   /* calculator — full bleed, the loudest thing after the hero */
   .calcband{background:var(--deep);color:#fff;padding:96px 0}
   .calcband h2{color:#fff}
   .calcband .lead{color:#A9B8B2}
-  .calcgrid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;margin-top:56px;align-items:start}
-  .calcband label{display:block;font-weight:700;font-size:.98rem;margin:0 0 9px}
+  .calcgrid{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;margin-top:56px;align-items:start}
+  .calcband label,.calcband .flabel{display:block;font-weight:700;font-size:.98rem;margin:0 0 9px}
   .fld{margin-bottom:26px}
   .curline{display:flex;gap:10px;align-items:stretch}
   .curline select{flex:0 0 116px;width:116px}
@@ -277,14 +301,34 @@
   .calcband input,.calcband select{width:100%;padding:15px;border:0;border-bottom:2px solid #3A4A44;border-radius:0;
     font:inherit;font-size:1.05rem;background:#16221E;color:#fff}
   .calcband input:focus,.calcband select:focus{border-bottom-color:var(--gold)}
-  .calcband .hint{font-size:.88rem;color:#93A29C;margin:8px 0 0}
-  .result .big{font-weight:800;font-size:clamp(3.4rem,9vw,6.4rem);letter-spacing:-.04em;line-height:.9;margin:0;color:var(--gold)}
-  .result .cap{color:#CFDAD5;font-size:1.12rem;margin:14px 0 0;max-width:20em}
-  .result .second{margin-top:46px;padding-top:36px;border-top:1px solid #2B3A35}
-  .result .second .big{font-size:clamp(2.6rem,6.5vw,4.4rem);color:#fff}
-  .result .assume{font-size:.9rem;color:#9AA8A2;margin:38px 0 0;line-height:1.5;max-width:34em}
-  .result .btn{background:var(--gold);color:#1A1206;margin-top:34px}
-  .result .btn:hover{background:#FFC93A}
+  .calcband input::placeholder{color:#7d8a84}
+  .calcband .hint{font-size:.88rem;color:#b3afa4;margin:8px 0 0}
+  .qpicks{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .qpick{font:inherit;font-size:.9rem;font-weight:700;padding:8px 14px;border:1.5px solid #3A4A44;border-radius:999px;
+    background:transparent;color:#CFDAD5;cursor:pointer;transition:border-color .16s ease,background .16s ease,color .16s ease}
+  .qpick:hover{border-color:var(--gold)}
+  .qpick.on{background:var(--gold);border-color:var(--gold);color:#1A1206}
+  .hourgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .hourbtn{font:inherit;font-size:.95rem;font-weight:500;padding:13px 14px;border:1.5px solid #3A4A44;border-radius:8px;
+    background:#16221E;color:#fff;cursor:pointer;text-align:left;line-height:1.4;
+    transition:border-color .16s ease,background .16s ease,color .16s ease}
+  .hourbtn:hover{border-color:var(--gold)}
+  .hourbtn[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#1A1206;font-weight:700}
+  .calc-out{position:sticky;top:24px}
+  .rcard{background:#fff;border:1.5px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 var(--gold);
+    padding:24px 26px;color:var(--ink);margin-bottom:22px}
+  .rlabel{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--grey);
+    margin:0 0 12px;border-bottom:1.5px dashed var(--faint);padding-bottom:3px}
+  .rcard .big{font-weight:800;font-size:clamp(2.2rem,4.2vw,3.3rem);letter-spacing:-.03em;line-height:1;margin:0;color:var(--ink)}
+  .rcard .cap{color:var(--grey);font-size:1rem;margin:10px 0 0}
+  .rcard .fine{color:var(--faint);font-size:.85rem;margin:12px 0 0}
+  .rcard.prompt{border:1.5px dashed #3A4A44;box-shadow:none;background:transparent}
+  .rcard.prompt p{margin:0;font-size:1rem;color:#b3afa4;line-height:1.5}
+  .calc-out .assume{font-size:.9rem;color:#b3afa4;margin:26px 0 0;line-height:1.5;max-width:34em}
+  .calc-out .btn{background:var(--gold);color:#1A1206;margin-top:26px}
+  .calc-out .btn:hover{background:#FFC93A}
+  .calc-alt{margin:14px 0 0;font-size:.95rem;color:#b3afa4}
+  .calc-alt a{color:#CFDAD5;font-weight:700;text-decoration:underline;text-underline-offset:3px}
 
   /* impacts — open, no boxes */
   .impacts{display:grid;grid-template-columns:1fr 1fr;gap:8px 64px;margin-top:52px}
@@ -352,8 +396,6 @@
   .chk .box i{transition:opacity .15s ease .05s;opacity:0;visibility:visible}
   .chk[aria-pressed="true"] .box i{opacity:1}
 
-  .counter #count{transition:transform .25s cubic-bezier(.34,1.6,.5,1)}
-  .counter #count.bump{transform:scale(1.14)}
 
   .btn{transition:background .18s ease,transform .14s ease,box-shadow .18s ease}
   .btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px -12px rgba(20,19,16,.55)}
@@ -549,9 +591,11 @@
     mark{-webkit-box-decoration-break:clone;box-decoration-break:clone}
     .chk{font-size:.98rem;padding:14px}
     .check-note,.familiar-note{font-size:1rem}
-    .result .big{font-size:3.2rem}
-    .result .second .big{font-size:2.3rem}
-    .result .cap{font-size:1rem}
+    .rcard{padding:20px}
+    .rcard .big{font-size:2.1rem}
+    .rcard .cap{font-size:.95rem}
+    .calc-out{position:static}
+    .hourbtn{font-size:.9rem;padding:12px 11px}
     .impact li,.work span,.band p,.how p,.callbox li,.trust p,.three p,details p{font-size:.97rem}
     .band .vol{font-size:1.3rem}
     .eyebrow,.flow-tag,.case .tag{font-size:.8rem}
@@ -628,9 +672,15 @@
     .compare td:not(:first-child)::before{content:attr(data-l);display:block;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:3px}
     .compare td.me,.compare.kpi td:last-child{padding-left:14px;margin-top:8px;border-left:3px solid var(--gold)}
     .compare.kpi tr td:nth-child(2){width:auto}
-    .checkgrid{grid-template-columns:1fr;gap:26px}
-    .checks{grid-template-columns:1fr;gap:10px}
-    .counter #count{font-size:46px}
+    .checks{grid-template-columns:1fr;gap:10px;margin-top:26px}
+    .check-topline{flex-direction:column;align-items:flex-start;gap:14px;margin-top:14px}
+    .segs i{width:22px;height:11px}
+    .verdict-wrap{grid-template-columns:1fr;gap:22px;margin-top:26px}
+    .verdict{padding:22px 20px}
+    .vtext{min-height:0}
+    .check-ctas{align-items:stretch;gap:14px;min-height:110px}
+    .score-wa{text-align:center}
+    .check-cta{text-align:center;margin-top:4px}
     .sticky{display:none;position:fixed;left:0;right:0;bottom:0;padding:12px 16px;background:rgba(255,255,255,.96);
       backdrop-filter:blur(8px);border-top:1px solid var(--rule);z-index:20}
     .sticky{display:none;gap:10px}
@@ -667,7 +717,7 @@
       </div>
       <p class="lead">We find what is broken in the way your business answers customers, put a number on what it is costing you, and fix it with your team. Any industry, from a few hundred messages a month to hundreds of thousands. It starts with a free 30-minute call.</p>
       <div class="cta">
-        <a class="btn" href="https://wa.me/971522771875?text=Hi%20Abdullah%2C%20I%27d%20like%20to%20talk%20about%20our%20customer%20service.">Message us on WhatsApp</a>
+        <a class="btn" href="https://wa.me/971522771875?text=Hi%2C%20I%27d%20like%20to%20talk%20about%20our%20customer%20service.">Message us on WhatsApp</a>
         <a class="btn-quiet" href="#talk">Book a free 30-minute call</a>
       </div>
       <small>No pitch. You'll leave the call knowing your three biggest problems and roughly what they cost, whether we work together or not.</small>
@@ -702,32 +752,38 @@
 
 <section class="paper">
   <div class="wrap">
-    <div class="checkgrid">
-      <div class="check-intro">
-        <p class="eyebrow"><span class="sno">01</span> &middot; Start here</p>
-        <h2>Tick the ones that are true.</h2>
-        <p class="check-sub" id="verdict">Tap the ones you recognise.</p>
-        <p class="counter"><span id="count">0</span> <em>of 12</em></p>
-        <p class="check-note">Three or more, and this isn't a people problem. It's a setup problem, and those get <mark>fixed in weeks rather than years</mark>.</p>
-        <p class="check-cta"><a href="#cost">See roughly what it's costing you →</a></p>
+    <div class="check-head">
+      <p class="eyebrow"><span class="sno">01</span> &middot; Start here</p>
+      <h2>Tick the ones that are true.</h2>
+      <div class="check-topline">
+        <p class="check-sub">Tap the ones you recognise. Nothing is recorded, this is for you.</p>
+        <div class="progress">
+          <span class="segs" id="segs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="seglabel" id="seglabel"><b id="count">0</b> of 8</span>
+        </div>
       </div>
+    </div>
     <div class="checks" id="checks">
-      <button class="chk" aria-pressed="false"><span class="box"><i>✓</i></span>Customers complain that nobody replies, or that it takes days.</button>
-      <button class="chk" aria-pressed="false"><span class="box"><i>✓</i></span>Your team answers the same five questions all day, every day.</button>
-      <button class="chk" aria-pressed="false"><span class="box"><i>✓</i></span>You keep hiring, and it's still a mess.</button>
-      <button class="chk" aria-pressed="false"><span class="box"><i>✓</i></span>Support costs more every month and you can't see why.</button>
-      <button class="chk" aria-pressed="false"><span class="box"><i>✓</i></span>Customers leave without ever telling you why.</button>
-      <button class="chk" aria-pressed="false"><span class="box"><i>✓</i></span>Evenings and weekends, nobody's there.</button>
-      <button class="chk" aria-pressed="false"><span class="box"><i>✓</i></span>One good person is holding it all together, and you're worried about them leaving.</button>
-      <button class="chk" aria-pressed="false"><span class="box"><i>✓</i></span>You don't know how many messages come in, or how many get answered.</button>
-      <button class="chk" aria-pressed="false"><span class="box"><i>✓</i></span>Your Google rating is low, and you can see it costing you enquiries.</button>
-      <button class="chk" aria-pressed="false"><span class="box"><i>✓</i></span>You're spending your own evenings on complaints.</button>
-      <button class="chk" aria-pressed="false"><span class="box"><i>✓</i></span>Complaints reach you directly because there's nowhere else for them to go.</button>
-      <button class="chk" aria-pressed="false"><span class="box"><i>✓</i></span>You bought a tool or a chatbot, and it made things worse.</button>
+      <button class="chk" aria-pressed="false"><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2.5"/></svg></span><span class="chk-text">Customers complain that nobody replies, or that it takes days.</span><span class="box" aria-hidden="true"><svg viewBox="0 0 14 12"><path d="M1.5 6.5 5 10 12.5 1.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      <button class="chk" aria-pressed="false"><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2.5 21 6.5l-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 21.5 3 17.5l4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg></span><span class="chk-text">Your team answers the same five questions all day, every day.</span><span class="box" aria-hidden="true"><svg viewBox="0 0 14 12"><path d="M1.5 6.5 5 10 12.5 1.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      <button class="chk" aria-pressed="false"><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19 9.5 12.5l4 4L21 8"/><path d="M15.5 8H21v5.5"/></svg></span><span class="chk-text">You keep hiring, support costs more every month, and it's still a mess.</span><span class="box" aria-hidden="true"><svg viewBox="0 0 14 12"><path d="M1.5 6.5 5 10 12.5 1.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      <button class="chk" aria-pressed="false"><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11"/><path d="M10 20V5"/><path d="M16 20v-7"/><circle cx="20.2" cy="6.5" r="2.3"/><path d="M20.2 10.2v.01"/></svg></span><span class="chk-text">You don't know how many messages come in, or how many get answered.</span><span class="box" aria-hidden="true"><svg viewBox="0 0 14 12"><path d="M1.5 6.5 5 10 12.5 1.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      <button class="chk" aria-pressed="false"><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.1 6L12 16.7l-5.4 2.9 1.1-6L3.2 9.4l6.1-.8L12 3z"/></svg></span><span class="chk-text">Your Google rating is low, and you can see it costing you enquiries.</span><span class="box" aria-hidden="true"><svg viewBox="0 0 14 12"><path d="M1.5 6.5 5 10 12.5 1.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      <button class="chk" aria-pressed="false"><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3H5.5A1.5 1.5 0 0 0 4 4.5v15A1.5 1.5 0 0 0 5.5 21H13"/><path d="M16 8l4 4-4 4"/><path d="M9 12h11"/></svg></span><span class="chk-text">Customers leave without ever telling you why.</span><span class="box" aria-hidden="true"><svg viewBox="0 0 14 12"><path d="M1.5 6.5 5 10 12.5 1.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      <button class="chk" aria-pressed="false"><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12h18"/></svg></span><span class="chk-text">Your outsourced support costs more every quarter, and customers aren't any happier.</span><span class="box" aria-hidden="true"><svg viewBox="0 0 14 12"><path d="M1.5 6.5 5 10 12.5 1.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      <button class="chk" aria-pressed="false"><span class="chip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4"/><circle cx="12" cy="3" r="1"/><path d="M9 13.5v1"/><path d="M15 13.5v1"/></svg></span><span class="chk-text">You added a chatbot or AI, and customers still end up asking for a human.</span><span class="box" aria-hidden="true"><svg viewBox="0 0 14 12"><path d="M1.5 6.5 5 10 12.5 1.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
     </div>
+    <div class="verdict-wrap">
+      <div class="verdict" id="verdict-card" data-tier="low" role="status">
+        <p class="vlabel">Your result</p>
+        <p class="vtext" id="verdict">Either it's genuinely under control, or nobody is counting. The one about counting is usually the tell.</p>
+      </div>
+      <div class="check-ctas">
+        <a class="btn score-wa" id="score-wa" href="https://wa.me/971522771875?text=Hi%2C%20I%27d%20like%20to%20talk%20about%20our%20customer%20service." target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">Send your score on WhatsApp</a>
+        <p class="check-cta"><a href="#cost">See roughly what it's costing you →</a></p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 <div class="calcband" id="cost">
   <div class="wrap">
@@ -739,16 +795,22 @@
         <div class="fld">
           <label for="msgs">Roughly how many customer messages and calls a month?</label>
           <input id="msgs" type="number" min="0" step="50" value="2000" inputmode="numeric">
+          <div class="qpicks" id="qpicks" aria-label="Quick picks">
+            <button type="button" class="qpick" data-v="500">500</button>
+            <button type="button" class="qpick on" data-v="2000">2,000</button>
+            <button type="button" class="qpick" data-v="10000">10,000</button>
+            <button type="button" class="qpick" data-v="50000">50,000</button>
+          </div>
           <p class="hint">Across WhatsApp, phone, email and social. A rough guess is fine.</p>
         </div>
         <div class="fld">
-          <label for="hours">When is someone actually answering them?</label>
-          <select id="hours">
-            <option value="0.6">Office hours, Sunday to Thursday</option>
-            <option value="0.45" selected>Six days a week, daytime</option>
-            <option value="0.3">Long hours, including some evenings</option>
-            <option value="0.12">Almost always, evenings and weekends too</option>
-          </select>
+          <span class="flabel" id="hours-label">When is someone actually answering them?</span>
+          <div class="hourgrid" role="group" aria-labelledby="hours-label">
+            <button type="button" class="hourbtn" data-v="0.6" aria-pressed="false">Office hours, Sunday to Thursday</button>
+            <button type="button" class="hourbtn" data-v="0.45" aria-pressed="true">Six days a week, daytime</button>
+            <button type="button" class="hourbtn" data-v="0.3" aria-pressed="false">Long hours, including some evenings</button>
+            <button type="button" class="hourbtn" data-v="0.12" aria-pressed="false">Almost always, evenings and weekends too</button>
+          </div>
           <p class="hint">Not when the shop is open. When someone is genuinely replying.</p>
         </div>
         <div class="fld">
@@ -800,21 +862,40 @@
               <option value="CZK">CZK</option>
               <option value="RON">RON</option>
             </select>
-            <input id="val" type="number" min="0" step="50" value="500" inputmode="numeric">
+            <input id="val" type="number" min="0" step="50" value="200" inputmode="numeric">
           </div>
           <p class="hint">A typical order, or the first year if they subscribe. Everything stays in your currency, nothing is converted.</p>
         </div>
+        <div class="fld">
+          <label for="costm">Roughly what does customer support cost you a month?</label>
+          <input id="costm" type="number" min="0" step="500" inputmode="numeric" placeholder="Optional">
+          <p class="hint">Optional. Salaries, tools, outsourcing, everything. A rough guess is fine.</p>
+        </div>
       </div>
 
-      <div class="result" aria-live="polite">
-        <p class="big" id="r-lost">0</p>
-        <p class="cap">messages a month arrive when nobody is answering</p>
-        <div class="second">
-          <p class="big" id="r-money">0</p>
-          <p class="cap">a year, if just <b>one in ten</b> of them was someone ready to buy</p>
+      <div class="calc-out" aria-live="polite">
+        <div class="rcard">
+          <p class="rlabel">When nobody answers</p>
+          <p class="big" id="r-lost">0</p>
+          <p class="cap">messages a month land while nobody is replying</p>
         </div>
-        <p class="assume">Two of your own numbers, and one assumption kept deliberately low. Change the one-in-ten to whatever fits your business and the figure moves with it. Most owners say it's higher.</p>
-        <a class="btn" href="#talk">Let's talk about that number</a>
+        <div class="rcard">
+          <p class="rlabel">What that could cost</p>
+          <p class="big" id="r-money">0</p>
+          <p class="cap">a year, if one in ten of those was ready to buy</p>
+        </div>
+        <div class="rcard" id="card-freed" hidden>
+          <p class="rlabel">What a fix frees</p>
+          <p class="big" id="r-freed">0</p>
+          <p class="cap">a year freed if incoming requests fell 45%</p>
+          <p class="fine">The reduction from the case study. Rough by design.</p>
+        </div>
+        <div class="rcard prompt" id="card-prompt">
+          <p>Add your monthly support cost to see what a 45% cut is worth.</p>
+        </div>
+        <p class="assume">Two of your own numbers, one low assumption. Change either and the figures move with it.</p>
+        <a class="btn" id="calc-wa" href="https://wa.me/971522771875?text=Hi%2C%20I%27d%20like%20to%20talk%20about%20our%20customer%20service." target="_blank" rel="noopener">Let's talk about that number</a>
+        <p class="calc-alt">or <a href="#talk">book a call</a></p>
       </div>
     </div>
   </div>
@@ -1020,7 +1101,7 @@
     <p>You'll leave the call knowing your three biggest problems and roughly what they're costing. No slides, no chasing afterwards. Whether we end up working together or not.</p>
     <div class="acts">
       <a class="btn" href="#talk">Book a free 30-minute call</a>
-      <a class="wa2" href="https://wa.me/971522771875?text=Hi%20Abdullah%2C%20I%27d%20like%20to%20talk%20about%20our%20customer%20service.">Or send a WhatsApp instead</a>
+      <a class="wa2" href="https://wa.me/971522771875?text=Hi%2C%20I%27d%20like%20to%20talk%20about%20our%20customer%20service.">Or send a WhatsApp instead</a>
     </div>
     <small>Only a few clients are taken on at a time, so the diary is genuinely limited.</small>
   </div>
@@ -1231,7 +1312,7 @@
     <div class="contact">
       <div class="wa">
         <p>Fastest way: send a WhatsApp message with roughly what's going on. You'll get a reply the same day.</p>
-        <a class="btn" href="https://wa.me/971522771875?text=Hi%20Abdullah%2C%20I%27d%20like%20to%20talk%20about%20our%20customer%20service.">Message us on WhatsApp</a>
+        <a class="btn" href="https://wa.me/971522771875?text=Hi%2C%20I%27d%20like%20to%20talk%20about%20our%20customer%20service.">Message us on WhatsApp</a>
         <p class="or">Prefer to put it straight in the diary? Fill in the form and the booking link comes up straight away.</p>
         <p class="or">Or leave your details and you'll hear back within one working day.</p><p class="or" style="margin-top:18px"><b style="color:var(--ink)">What happens next:</b> a reply the same day, a 30-minute call at a time that suits you, then an honest read on your three biggest problems. Nothing is charged until you agree a fixed price.</p>
       </div>
@@ -1359,32 +1440,60 @@
 
   /* checklist */
   var chks=[].slice.call(document.querySelectorAll('.chk'));
-  var count=document.getElementById('count'), verdict=document.getElementById('verdict');
-  var lines=[
-    'Tap the ones you recognise.',
-    'One is normal. Worth keeping an eye on.',
-    'Two is a pattern starting.',
-    'Three or more means your setup is the problem, not your team.'
-  ];
+  var count=document.getElementById('count'), seglabel=document.getElementById('seglabel');
+  var segs=[].slice.call(document.querySelectorAll('#segs i'));
+  var vcard=document.getElementById('verdict-card'), vtext=document.getElementById('verdict');
+  var scoreWa=document.getElementById('score-wa');
+  var TIERS={
+    low:"Either it's genuinely under control, or nobody is counting. The one about counting is usually the tell.",
+    mid:"Two or more, and this isn't a people problem. It's a setup problem, and those get <mark>fixed in weeks rather than years</mark>.",
+    high:"That's not a struggling team, that's a missing setup. This is the profile where fixes land fastest."
+  };
+  var curTier='low', swapTimer=null;
+  function tallyTier(n){ return n>=5?'high':n>=2?'mid':'low'; }
   function tally(){
     var n=chks.filter(function(b){return b.getAttribute('aria-pressed')==='true'}).length;
     count.textContent=n;
-    count.classList.remove('bump'); void count.offsetWidth; count.classList.add('bump');
-    verdict.textContent=lines[Math.min(n,3)];
+    seglabel.classList.toggle('show',n>0);
+    segs.forEach(function(s,i){s.classList.toggle('on',i<n)});
+    var tr=tallyTier(n);
+    if(tr!==curTier){
+      curTier=tr;
+      clearTimeout(swapTimer);
+      vtext.classList.add('fade');
+      swapTimer=setTimeout(function(){
+        vcard.setAttribute('data-tier',curTier);
+        vtext.innerHTML=TIERS[curTier];
+        vtext.classList.remove('fade');
+      },rm?0:150);
+    }
+    var show=n>=2;
+    scoreWa.classList.toggle('show',show);
+    scoreWa.setAttribute('aria-hidden',show?'false':'true');
+    scoreWa.tabIndex=show?0:-1;
+    if(show){
+      scoreWa.href='https://wa.me/971522771875?text='+
+        encodeURIComponent('Hi, I ticked '+n+' of 8 on your checklist. Can we talk?');
+    }
   }
   chks.forEach(function(b){
     b.addEventListener('click',function(){
       b.setAttribute('aria-pressed', b.getAttribute('aria-pressed')==='true'?'false':'true');
+      if(!rm){ b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); }
       tally();
     });
   });
   tally();
 
   /* calculator */
-  var f=['msgs','hours','val'].map(function(id){return document.getElementById(id)});
-  var lost=document.getElementById('r-lost'), money=document.getElementById('r-money');
+  var msgsEl=document.getElementById('msgs'), valEl=document.getElementById('val'), costEl=document.getElementById('costm');
+  var lost=document.getElementById('r-lost'), money=document.getElementById('r-money'), freed=document.getElementById('r-freed');
+  var cardFreed=document.getElementById('card-freed'), cardPrompt=document.getElementById('card-prompt');
+  var calcWa=document.getElementById('calc-wa');
+  var qpicks=[].slice.call(document.querySelectorAll('.qpick'));
+  var hourBtns=[].slice.call(document.querySelectorAll('.hourbtn'));
   var curSel=document.getElementById('cur');
-  var BUYERS=0.1;
+  var BUYERS=0.1, CUT=0.45;
 
   /* The figures here are the visitor's own money, so nothing is converted and
      no exchange rate is involved. All we need is which currency to label and
@@ -1431,29 +1540,72 @@
   }
   function asCount(n){ return n.toLocaleString(undefined,{maximumFractionDigits:0}); }
 
-  var tw={a:0,b:0};
-  function tween(el,key,to,money){
-    var from=tw[key], t0=performance.now(), dur=rm?0:600;
+  /* Cleared or half-typed fields keep the last valid value, so the cards
+     never show a zero or NaN while someone is editing. */
+  var last={m:2000,out:0.45,v:200,cost:null};
+  function readInputs(){
+    var m=parseFloat(msgsEl.value); if(isFinite(m)&&m>0) last.m=m;
+    var v=parseFloat(valEl.value); if(isFinite(v)&&v>0) last.v=v;
+    var raw=(costEl.value||'').trim();
+    if(raw===''){ last.cost=null; }
+    else{ var c=parseFloat(raw); if(isFinite(c)&&c>0) last.cost=c; }
+  }
+
+  var tw={a:0,b:0,c:0};
+  function tween(el,key,to,moneyFmt){
+    if(!isFinite(to)) return;
+    var from=tw[key], t0=performance.now(), dur=rm?0:400;
     (function step(t){
       var k=dur?Math.min(1,((t||performance.now())-t0)/dur):1;
       k=1-Math.pow(1-k,3);
       var n=Math.round(from+(to-from)*k);
-      el.textContent=money?asMoney(n):asCount(n);
+      el.textContent=moneyFmt?asMoney(n):asCount(n);
       if(k<1) requestAnimationFrame(step); else tw[key]=to;
     })(t0);
   }
-  function run(){
-    var m=parseFloat(f[0].value)||0, out=parseFloat(f[1].value), v=parseFloat(f[2].value)||0;
-    var missed=Math.round(m*out);
-    tween(lost,'a',missed,false);
-    tween(money,'b',Math.round(missed*BUYERS*v*12),true);
+
+  function prefill(annual){
+    var msg='Hi, your calculator says roughly '+CURRENCY+' '+
+      annual.toLocaleString('en-US')+' a year for me. Can we talk?';
+    if(last.cost){
+      msg+=' Plus '+CURRENCY+' '+Math.round(last.cost*12*CUT).toLocaleString('en-US')+' in support capacity.';
+    }
+    calcWa.href='https://wa.me/971522771875?text='+encodeURIComponent(msg);
   }
+
+  function run(){
+    readInputs();
+    var missed=Math.round(last.m*last.out);
+    var annual=Math.round(missed*BUYERS*last.v*12);
+    tween(lost,'a',missed,false);
+    tween(money,'b',annual,true);
+    if(last.cost){
+      cardFreed.hidden=false; cardPrompt.hidden=true;
+      tween(freed,'c',Math.round(last.cost*12*CUT),true);
+    }else{
+      cardFreed.hidden=true; cardPrompt.hidden=false; tw.c=0;
+    }
+    qpicks.forEach(function(b){ b.classList.toggle('on', parseFloat(b.getAttribute('data-v'))===last.m); });
+    prefill(annual);
+  }
+
+  qpicks.forEach(function(b){
+    b.addEventListener('click',function(){ msgsEl.value=b.getAttribute('data-v'); run(); });
+  });
+  hourBtns.forEach(function(b){
+    b.addEventListener('click',function(){
+      hourBtns.forEach(function(o){ o.setAttribute('aria-pressed', o===b?'true':'false'); });
+      last.out=parseFloat(b.getAttribute('data-v'));
+      run();
+    });
+  });
   curSel.addEventListener('change',function(){
     CURRENCY=curSel.value;
     try{ localStorage.setItem('fcs-currency',CURRENCY); }catch(e){}
+    tw.b=0; tw.c=0;
     run();
   });
-  f.forEach(function(el){el.addEventListener('input',run);el.addEventListener('change',run)});
+  [msgsEl,valEl,costEl].forEach(function(el){el.addEventListener('input',run);el.addEventListener('change',run)});
   run();
 })();
 </script>
