@@ -8,3 +8,10 @@ attribution required. The cutout used on the site was produced from this
 original (background removed, flat bottom edge cropped; 856x760 WebP with
 alpha). Always anchor the figure to the bottom of its container so the
 cropped edge stays hidden; never crop it left or right.
+
+## Checklist icons (public/index.html, section 01)
+
+The eight line icons in the checklist cards (clock, repeat, trending-up,
+chart-column, star, log-out, briefcase, bot) are from Lucide
+(https://lucide.dev), embedded inline as SVG. Lucide is ISC-licensed:
+free for commercial use. Licence text: https://lucide.dev/license
