@@ -293,14 +293,15 @@
     padding:16px 18px;font:inherit;font-size:1.02rem;font-weight:500;cursor:pointer;color:var(--ink);line-height:1.45;
     transition:border-color .16s ease,background .16s ease,transform .16s ease,box-shadow .16s ease}
   .chk:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 4px 0 rgba(20,19,16,.08)}
-  .chk .chip{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:#F9E389;display:grid;place-items:center;color:var(--ink);transition:background .16s ease}
-  .chk .chip svg{width:18px;height:18px;display:block}
+  .chk .cchip{flex:0 0 auto;width:36px;height:36px;padding:0;border:1.5px solid var(--ink);border-radius:50%;background:#F9E389;
+    display:grid;place-items:center;color:var(--ink);transition:background .16s ease}
+  .chk .cchip svg{width:18px;height:18px;display:block}
   .chk-text{flex:1 1 auto;min-width:0}
   .chk .box{flex:0 0 auto;width:22px;height:22px;border:2px solid var(--ink);border-radius:5px;background:#fff;color:var(--gold);
     display:grid;place-items:center;transition:background .16s ease,border-color .16s ease}
   .chk .box svg{width:13px;height:11px;display:block;opacity:0;transform:scale(.5);transition:opacity .16s ease,transform .16s ease}
   .chk[aria-pressed="true"]{background:#F9E389;border-color:var(--ink)}
-  .chk[aria-pressed="true"] .chip{background:var(--gold)}
+  .chk[aria-pressed="true"] .cchip{background:var(--gold)}
   .chk[aria-pressed="true"] .box{background:var(--ink);border-color:var(--ink)}
   .chk[aria-pressed="true"] .box svg{opacity:1;transform:scale(1)}
   @keyframes chkpop{0%{transform:scale(.96)}55%{transform:scale(1.02)}100%{transform:scale(1)}}
