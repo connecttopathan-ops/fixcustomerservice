@@ -231,7 +231,8 @@
   /* floating WhatsApp widget, every page: circle + one-time proactive bubble */
   .wa-float{position:fixed;right:18px;bottom:18px;z-index:60;width:58px;height:58px;border-radius:50%;
     background:linear-gradient(180deg,#57d163 0%,#2bb43c 100%);display:grid;place-items:center;
-    border:1px solid rgba(20,19,16,.08);box-shadow:0 8px 24px rgba(20,19,16,.28);transition:transform .15s ease}
+    border:1px solid rgba(20,19,16,.08);box-shadow:0 8px 24px rgba(20,19,16,.28);
+    transition:transform .15s ease,bottom .22s cubic-bezier(.22,.7,.2,1)}
   .wa-float:hover{transform:scale(1.07)}
   .wa-float:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
   .wa-float svg{width:32px;height:32px;fill:#fff;display:block}
@@ -244,7 +245,7 @@
   .wa-bubble{position:fixed;right:18px;bottom:86px;z-index:60;width:min(300px,calc(100vw - 28px));
     background:#fff;border-radius:14px 14px 4px 14px;box-shadow:0 14px 34px rgba(20,19,16,.22);padding:14px 16px 15px;
     opacity:0;transform:translateY(14px);pointer-events:none;
-    transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+    transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.2,1),bottom .22s cubic-bezier(.22,.7,.2,1)}
   .wa-bubble.show{opacity:1;transform:none;pointer-events:auto}
   .wa-bubble .close{position:absolute;top:6px;right:8px;border:0;background:none;cursor:pointer;
     font:inherit;font-size:15px;line-height:1;color:#9A958A;padding:6px}
@@ -259,12 +260,14 @@
   .wa-bubble .online i{display:block;width:8px;height:8px;border-radius:50%;background:#2bb43c;margin:0 auto 2px;font-style:normal}
   .wa-bubble p{margin:0;font-size:.9rem;line-height:1.45;color:var(--grey)}
   @media (max-width:900px){
-    .wa-float{width:54px;height:54px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom))}
+    .wa-float{width:54px;height:54px;right:14px;
+      bottom:calc(14px + var(--bar-h,0px) + env(safe-area-inset-bottom))}
     .wa-float svg{width:30px;height:30px}
-    .wa-bubble{right:14px;bottom:calc(96px + env(safe-area-inset-bottom));max-width:240px}
+    .wa-bubble{right:14px;bottom:calc(96px + var(--bar-h,0px) + env(safe-area-inset-bottom));max-width:240px}
   }
   @media (prefers-reduced-motion:reduce){
     .wa-bubble{transition:none}
+    .wa-float{transition:none}
     .wa-float.pulse::after{animation:none}
   }
   .hero h1{max-width:none}
@@ -792,7 +795,6 @@
     .sticky{display:none;position:fixed;left:0;right:0;bottom:0;padding:12px 16px;background:rgba(255,255,255,.96);
       backdrop-filter:blur(8px);border-top:1px solid var(--rule);z-index:20}
     .sticky{display:none;gap:10px}
-    .sticky{padding-right:80px}
     .sticky .btn{flex:1;text-align:center;padding:15px 10px;font-size:.98rem}
     .sticky .btn.wa{flex:0 0 40%;background:#fff;color:var(--ink);border:2px solid var(--ink)}
   }
@@ -934,7 +936,12 @@
 
   var sticky = document.querySelector('.sticky');
   if (sticky) {
-    function stick(){ sticky.style.display = window.innerWidth > 820 ? 'none' : 'flex'; }
+    function stick(){
+      var show = window.innerWidth <= 820;
+      sticky.style.display = show ? 'flex' : 'none';
+      // lifts the floating WhatsApp button clear of the bar
+      document.documentElement.style.setProperty('--bar-h', show ? sticky.offsetHeight + 'px' : '0px');
+    }
     window.addEventListener('resize', stick); stick();
   }
 })();

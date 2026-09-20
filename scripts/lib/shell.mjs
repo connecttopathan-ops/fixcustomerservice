@@ -114,7 +114,12 @@ ${shell.waFloat}
 
   var sticky = document.querySelector('.sticky');
   if (sticky) {
-    function stick(){ sticky.style.display = window.innerWidth > 820 ? 'none' : 'flex'; }
+    function stick(){
+      var show = window.innerWidth <= 820;
+      sticky.style.display = show ? 'flex' : 'none';
+      // lifts the floating WhatsApp button clear of the bar
+      document.documentElement.style.setProperty('--bar-h', show ? sticky.offsetHeight + 'px' : '0px');
+    }
     window.addEventListener('resize', stick); stick();
   }
 })();
