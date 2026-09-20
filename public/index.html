@@ -31,7 +31,7 @@
 <meta name="twitter:description" content="Thirteen years running support operations. Any business, any size.">
 <meta name="twitter:image" content="https://fixcustomerservice.com/og-image.jpg">
 <meta name="theme-color" content="#141310">
-<meta name="build" content="2026-09-20-v22">
+<meta name="build" content="2026-09-20-v23">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -454,6 +454,57 @@
     .leak:hover,.pbadge:hover{transform:none;box-shadow:none}
     .leak,.pbadge{transition:none}
     .ba-state{transition:none}
+  }
+
+  /* tools sticker wall */
+  .tools-band{margin-top:76px}
+  .tools-band h3{font-size:clamp(1.45rem,2.6vw,1.95rem);font-weight:800;letter-spacing:-.025em;line-height:1.1;margin:0}
+  .tools-lead{margin:14px 0 0;color:var(--grey);font-size:1.06rem}
+  .corkboard{margin-top:30px;border-radius:18px;border:1.5px solid #e4dfd2;padding:40px 28px;overflow:hidden;
+    background-color:#efe7d4;
+    background-image:
+      radial-gradient(rgba(20,19,16,.10) 1.2px, rgba(20,19,16,0) 1.4px),
+      radial-gradient(rgba(20,19,16,.06) 2px,   rgba(20,19,16,0) 2.2px);
+    background-size:14px 14px, 31px 27px;
+    background-position:0 0, 7px 9px}
+  .stickers{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px 18px;
+    list-style:none;margin:0 auto;padding:0;max-width:900px}
+  .stickers li{--rot:0deg;--ty:0px;
+    border:2px solid var(--ink);border-radius:30px;padding:11px 22px;background:#fff;color:var(--ink);
+    font-size:16px;font-weight:800;line-height:1.2;white-space:nowrap;
+    box-shadow:0 6px 0 rgba(20,19,16,.9), 0 12px 22px rgba(20,19,16,.2);
+    transform:rotate(var(--rot)) translateY(var(--ty));
+    transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .18s ease}
+  .stickers li.y{background:#f5d13d}
+  .stickers li.soft{background:#fdf3cd}
+  .stickers li.ink{background:var(--ink);color:#f5d13d}
+  /* the tilt is a per-position cycle, so flexbox still owns the spacing and
+     the gaps stay even at every width. Only the angle is set here, never the
+     transform itself, so hover can straighten a chip without !important. */
+  .stickers li:nth-child(7n+1){--rot:-3deg;--ty:2px}
+  .stickers li:nth-child(7n+2){--rot:2deg;--ty:-5px}
+  .stickers li:nth-child(7n+3){--rot:-5deg;--ty:4px}
+  .stickers li:nth-child(7n+4){--rot:4deg;--ty:-2px}
+  .stickers li:nth-child(7n+5){--rot:-1.5deg;--ty:6px}
+  .stickers li:nth-child(7n+6){--rot:5deg;--ty:-7px}
+  .stickers li:nth-child(7n){--rot:-6deg;--ty:3px}
+  .stickers li:hover{transform:translateY(-6px) rotate(0deg) scale(1.05);
+    box-shadow:0 10px 0 rgba(20,19,16,.9), 0 20px 30px rgba(20,19,16,.28);
+    position:relative;z-index:5}
+  .tools-close{margin-top:28px;color:var(--grey);font-size:1.03rem}
+  .tools-close b{color:var(--ink);font-weight:700}
+  @media (max-width:860px){
+    .tools-band{margin-top:56px}
+    .corkboard{padding:28px 14px;border-radius:14px}
+    .stickers{gap:16px 12px}
+    .stickers li{font-size:13.5px;padding:9px 16px;
+      box-shadow:0 5px 0 rgba(20,19,16,.9), 0 9px 16px rgba(20,19,16,.18)}
+    .stickers li:hover{box-shadow:0 8px 0 rgba(20,19,16,.9), 0 14px 22px rgba(20,19,16,.26)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .stickers li{transition:none}
+    /* keep the tilt, drop the movement */
+    .stickers li:hover{transform:rotate(var(--rot)) translateY(var(--ty))}
   }
 
   /* google reviews */
@@ -1154,6 +1205,30 @@
       <span>Education</span><span>Logistics &amp; delivery</span><span>Professional services</span><span>Hospitality</span>
     </div>
     <p style="margin-top:24px;color:var(--grey)">The reasons customers get in touch differ by industry. The way support breaks doesn't.</p>
+
+    <div class="tools-band">
+      <h3>Whatever you're running, we've run it.</h3>
+      <p class="tools-lead">We're not reselling software. If your tools work, we set them up properly. If they don't, we'll say so.</p>
+      <div class="corkboard">
+        <ul class="stickers" aria-label="Tools we work in">
+        <li>Zendesk</li>
+        <li class="y">Freshdesk</li>
+        <li>Intercom</li>
+        <li>Genesys</li>
+        <li class="ink">HubSpot</li>
+        <li>Five9</li>
+        <li>Ziwo</li>
+        <li class="soft">Gorgias</li>
+        <li>Infobip</li>
+        <li class="y">Twilio</li>
+        <li>Aircall</li>
+        <li>Salesforce</li>
+        <li class="ink">Talkdesk</li>
+        <li>Wati</li>
+        </ul>
+      </div>
+      <p class="tools-close">And if you have none of it yet, that's the cheapest place to start. <b>What's broken is almost never the software.</b></p>
+    </div>
   </div>
 </section>
 
