@@ -366,51 +366,72 @@
   .calc-alt{margin:14px 0 0;font-size:.95rem;color:#b3afa4}
   .calc-alt a{color:#CFDAD5;font-weight:700;text-decoration:underline;text-underline-offset:3px}
 
-  /* impacts — open, no boxes */
-  .impacts{display:grid;grid-template-columns:1fr 1fr;gap:8px 64px;margin-top:52px}
-  .impact{padding:30px 0 6px;border-top:2px solid var(--black)}
-  .impact h3{margin-bottom:16px}
-  .impact ul{margin:0;padding-left:19px}
-  .impact li{margin-bottom:12px;font-size:1.01rem;color:var(--grey)}
-  .impact li b{color:var(--black);font-weight:700}
+  /* leak board */
+  .leaks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:44px}
+  .leak{background:#fff;border:1.5px solid #e4dfd2;border-radius:14px;padding:18px;
+    transition:border-color .16s ease,transform .16s ease,box-shadow .16s ease}
+  .leak:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 4px 0 rgba(20,19,16,.07)}
+  .leak-cat{margin:0 0 13px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+  .leak-top{display:flex;align-items:center;gap:12px}
+  .lchip{flex:0 0 auto;width:34px;height:34px;border:1.5px solid var(--ink);border-radius:50%;background:#F9E389;
+    display:grid;place-items:center;color:var(--ink)}
+  .lchip svg{width:18px;height:18px;display:block}
+  .leak-top h3{flex:1 1 auto;min-width:0;margin:0;font-size:1.02rem;font-weight:800;line-height:1.3}
+  .leak-minus{flex:0 0 auto;align-self:flex-start;color:var(--rust);font-size:1.2rem;font-weight:800;line-height:1.1}
+  .leak-body{margin:12px 0 0;font-size:.97rem;color:var(--grey);line-height:1.5}
+  .bridge{margin-top:32px;font-size:1.06rem;font-weight:500}
+  .bridge a{font-weight:700;color:var(--black);text-decoration:none;border-bottom:3px solid var(--mark)}
 
   /* diagram */
   .diagram{margin-top:52px}
   .diagram svg{width:100%;height:auto;display:block}
   .diagram .cap{margin-top:20px;color:var(--grey);font-size:.98rem;max-width:40em}
 
-  /* flow diagram (HTML so it reflows) */
-  .flow{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:52px}
-  .flow-col{border-top:2px solid var(--ink);padding-top:22px}
-  .flow-head{display:flex;align-items:baseline;gap:14px;margin-bottom:26px;flex-wrap:wrap}
-  .flow-tag{font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-  .flow-tag.rust{color:var(--rust)}.flow-tag.teal{color:var(--teal)}
-  .flow-sub{color:var(--grey);font-size:.95rem}
-  .chip{display:inline-flex;align-items:center;gap:9px;border:1.5px solid var(--ink);border-radius:4px;padding:8px 12px;font-size:.93rem;font-weight:600;background:#fff;white-space:nowrap}
-  .cic{width:17px;height:17px;flex:0 0 auto;stroke:currentColor;stroke-width:1.7;fill:none;
-       stroke-linecap:round;stroke-linejoin:round;display:block;overflow:visible}
-  .inbox{display:flex;align-items:flex-start;gap:12px}
-  .inbox .cic{width:22px;height:22px;margin-top:2px}
-  .flow-rows{display:grid;gap:12px}
-  .flow-row{display:grid;grid-template-columns:152px 1fr 1fr;align-items:center;gap:12px}
-  .flow-row .chip{width:100%}
-  .arr{position:relative;height:0;display:block}
-  .arr.dashed{border-top:2px dashed var(--rust);opacity:.7}
-  .arr.solid{border-top:2px solid var(--teal)}
-  .arr::after{content:"";position:absolute;right:-1px;top:-5px;width:8px;height:8px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg)}
-  .arr.dashed::after{color:var(--rust)}.arr.solid::after{color:var(--teal)}
-  .dest{font-size:.92rem;color:var(--grey);border:1.5px dashed #D9BDB4;border-radius:4px;padding:8px 12px;background:#fff}
-  .flow-merge{display:grid;grid-template-columns:152px 32px 1.25fr 32px 1fr;align-items:center;gap:12px}
-  .chips{display:grid;gap:12px}
-  .chips .chip{width:100%}
-  .inbox{background:var(--gold);border:2px solid var(--ink);border-radius:5px;padding:16px 16px}
-  .inbox b{display:block;font-size:1rem;margin-bottom:4px}
-  .inbox span{font-size:.88rem;line-height:1.35;display:block}
-  .outs{display:grid;gap:12px}
-  .outs span{border-left:3px solid var(--teal);padding:6px 0 6px 12px;font-size:.93rem;font-weight:600}
-  .flow-foot{margin:24px 0 0;font-style:italic;font-size:.98rem}
-  .flow-foot.rust{color:var(--rust)}.flow-foot.teal{color:var(--teal)}
+  /* before and after toggle */
+  .ba{margin-top:34px}
+  .ba-toggle{display:inline-flex;gap:4px;background:#fff;border:1.5px solid var(--ink);border-radius:999px;
+    padding:4px;margin-bottom:18px}
+  .ba-tab{font:inherit;font-size:.95rem;font-weight:700;padding:9px 28px;border:0;border-radius:999px;
+    background:transparent;color:var(--ink);cursor:pointer;transition:background .18s ease,color .18s ease}
+  .ba-tab[aria-selected="true"]{background:var(--ink);color:var(--gold)}
+  .ba-panel{position:relative;display:grid;background:var(--ink);border-radius:18px;padding:26px 32px;min-height:330px}
+  .ba-state{grid-area:1/1;display:flex;flex-direction:column;min-width:0;opacity:0;transform:translateY(8px);
+    visibility:hidden;transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
+  .ba-panel[data-state="now"] #panel-now,.ba-panel[data-state="after"] #panel-after{
+    opacity:1;transform:none;visibility:visible;transition-delay:0s,0s,0s}
+  .ba-head{margin:0 0 18px;max-width:none;font-size:.78rem;font-weight:800;letter-spacing:.12em;
+    text-transform:uppercase;color:#b3afa4}
+  .ba-foot{margin:auto 0 0;max-width:none;padding-top:20px;font-size:1rem;color:#CFDAD5}
+  .ba-foot b{color:#fff;font-weight:700;white-space:nowrap}
+  /* "now" — chips landing wherever, nothing lining up */
+  .scatter{flex:1 1 auto;display:grid;grid-template-columns:repeat(3,max-content);grid-auto-rows:1fr;
+    gap:8px 16px;justify-content:start;align-items:center}
+  .nchip{display:inline-flex;align-items:center;gap:9px;background:#1F1E1A;border:1.5px solid #3A382F;border-radius:8px;
+    padding:11px 15px;font-size:.93rem;font-weight:600;color:#EDE9DF}
+  .nchip .dot{width:8px;height:8px;border-radius:50%;background:var(--rust);flex:0 0 auto}
+  .scatter .nchip:nth-child(1){transform:rotate(-1.4deg);align-self:start}
+  .scatter .nchip:nth-child(2){transform:rotate(1.2deg);align-self:end;margin-left:18px}
+  .scatter .nchip:nth-child(3){transform:rotate(-.6deg);align-self:center}
+  .scatter .nchip:nth-child(4){transform:rotate(1.6deg);align-self:end;margin-left:30px}
+  .scatter .nchip:nth-child(5){transform:rotate(-1.1deg);align-self:start}
+  .scatter .nchip:nth-child(6){transform:rotate(.8deg);align-self:center;margin-left:10px}
+  /* "after" — one row per message, same shape every time */
+  .inbox-rows{display:grid;gap:8px}
+  .irow{display:grid;grid-template-columns:92px minmax(0,1fr) 26px 58px;align-items:center;gap:14px;
+    background:#1F1E1A;border:1.5px solid #3A382F;border-radius:10px;padding:11px 16px}
+  .isrc{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#b3afa4}
+  .isubj{font-size:.97rem;font-weight:500;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .iwho{width:26px;height:26px;border-radius:50%;background:var(--gold);color:#1A1206;display:grid;place-items:center;
+    font-size:.68rem;font-weight:800;letter-spacing:.02em}
+  .isla{text-align:right;font-size:.9rem;font-weight:700;color:#4ED9A4}
   .flow-cap{margin-top:28px;color:var(--grey);font-size:.98rem;max-width:40em}
+  /* proof badges on the outcome blurbs */
+  .pbadge{display:inline-block;background:#fff;border:1.5px solid var(--ink);border-radius:8px;padding:9px 13px;
+    box-shadow:3px 3px 0 var(--gold);text-decoration:none;color:var(--ink);margin:0 0 14px;
+    transition:transform .16s ease,box-shadow .16s ease}
+  .pbadge:hover{transform:translateY(-2px);box-shadow:3px 5px 0 var(--gold)}
+  .pbadge b{display:block;font-size:20px;font-weight:800;line-height:1.1;letter-spacing:-.02em}
+  .pbadge span{display:block;font-size:11.5px;color:var(--grey);font-weight:500;margin-top:2px}
 
   /* chart */
   .chartfig{margin:44px 0 0;background:#fff;border-radius:6px;padding:26px 22px 22px;border:1px solid var(--rule)}
@@ -437,15 +458,15 @@
   .btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px -12px rgba(20,19,16,.55)}
   .btn:active{transform:translateY(0);box-shadow:none}
   .btn-quiet{transition:background .18s ease}
-  .work > div,.impact,.case,.trust > div,.three > div{transition:transform .25s ease}
+  .work > div,.case,.trust > div,.three > div{transition:transform .25s ease}
   .work > div:hover,.case:hover{transform:translateY(-2px)}
   .inds span{transition:background .18s ease,color .18s ease}
   .inds span:hover{background:var(--ink);color:#fff}
   details summary::after{transition:transform .2s ease}
   details[open] summary::after{transform:rotate(180deg)}
-  .verify a,.check-cta a,.contact .or a{background-image:linear-gradient(var(--marker),var(--marker));
+  .verify a,.check-cta a,.bridge a,.contact .or a{background-image:linear-gradient(var(--marker),var(--marker));
     background-size:0% 3px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .25s ease}
-  .verify a:hover,.check-cta a:hover,.contact .or a:hover{background-size:100% 3px}
+  .verify a:hover,.check-cta a:hover,.bridge a:hover,.contact .or a:hover{background-size:100% 3px}
 
   .chartfig .anim{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
   .chartfig.go .anim{transition:stroke-dashoffset 1.4s cubic-bezier(.3,.6,.2,1) var(--d,0s);stroke-dashoffset:0}
@@ -463,7 +484,11 @@
     .btn:hover,.work > div:hover,.case:hover{transform:none;box-shadow:none}
     .chartfig .anim{stroke-dasharray:none;stroke-dashoffset:0}
     .chartfig .dot,.chartfig .flag,.chartfig .fade,.chartfig .lbl{opacity:1;transform:none;transition:none}
-    .chk .box i{opacity:1}
+    .chk .box svg,.chk{transition:none}
+    .chk.pop{animation:none}
+    .leak:hover,.pbadge:hover{transform:none;box-shadow:none}
+    .leak,.pbadge{transition:none}
+    .ba-state{transition:none}
   }
 
   /* google reviews */
@@ -610,7 +635,7 @@
   footer a{color:var(--grey)}
 
   @media (pointer:coarse){
-    .check-cta a,.verify a,.contact .or a,footer a{display:inline-block;padding:9px 0;margin:-9px 0}
+    .check-cta a,.verify a,.bridge a,.contact .or a,footer a{display:inline-block;padding:9px 0;margin:-9px 0}
   }
   .sticky{display:none}
   @media (max-width:820px){
@@ -632,9 +657,9 @@
     .rcard .cap{font-size:.95rem}
     .calc-out{position:static}
     .hourbtn{font-size:.9rem;padding:12px 11px}
-    .impact li,.work span,.band p,.how p,.callbox li,.trust p,.three p,details p{font-size:.97rem}
+    .leak-body,.work span,.band p,.how p,.callbox li,.trust p,.three p,details p{font-size:.97rem}
     .band .vol{font-size:1.3rem}
-    .eyebrow,.flow-tag,.case .tag{font-size:.8rem}
+    .eyebrow,.case .tag{font-size:.8rem}
     .calcband .hint,.privacy-line{font-size:.92rem}
     section,.calcband{padding:68px 0}
     .hero{padding-top:22px;padding-bottom:0}
@@ -644,34 +669,30 @@
     .revs,.revwhy{grid-template-columns:1fr;gap:16px}
     .revwhy{gap:28px;margin-top:36px}
     .rev{padding:22px 20px}
-    .three,.impacts,.work,.cases,.trust,.contact,.calcgrid{grid-template-columns:1fr}
+    .three,.leaks,.work,.cases,.trust,.contact,.calcgrid{grid-template-columns:1fr}
     .calcgrid{gap:44px}
     .bio{grid-template-columns:1fr}
-    .flow{grid-template-columns:1fr;gap:44px}
-    .flow-row{grid-template-columns:132px 1fr 1fr;gap:8px}
-    /* below ~360px the widened channel column no longer leaves room for the
-       arrow and destination side by side, so the arrow is dropped */
-    @media (max-width:360px){
-      /* minmax(0,...) so the track can shrink below the destination text's
-         min-content width, which otherwise forces the row wider than 320px */
-      /* the outer grid track sizes to max-content unless told it may shrink,
-         which is what pushes the whole diagram past a 320px viewport */
-      .flow{grid-template-columns:minmax(0,1fr)}
-      .flow-col{min-width:0}
-      .flow-row{grid-template-columns:120px minmax(0,1fr);gap:7px}
-      .dest{overflow-wrap:anywhere}
-      .flow-row .arr{display:none}
-      .flow-merge{grid-template-columns:120px 18px minmax(0,1fr);gap:7px}
-      .flow-merge > *,.outs,.inbox{min-width:0}
-      .flow-row .chip,.chips .chip{font-size:.82rem;padding:7px 8px;gap:6px}
-      .dest{font-size:.86rem;padding:7px 9px}
-    }
-    .flow-row .chip,.chips .chip{width:100%;padding:7px 9px;font-size:.86rem;gap:7px}
-    .cic{width:15px;height:15px}
-    .flow-merge{grid-template-columns:132px 22px 1fr;gap:8px}
-    .flow-merge .arr:nth-child(4),.flow-merge .outs{grid-column:1/-1}
-    .flow-merge .arr:nth-child(4){display:none}
-    .outs{grid-template-columns:1fr 1fr;margin-top:6px}
+    .leaks{gap:12px}
+    .leak{padding:16px}
+    .ba{margin-top:32px}
+    .ba-toggle{display:flex;width:100%;margin-bottom:18px}
+    .ba-tab{flex:1 1 0;padding:11px 10px}
+    .ba-panel{padding:22px 18px;min-height:0;border-radius:14px}
+    .ba-head{margin-bottom:18px}
+    .ba-foot{padding-top:20px;font-size:.96rem}
+    .scatter{gap:10px}
+    .nchip{font-size:.88rem;padding:10px 12px;gap:8px}
+    /* three columns will not fit, and the scatter angles cost horizontal
+       room the narrow viewport hasn't got */
+    .scatter{display:flex;flex-wrap:wrap;align-content:flex-start}
+    .scatter .nchip{transform:none;align-self:auto;margin-left:0}
+    /* four columns do not fit, so each message becomes two lines:
+       source and reply time, then subject and owner */
+    .irow{grid-template-columns:minmax(0,1fr) auto;gap:7px 10px;padding:12px 14px}
+    .isrc{grid-column:1;grid-row:1}
+    .isla{grid-column:2;grid-row:1}
+    .isubj{grid-column:1;grid-row:2;white-space:normal}
+    .iwho{grid-column:2;grid-row:2;justify-self:end}
     .photo{width:150px}
     .band{grid-template-columns:1fr;gap:12px;padding:26px 0}
     .how > div{grid-template-columns:28px 1fr;gap:16px;padding:24px 0}

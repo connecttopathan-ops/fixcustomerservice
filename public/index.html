@@ -31,7 +31,7 @@
 <meta name="twitter:description" content="Thirteen years running support operations. Any business, any size.">
 <meta name="twitter:image" content="https://fixcustomerservice.com/og-image.jpg">
 <meta name="theme-color" content="#141310">
-<meta name="build" content="2026-09-19-v21">
+<meta name="build" content="2026-09-20-v22">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -331,51 +331,72 @@
   .calc-alt{margin:14px 0 0;font-size:.95rem;color:#b3afa4}
   .calc-alt a{color:#CFDAD5;font-weight:700;text-decoration:underline;text-underline-offset:3px}
 
-  /* impacts — open, no boxes */
-  .impacts{display:grid;grid-template-columns:1fr 1fr;gap:8px 64px;margin-top:52px}
-  .impact{padding:30px 0 6px;border-top:2px solid var(--black)}
-  .impact h3{margin-bottom:16px}
-  .impact ul{margin:0;padding-left:19px}
-  .impact li{margin-bottom:12px;font-size:1.01rem;color:var(--grey)}
-  .impact li b{color:var(--black);font-weight:700}
+  /* leak board */
+  .leaks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:44px}
+  .leak{background:#fff;border:1.5px solid #e4dfd2;border-radius:14px;padding:18px;
+    transition:border-color .16s ease,transform .16s ease,box-shadow .16s ease}
+  .leak:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 4px 0 rgba(20,19,16,.07)}
+  .leak-cat{margin:0 0 13px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+  .leak-top{display:flex;align-items:center;gap:12px}
+  .lchip{flex:0 0 auto;width:34px;height:34px;border:1.5px solid var(--ink);border-radius:50%;background:#F9E389;
+    display:grid;place-items:center;color:var(--ink)}
+  .lchip svg{width:18px;height:18px;display:block}
+  .leak-top h3{flex:1 1 auto;min-width:0;margin:0;font-size:1.02rem;font-weight:800;line-height:1.3}
+  .leak-minus{flex:0 0 auto;align-self:flex-start;color:var(--rust);font-size:1.2rem;font-weight:800;line-height:1.1}
+  .leak-body{margin:12px 0 0;font-size:.97rem;color:var(--grey);line-height:1.5}
+  .bridge{margin-top:32px;font-size:1.06rem;font-weight:500}
+  .bridge a{font-weight:700;color:var(--black);text-decoration:none;border-bottom:3px solid var(--mark)}
 
   /* diagram */
   .diagram{margin-top:52px}
   .diagram svg{width:100%;height:auto;display:block}
   .diagram .cap{margin-top:20px;color:var(--grey);font-size:.98rem;max-width:40em}
 
-  /* flow diagram (HTML so it reflows) */
-  .flow{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:52px}
-  .flow-col{border-top:2px solid var(--ink);padding-top:22px}
-  .flow-head{display:flex;align-items:baseline;gap:14px;margin-bottom:26px;flex-wrap:wrap}
-  .flow-tag{font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-  .flow-tag.rust{color:var(--rust)}.flow-tag.teal{color:var(--teal)}
-  .flow-sub{color:var(--grey);font-size:.95rem}
-  .chip{display:inline-flex;align-items:center;gap:9px;border:1.5px solid var(--ink);border-radius:4px;padding:8px 12px;font-size:.93rem;font-weight:600;background:#fff;white-space:nowrap}
-  .cic{width:17px;height:17px;flex:0 0 auto;stroke:currentColor;stroke-width:1.7;fill:none;
-       stroke-linecap:round;stroke-linejoin:round;display:block;overflow:visible}
-  .inbox{display:flex;align-items:flex-start;gap:12px}
-  .inbox .cic{width:22px;height:22px;margin-top:2px}
-  .flow-rows{display:grid;gap:12px}
-  .flow-row{display:grid;grid-template-columns:152px 1fr 1fr;align-items:center;gap:12px}
-  .flow-row .chip{width:100%}
-  .arr{position:relative;height:0;display:block}
-  .arr.dashed{border-top:2px dashed var(--rust);opacity:.7}
-  .arr.solid{border-top:2px solid var(--teal)}
-  .arr::after{content:"";position:absolute;right:-1px;top:-5px;width:8px;height:8px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg)}
-  .arr.dashed::after{color:var(--rust)}.arr.solid::after{color:var(--teal)}
-  .dest{font-size:.92rem;color:var(--grey);border:1.5px dashed #D9BDB4;border-radius:4px;padding:8px 12px;background:#fff}
-  .flow-merge{display:grid;grid-template-columns:152px 32px 1.25fr 32px 1fr;align-items:center;gap:12px}
-  .chips{display:grid;gap:12px}
-  .chips .chip{width:100%}
-  .inbox{background:var(--gold);border:2px solid var(--ink);border-radius:5px;padding:16px 16px}
-  .inbox b{display:block;font-size:1rem;margin-bottom:4px}
-  .inbox span{font-size:.88rem;line-height:1.35;display:block}
-  .outs{display:grid;gap:12px}
-  .outs span{border-left:3px solid var(--teal);padding:6px 0 6px 12px;font-size:.93rem;font-weight:600}
-  .flow-foot{margin:24px 0 0;font-style:italic;font-size:.98rem}
-  .flow-foot.rust{color:var(--rust)}.flow-foot.teal{color:var(--teal)}
+  /* before and after toggle */
+  .ba{margin-top:34px}
+  .ba-toggle{display:inline-flex;gap:4px;background:#fff;border:1.5px solid var(--ink);border-radius:999px;
+    padding:4px;margin-bottom:18px}
+  .ba-tab{font:inherit;font-size:.95rem;font-weight:700;padding:9px 28px;border:0;border-radius:999px;
+    background:transparent;color:var(--ink);cursor:pointer;transition:background .18s ease,color .18s ease}
+  .ba-tab[aria-selected="true"]{background:var(--ink);color:var(--gold)}
+  .ba-panel{position:relative;display:grid;background:var(--ink);border-radius:18px;padding:26px 32px;min-height:330px}
+  .ba-state{grid-area:1/1;display:flex;flex-direction:column;min-width:0;opacity:0;transform:translateY(8px);
+    visibility:hidden;transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
+  .ba-panel[data-state="now"] #panel-now,.ba-panel[data-state="after"] #panel-after{
+    opacity:1;transform:none;visibility:visible;transition-delay:0s,0s,0s}
+  .ba-head{margin:0 0 18px;max-width:none;font-size:.78rem;font-weight:800;letter-spacing:.12em;
+    text-transform:uppercase;color:#b3afa4}
+  .ba-foot{margin:auto 0 0;max-width:none;padding-top:20px;font-size:1rem;color:#CFDAD5}
+  .ba-foot b{color:#fff;font-weight:700;white-space:nowrap}
+  /* "now" — chips landing wherever, nothing lining up */
+  .scatter{flex:1 1 auto;display:grid;grid-template-columns:repeat(3,max-content);grid-auto-rows:1fr;
+    gap:8px 16px;justify-content:start;align-items:center}
+  .nchip{display:inline-flex;align-items:center;gap:9px;background:#1F1E1A;border:1.5px solid #3A382F;border-radius:8px;
+    padding:11px 15px;font-size:.93rem;font-weight:600;color:#EDE9DF}
+  .nchip .dot{width:8px;height:8px;border-radius:50%;background:var(--rust);flex:0 0 auto}
+  .scatter .nchip:nth-child(1){transform:rotate(-1.4deg);align-self:start}
+  .scatter .nchip:nth-child(2){transform:rotate(1.2deg);align-self:end;margin-left:18px}
+  .scatter .nchip:nth-child(3){transform:rotate(-.6deg);align-self:center}
+  .scatter .nchip:nth-child(4){transform:rotate(1.6deg);align-self:end;margin-left:30px}
+  .scatter .nchip:nth-child(5){transform:rotate(-1.1deg);align-self:start}
+  .scatter .nchip:nth-child(6){transform:rotate(.8deg);align-self:center;margin-left:10px}
+  /* "after" — one row per message, same shape every time */
+  .inbox-rows{display:grid;gap:8px}
+  .irow{display:grid;grid-template-columns:92px minmax(0,1fr) 26px 58px;align-items:center;gap:14px;
+    background:#1F1E1A;border:1.5px solid #3A382F;border-radius:10px;padding:11px 16px}
+  .isrc{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#b3afa4}
+  .isubj{font-size:.97rem;font-weight:500;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .iwho{width:26px;height:26px;border-radius:50%;background:var(--gold);color:#1A1206;display:grid;place-items:center;
+    font-size:.68rem;font-weight:800;letter-spacing:.02em}
+  .isla{text-align:right;font-size:.9rem;font-weight:700;color:#4ED9A4}
   .flow-cap{margin-top:28px;color:var(--grey);font-size:.98rem;max-width:40em}
+  /* proof badges on the outcome blurbs */
+  .pbadge{display:inline-block;background:#fff;border:1.5px solid var(--ink);border-radius:8px;padding:9px 13px;
+    box-shadow:3px 3px 0 var(--gold);text-decoration:none;color:var(--ink);margin:0 0 14px;
+    transition:transform .16s ease,box-shadow .16s ease}
+  .pbadge:hover{transform:translateY(-2px);box-shadow:3px 5px 0 var(--gold)}
+  .pbadge b{display:block;font-size:20px;font-weight:800;line-height:1.1;letter-spacing:-.02em}
+  .pbadge span{display:block;font-size:11.5px;color:var(--grey);font-weight:500;margin-top:2px}
 
   /* chart */
   .chartfig{margin:44px 0 0;background:#fff;border-radius:6px;padding:26px 22px 22px;border:1px solid var(--rule)}
@@ -402,15 +423,15 @@
   .btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px -12px rgba(20,19,16,.55)}
   .btn:active{transform:translateY(0);box-shadow:none}
   .btn-quiet{transition:background .18s ease}
-  .work > div,.impact,.case,.trust > div,.three > div{transition:transform .25s ease}
+  .work > div,.case,.trust > div,.three > div{transition:transform .25s ease}
   .work > div:hover,.case:hover{transform:translateY(-2px)}
   .inds span{transition:background .18s ease,color .18s ease}
   .inds span:hover{background:var(--ink);color:#fff}
   details summary::after{transition:transform .2s ease}
   details[open] summary::after{transform:rotate(180deg)}
-  .verify a,.check-cta a,.contact .or a{background-image:linear-gradient(var(--marker),var(--marker));
+  .verify a,.check-cta a,.bridge a,.contact .or a{background-image:linear-gradient(var(--marker),var(--marker));
     background-size:0% 3px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .25s ease}
-  .verify a:hover,.check-cta a:hover,.contact .or a:hover{background-size:100% 3px}
+  .verify a:hover,.check-cta a:hover,.bridge a:hover,.contact .or a:hover{background-size:100% 3px}
 
   .chartfig .anim{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
   .chartfig.go .anim{transition:stroke-dashoffset 1.4s cubic-bezier(.3,.6,.2,1) var(--d,0s);stroke-dashoffset:0}
@@ -428,7 +449,11 @@
     .btn:hover,.work > div:hover,.case:hover{transform:none;box-shadow:none}
     .chartfig .anim{stroke-dasharray:none;stroke-dashoffset:0}
     .chartfig .dot,.chartfig .flag,.chartfig .fade,.chartfig .lbl{opacity:1;transform:none;transition:none}
-    .chk .box i{opacity:1}
+    .chk .box svg,.chk{transition:none}
+    .chk.pop{animation:none}
+    .leak:hover,.pbadge:hover{transform:none;box-shadow:none}
+    .leak,.pbadge{transition:none}
+    .ba-state{transition:none}
   }
 
   /* google reviews */
@@ -575,7 +600,7 @@
   footer a{color:var(--grey)}
 
   @media (pointer:coarse){
-    .check-cta a,.verify a,.contact .or a,footer a{display:inline-block;padding:9px 0;margin:-9px 0}
+    .check-cta a,.verify a,.bridge a,.contact .or a,footer a{display:inline-block;padding:9px 0;margin:-9px 0}
   }
   .sticky{display:none}
   @media (max-width:820px){
@@ -597,9 +622,9 @@
     .rcard .cap{font-size:.95rem}
     .calc-out{position:static}
     .hourbtn{font-size:.9rem;padding:12px 11px}
-    .impact li,.work span,.band p,.how p,.callbox li,.trust p,.three p,details p{font-size:.97rem}
+    .leak-body,.work span,.band p,.how p,.callbox li,.trust p,.three p,details p{font-size:.97rem}
     .band .vol{font-size:1.3rem}
-    .eyebrow,.flow-tag,.case .tag{font-size:.8rem}
+    .eyebrow,.case .tag{font-size:.8rem}
     .calcband .hint,.privacy-line{font-size:.92rem}
     section,.calcband{padding:68px 0}
     .hero{padding-top:22px;padding-bottom:0}
@@ -609,34 +634,30 @@
     .revs,.revwhy{grid-template-columns:1fr;gap:16px}
     .revwhy{gap:28px;margin-top:36px}
     .rev{padding:22px 20px}
-    .three,.impacts,.work,.cases,.trust,.contact,.calcgrid{grid-template-columns:1fr}
+    .three,.leaks,.work,.cases,.trust,.contact,.calcgrid{grid-template-columns:1fr}
     .calcgrid{gap:44px}
     .bio{grid-template-columns:1fr}
-    .flow{grid-template-columns:1fr;gap:44px}
-    .flow-row{grid-template-columns:132px 1fr 1fr;gap:8px}
-    /* below ~360px the widened channel column no longer leaves room for the
-       arrow and destination side by side, so the arrow is dropped */
-    @media (max-width:360px){
-      /* minmax(0,...) so the track can shrink below the destination text's
-         min-content width, which otherwise forces the row wider than 320px */
-      /* the outer grid track sizes to max-content unless told it may shrink,
-         which is what pushes the whole diagram past a 320px viewport */
-      .flow{grid-template-columns:minmax(0,1fr)}
-      .flow-col{min-width:0}
-      .flow-row{grid-template-columns:120px minmax(0,1fr);gap:7px}
-      .dest{overflow-wrap:anywhere}
-      .flow-row .arr{display:none}
-      .flow-merge{grid-template-columns:120px 18px minmax(0,1fr);gap:7px}
-      .flow-merge > *,.outs,.inbox{min-width:0}
-      .flow-row .chip,.chips .chip{font-size:.82rem;padding:7px 8px;gap:6px}
-      .dest{font-size:.86rem;padding:7px 9px}
-    }
-    .flow-row .chip,.chips .chip{width:100%;padding:7px 9px;font-size:.86rem;gap:7px}
-    .cic{width:15px;height:15px}
-    .flow-merge{grid-template-columns:132px 22px 1fr;gap:8px}
-    .flow-merge .arr:nth-child(4),.flow-merge .outs{grid-column:1/-1}
-    .flow-merge .arr:nth-child(4){display:none}
-    .outs{grid-template-columns:1fr 1fr;margin-top:6px}
+    .leaks{gap:12px}
+    .leak{padding:16px}
+    .ba{margin-top:32px}
+    .ba-toggle{display:flex;width:100%;margin-bottom:18px}
+    .ba-tab{flex:1 1 0;padding:11px 10px}
+    .ba-panel{padding:22px 18px;min-height:0;border-radius:14px}
+    .ba-head{margin-bottom:18px}
+    .ba-foot{padding-top:20px;font-size:.96rem}
+    .scatter{gap:10px}
+    .nchip{font-size:.88rem;padding:10px 12px;gap:8px}
+    /* three columns will not fit, and the scatter angles cost horizontal
+       room the narrow viewport hasn't got */
+    .scatter{display:flex;flex-wrap:wrap;align-content:flex-start}
+    .scatter .nchip{transform:none;align-self:auto;margin-left:0}
+    /* four columns do not fit, so each message becomes two lines:
+       source and reply time, then subject and owner */
+    .irow{grid-template-columns:minmax(0,1fr) auto;gap:7px 10px;padding:12px 14px}
+    .isrc{grid-column:1;grid-row:1}
+    .isla{grid-column:2;grid-row:1}
+    .isubj{grid-column:1;grid-row:2;white-space:normal}
+    .iwho{grid-column:2;grid-row:2;justify-self:end}
     .photo{width:150px}
     .band{grid-template-columns:1fr;gap:12px;padding:26px 0}
     .how > div{grid-template-columns:28px 1fr;gap:16px;padding:24px 0}
@@ -906,95 +927,99 @@
   <div class="wrap">
     <p class="eyebrow"><span class="sno">03</span> &middot; The rest of the damage</p>
     <h2>It doesn't stop at lost sales.</h2>
-    <div class="impacts">
-      <div class="impact">
-        <h3>Money that never comes in</h3>
-        <ul>
-          <li><b>Customers leave without complaining.</b> Most never tell you. They just stop buying. It looks like a marketing problem, but it started in support.</li>
-          <li><b>Enquiries die before they're sales.</b> A slow answer to "how much?" loses the customer to whoever replied first.</li>
-          <li><b>People buy less often</b> after one bad experience, and referrals stop.</li>
-        </ul>
+    <p class="lead">Six ways bad support quietly takes money out of the business.</p>
+    <div class="leaks">
+      <div class="leak">
+        <p class="leak-cat">Money not coming in</p>
+        <div class="leak-top"><span class="lchip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="22" x2="16" y1="11" y2="11"/></svg></span><h3>Customers leave without complaining</h3><span class="leak-minus" aria-hidden="true">&minus;</span></div>
+        <p class="leak-body">Most never tell you. They just stop buying. It looks like a marketing problem, but it started in support.</p>
       </div>
-      <div class="impact">
-        <h3>Money going out that shouldn't</h3>
-        <ul>
-          <li><b>Bad support creates its own work.</b> One issue handled badly becomes three more conversations about the same thing.</li>
-          <li><b>Hiring that doesn't help.</b> You add people to cope with volume that better process would have removed, and that cost stays forever.</li>
-          <li><b>Refunds and goodwill discounts</b> patching problems that shouldn't have happened.</li>
-        </ul>
+      <div class="leak">
+        <p class="leak-cat">Money not coming in</p>
+        <div class="leak-top"><span class="lchip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="m14.5 7.5-5 5"/><path d="m9.5 7.5 5 5"/></svg></span><h3>Enquiries die before they're sales</h3><span class="leak-minus" aria-hidden="true">&minus;</span></div>
+        <p class="leak-body">A slow answer to &ldquo;how much?&rdquo; loses the customer to whoever replied first.</p>
       </div>
-      <div class="impact">
-        <h3>Reputation and being found online</h3>
-        <ul>
-          <li><b>Google reviews decide it before you do.</b> People check your rating before they buy or subscribe, and most bad reviews are about service, not the product.</li>
-          <li><b>Your search position follows your rating.</b> Score, number of reviews and how recent they are all feed local search. Poor service pushes you down the map results, so fewer people find you at all.</li>
-          <li><b>You pay to undo it,</b> with ad spend making up for the customers who read the reviews and left.</li>
-        </ul>
+      <div class="leak">
+        <p class="leak-cat">Money going out</p>
+        <div class="leak-top"><span class="lchip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></span><h3>Bad support creates its own work</h3><span class="leak-minus" aria-hidden="true">&minus;</span></div>
+        <p class="leak-body">One issue handled badly becomes three more conversations about the same thing.</p>
       </div>
-      <div class="impact">
-        <h3>Your team and your business</h3>
-        <ul>
-          <li><b>Good people burn out and leave,</b> and you pay to hire and train all over again.</li>
-          <li><b>Nobody learns anything.</b> Without knowing what customers contact about, the business keeps breaking the same thing.</li>
-          <li><b>Growth feels risky</b> instead of good, because more customers means more chaos.</li>
-        </ul>
+      <div class="leak">
+        <p class="leak-cat">Money going out</p>
+        <div class="leak-top"><span class="lchip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg></span><h3>Hiring that doesn't help</h3><span class="leak-minus" aria-hidden="true">&minus;</span></div>
+        <p class="leak-body">You add people to cope with volume that better process would have removed, and that cost stays forever.</p>
+      </div>
+      <div class="leak">
+        <p class="leak-cat">Your team and your business</p>
+        <div class="leak-top"><span class="lchip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="10" x="2" y="7" rx="2" ry="2"/><line x1="22" x2="22" y1="11" y2="13"/><line x1="6" x2="6" y1="11" y2="13"/></svg></span><h3>Good people burn out and leave</h3><span class="leak-minus" aria-hidden="true">&minus;</span></div>
+        <p class="leak-body">And you pay to hire and train all over again.</p>
+      </div>
+      <div class="leak">
+        <p class="leak-cat">Your team and your business</p>
+        <div class="leak-top"><span class="lchip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span><h3>Growth feels risky instead of good</h3><span class="leak-minus" aria-hidden="true">&minus;</span></div>
+        <p class="leak-body">Because more customers means more chaos, growth stops being something to chase.</p>
       </div>
     </div>
+    <p class="bridge">And then there's what it does in public. <a href="#public">That's next &rarr;</a></p>
   </div>
 </section>
 
 <section class="paper">
   <div class="wrap">
-    <p class="eyebrow"><span class="sno">04</span> &middot; What changes</p>
+    <p class="eyebrow"><span class="sno">04</span> &middot; Before and after</p>
     <h2>Same messages. Different setup.</h2>
-    <div class="flow">
-      <div class="flow-col">
-        <div class="flow-head"><span class="flow-tag rust">Now</span><span class="flow-sub">Four places, no owner, nothing recorded</span></div>
-        <div class="flow-rows">
-          <div class="flow-row"><span class="chip"><svg class="cic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.7a7.7 7.7 0 0 1-11.2 6.9L4 20l1.5-4.6A7.7 7.7 0 1 1 20 11.7z"/></svg><span>WhatsApp</span></span><span class="arr dashed"></span><span class="dest">Someone's phone</span></div>
-          <div class="flow-row"><span class="chip"><svg class="cic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.3 4.5h3l1.5 3.7-1.9 1.5a10.5 10.5 0 0 0 5.4 5.4l1.5-1.9 3.7 1.5v3a1.5 1.5 0 0 1-1.6 1.5C11.4 18.7 5.3 12.6 4.8 6.1a1.5 1.5 0 0 1 1.5-1.6z"/></svg><span>Phone calls</span></span><span class="arr dashed"></span><span class="dest">Another phone</span></div>
-          <div class="flow-row"><span class="chip"><svg class="cic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.8" width="17" height="12.4" rx="1.6"/><path d="m4.4 7 7.6 5.4L19.6 7"/></svg><span>Email</span></span><span class="arr dashed"></span><span class="dest">Nobody</span></div>
-          <div class="flow-row"><span class="chip"><svg class="cic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4.4"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.9" cy="7.1" r="1"/></svg><span>Instagram</span></span><span class="arr dashed"></span><span class="dest">You, at 11pm</span></div>
-        </div>
-        <p class="flow-foot rust">Some answered. Some not. Nobody knows which.</p>
+    <p class="lead">Flip it and watch what changes.</p>
+
+    <div class="ba">
+      <div class="ba-toggle" role="tablist" aria-label="Before and after">
+        <button type="button" class="ba-tab" id="tab-now" role="tab" aria-selected="true" aria-controls="panel-now">Now</button>
+        <button type="button" class="ba-tab" id="tab-after" role="tab" aria-selected="false" aria-controls="panel-after">After</button>
       </div>
-      <div class="flow-col">
-        <div class="flow-head"><span class="flow-tag teal">After</span><span class="flow-sub">One inbox, an owner for every message</span></div>
-        <div class="flow-merge">
-          <div class="chips">
-            <span class="chip"><svg class="cic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.7a7.7 7.7 0 0 1-11.2 6.9L4 20l1.5-4.6A7.7 7.7 0 1 1 20 11.7z"/></svg><span>WhatsApp</span></span><span class="chip"><svg class="cic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.3 4.5h3l1.5 3.7-1.9 1.5a10.5 10.5 0 0 0 5.4 5.4l1.5-1.9 3.7 1.5v3a1.5 1.5 0 0 1-1.6 1.5C11.4 18.7 5.3 12.6 4.8 6.1a1.5 1.5 0 0 1 1.5-1.6z"/></svg><span>Phone calls</span></span><span class="chip"><svg class="cic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.8" width="17" height="12.4" rx="1.6"/><path d="m4.4 7 7.6 5.4L19.6 7"/></svg><span>Email</span></span><span class="chip"><svg class="cic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4.4"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.9" cy="7.1" r="1"/></svg><span>Instagram</span></span>
+      <div class="ba-panel" data-state="now">
+        <div class="ba-state" id="panel-now" role="tabpanel" aria-labelledby="tab-now">
+          <p class="ba-head">Four places, no owner, nothing recorded</p>
+          <div class="scatter">
+            <span class="nchip"><i class="dot" aria-hidden="true"></i>WhatsApp &middot; someone&rsquo;s phone</span>
+            <span class="nchip"><i class="dot" aria-hidden="true"></i>Missed call</span>
+            <span class="nchip"><i class="dot" aria-hidden="true"></i>Email &middot; nobody</span>
+            <span class="nchip"><i class="dot" aria-hidden="true"></i>Instagram &middot; you, at 11pm</span>
+            <span class="nchip"><i class="dot" aria-hidden="true"></i>WhatsApp &middot; unread</span>
+            <span class="nchip"><i class="dot" aria-hidden="true"></i>Voicemail &middot; never checked</span>
           </div>
-          <span class="arr solid"></span>
-          <div class="inbox"><svg class="cic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 13.2h4l1.2 2.2h6.4l1.2-2.2h4"/><path d="M5.6 5.4h12.8l2 7.8v4.4H3.6v-4.4z"/></svg><div><b>One inbox</b><span>Tagged, timed, owned by someone</span></div></div>
-          <span class="arr solid"></span>
-          <div class="outs">
-            <span>Answered instantly</span>
-            <span>Sent to the right person</span>
-          </div>
+          <p class="ba-foot">Some answered. Some not. <b>Nobody knows which.</b></p>
         </div>
-        <p class="flow-foot teal">Everything answered. Everything counted.</p>
+        <div class="ba-state" id="panel-after" role="tabpanel" aria-labelledby="tab-after" aria-hidden="true">
+          <p class="ba-head">One inbox, one owner, everything recorded</p>
+          <div class="inbox-rows">
+            <div class="irow"><span class="isrc">WhatsApp</span><span class="isubj">Where is my order?</span><span class="iwho" aria-hidden="true">SA</span><span class="isla">2 min</span></div>
+            <div class="irow"><span class="isrc">Phone</span><span class="isubj">Callback about an invoice</span><span class="iwho" aria-hidden="true">MK</span><span class="isla">4 min</span></div>
+            <div class="irow"><span class="isrc">Email</span><span class="isubj">Refund request</span><span class="iwho" aria-hidden="true">AB</span><span class="isla">6 min</span></div>
+            <div class="irow"><span class="isrc">Instagram</span><span class="isubj">Do you deliver to Sharjah?</span><span class="iwho" aria-hidden="true">SA</span><span class="isla">3 min</span></div>
+          </div>
+          <p class="ba-foot">Everything answered. Everything counted. <b>First reply &middot; under 10 min.</b></p>
+        </div>
       </div>
     </div>
     <p class="flow-cap">The same four channels, the same team. What changes is where messages land and who owns them. That's why the fix rarely needs more people.</p>
 
     <div class="three">
       <div>
-        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.2 4.2 6.4 13.2h4.6l-.6 6.6 6.8-9h-4.6z"/></svg><h3>Customers get answered, fast.</h3>
+        <a class="pbadge" href="#proof"><b>&minus;96%</b><span>decrease in average wait time</span></a><h3>Customers get answered, fast.</h3>
         <p>Every message has someone responsible for it. Nothing sits unread. You'll know your reply time, and so will your customers.</p>
       </div>
       <div>
-        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M14.2 10c0-1-1-1.7-2.2-1.7S9.8 9 9.8 10s1 1.6 2.2 1.6 2.2.7 2.2 1.7-1 1.7-2.2 1.7-2.2-.7-2.2-1.7"/></svg><h3>You spend less on support.</h3>
+        <a class="pbadge" href="#proof"><b>45%</b><span>fewer requests coming in</span></a><h3>You spend less on support.</h3>
         <p>Most of what your team answers by hand doesn't need a person. We stop those at the source, so your people handle what actually needs them.</p>
       </div>
       <div>
-        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.4 18.6 9.6 13l3.3 2.9L19.6 6.8"/><path d="M14.6 6.8h5v5"/></svg><h3>You can grow without the chaos.</h3>
+        <a class="pbadge" href="#proof"><b>30%</b><span>smaller team, same service</span></a><h3>You can grow without the chaos.</h3>
         <p>Double your customers without doubling your team. The setup handles the volume, not the heroics of one or two people.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="paper">
+<section class="paper" id="public">
   <div class="wrap">
     <p class="eyebrow"><span class="sno">05</span> &middot; Where it shows up in public</p>
     <h2>Your next customer reads your last customer's bad day.</h2>
@@ -1485,6 +1510,35 @@
     });
   });
   tally();
+
+  /* before/after toggle. One panel, two states stacked in the same grid
+     cell so the panel is always as tall as the taller state and nothing
+     below it moves when you switch. */
+  var baTabs=[].slice.call(document.querySelectorAll('.ba-tab'));
+  var baPanel=document.querySelector('.ba-panel');
+  if(baPanel&&baTabs.length){
+    var baShow=function(name,focus){
+      baPanel.setAttribute('data-state',name);
+      baTabs.forEach(function(b){
+        var on=b.id==='tab-'+name;
+        b.setAttribute('aria-selected',on?'true':'false');
+        if(on&&focus) b.focus();
+      });
+      document.getElementById('panel-now').setAttribute('aria-hidden',name==='now'?'false':'true');
+      document.getElementById('panel-after').setAttribute('aria-hidden',name==='after'?'false':'true');
+    };
+    baTabs.forEach(function(b){
+      b.addEventListener('click',function(){ baShow(b.id==='tab-after'?'after':'now',false); });
+      b.addEventListener('keydown',function(ev){
+        var k=ev.key;
+        if(k==='ArrowRight'||k==='ArrowDown'){ ev.preventDefault(); baShow('after',true); }
+        else if(k==='ArrowLeft'||k==='ArrowUp'){ ev.preventDefault(); baShow('now',true); }
+        else if(k==='Home'){ ev.preventDefault(); baShow('now',true); }
+        else if(k==='End'){ ev.preventDefault(); baShow('after',true); }
+      });
+    });
+    baShow('now',false);
+  }
 
   /* calculator */
   var msgsEl=document.getElementById('msgs'), valEl=document.getElementById('val'), costEl=document.getElementById('costm');
