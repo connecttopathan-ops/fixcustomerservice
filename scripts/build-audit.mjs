@@ -215,9 +215,9 @@ const head = `<meta property="og:type" content="website">
 <meta property="og:description" content="${AUDIT.description}">
 <meta property="og:url" content="${SITE}/${AUDIT.slug}">
 <meta property="og:image" content="${SITE}/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Fix Customer Service, customer service operations in Dubai">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta property="og:image:alt" content="Fix your customer service without hiring more people. fixcustomerservice.com, customer service consultancy.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Customer Service Audit">
 <meta name="twitter:description" content="${AUDIT.description}">
