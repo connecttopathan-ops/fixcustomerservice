@@ -17,9 +17,9 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'public', 'og-image.jpg');
 
 const CREDS = [
-  ['13 years', 'running support operations'],
-  ['200 to 200,000', 'messages a month'],
-  ['Fixed price', 'agreed before anything starts'],
+  ['&minus;96%', 'average wait time'],
+  ['&minus;45%', 'requests coming in'],
+  ['&minus;30%', 'team size, same service'],
 ];
 
 const html = `<!DOCTYPE html>
@@ -44,6 +44,8 @@ const html = `<!DOCTYPE html>
     -webkit-box-decoration-break:clone;box-decoration-break:clone}
   .sub{margin-top:24px;font-size:21px;line-height:1.45;color:var(--grey);max-width:22em}
   .creds{display:flex;flex-direction:column;gap:14px}
+  .credlab{font-size:13px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--grey);margin-bottom:2px}
   .cred{background:#fff;border:2px solid var(--ink);border-radius:13px;padding:17px 20px;
     box-shadow:5px 5px 0 var(--gold)}
   .cred b{display:block;font-size:27px;font-weight:800;letter-spacing:-.025em;line-height:1.1}
@@ -65,6 +67,7 @@ const html = `<!DOCTYPE html>
       <p class="sub">We find what is broken, put a number on it, and fix it with your team.</p>
     </div>
     <div class="creds">
+      <p class="credlab">From client work</p>
       ${CREDS.map(([b, s]) => `<div class="cred"><b>${b}</b><span>${s}</span></div>`).join('\n      ')}
     </div>
   </div>
