@@ -546,10 +546,9 @@
   }
 
   /* section 05 - illustrative profile cards */
-  /* the label rides in the card chrome, where it stays with the card */
-  .gmock{position:absolute;top:15px;right:16px;z-index:1;font-size:10px;font-weight:700;letter-spacing:.09em;
-    text-transform:uppercase;color:#6B6558;background:#F4F0E7;border:1px solid #E1D9C9;
-    border-radius:4px;padding:3px 7px;white-space:nowrap}
+  /* a real profile has a category line under the name; the disclosure takes
+     that slot, so it reads as card chrome rather than a sticker */
+  .gsub{margin:3px 0 0;font-size:12.5px;font-weight:400;color:var(--grey);max-width:none}
   .gtoggle{display:none}
   .gstage{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px;align-items:start}
   .gcol{min-width:0;display:flex;flex-direction:column}
@@ -563,11 +562,11 @@
   .gtag.good::before{background:var(--teal)}
 
   /* the card interior imitates a profile page, so it uses that face, not ours */
-  .gcard{position:relative;font-family:Roboto,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  .gcard{font-family:Roboto,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
     background:#fff;border:1px solid #E1D9C9;border-radius:12px;overflow:hidden;
     box-shadow:0 1px 2px rgba(20,19,16,.05),0 14px 34px -14px rgba(20,19,16,.34)}
   .ghead{padding:16px 18px 0}
-  .gbiz{margin:0;padding-right:112px;font-size:19px;font-weight:500;color:var(--ink);letter-spacing:-.01em;max-width:none}
+  .gbiz{margin:0;font-size:19px;font-weight:500;color:var(--ink);letter-spacing:-.01em;max-width:none}
   .gtabs{display:flex;gap:22px;margin-top:12px;border-bottom:1px solid #EAE3D5}
   .gtabs span{font-size:13px;font-weight:500;color:#5f6368;padding:0 0 9px;border-bottom:3px solid transparent}
   .gtabs span.on{color:#1a73e8;border-bottom-color:#1a73e8}
@@ -632,8 +631,6 @@
     .gstage[data-side="before"] #gp-before,.gstage[data-side="after"] #gp-after{
       opacity:1;visibility:visible;transition-delay:0s,0s}
     .gtag{display:none}
-    .gmock{font-size:9.5px;letter-spacing:.06em;padding:3px 6px;top:14px;right:14px}
-    .gbiz{padding-right:92px;font-size:18px}
     .gtabs{gap:18px}
     .gclose{margin-top:32px;font-size:1.04rem}
     @media (prefers-reduced-motion:reduce){
