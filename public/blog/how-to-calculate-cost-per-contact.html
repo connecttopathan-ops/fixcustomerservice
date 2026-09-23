@@ -545,25 +545,91 @@
     .stickers li:hover{transform:rotate(var(--rot)) translateY(var(--ty))}
   }
 
-  /* google reviews */
-  .revs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;align-items:start}
-  .rev{border:1px solid var(--rule);border-radius:10px;padding:26px 24px;background:#fff}
-  .rev.bad{border-color:#EBCFC8}
-  .rev.good{border-color:#C6DED6}
-  .rev-note{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
-  .rev-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-  .rev-av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.9rem;color:#fff;flex:0 0 auto}
-  .rev.bad .rev-av{background:#B4472E}
-  .rev.good .rev-av{background:#0E6B58}
-  .rev-who b{display:block;font-size:.98rem;font-weight:700;line-height:1.25}
-  .rev-who span{font-size:.83rem;color:var(--faint)}
-  .stars{letter-spacing:3px;font-size:1.05rem;margin-bottom:12px;line-height:1}
-  .rev.bad .stars{color:#B4472E}
-  .rev.good .stars{color:#E3A008}
-  .stars i{font-style:normal;color:#DFD8CB}
-  .rev p{font-size:1.01rem;margin:0;line-height:1.55;max-width:none}
-  .rev .aftermath{margin-top:18px;padding-top:16px;border-top:1px solid var(--rule);font-size:.95rem;color:var(--grey)}
-  .rev .aftermath b{color:var(--ink);font-weight:700}
+  /* section 05 - illustrative profile cards */
+  .illus{display:flex;align-items:flex-start;gap:10px;margin:26px 0 0;max-width:46em;
+    background:#F9E389;border:1.5px solid var(--ink);border-radius:10px;padding:12px 15px;
+    font-size:13.5px;font-weight:600;line-height:1.45;color:var(--ink)}
+  .illus svg{flex:0 0 auto;width:18px;height:18px;margin-top:1px}
+  .gtoggle{display:none}
+  .gstage{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:30px;align-items:start}
+  .gcol{min-width:0;display:flex;flex-direction:column}
+  .gtag{align-self:flex-start;font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    border-radius:999px;padding:5px 13px;margin-bottom:11px}
+  .gtag.bad{background:#FBE8E3;color:var(--rust);border:1.5px solid var(--rust)}
+  .gtag.good{background:#DFF1EC;color:var(--teal);border:1.5px solid var(--teal)}
+
+  /* the card interior imitates a profile page, so it uses that face, not ours */
+  .gcard{font-family:Roboto,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+    background:#fff;border:1px solid #dadce0;border-radius:10px;overflow:hidden;
+    box-shadow:0 1px 3px rgba(60,64,67,.16)}
+  .ghead{padding:16px 18px 0}
+  .gbiz{margin:0;font-size:19px;font-weight:500;color:#202124;letter-spacing:-.01em;max-width:none}
+  .gtabs{display:flex;gap:22px;margin-top:12px;border-bottom:1px solid #dadce0}
+  .gtabs span{font-size:13px;font-weight:500;color:#5f6368;padding:0 0 9px;border-bottom:3px solid transparent}
+  .gtabs span.on{color:#1a73e8;border-bottom-color:#1a73e8}
+  .grate{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center;padding:16px 18px 4px}
+  .gscore{text-align:center}
+  .gscore b{display:block;font-size:40px;font-weight:400;color:#202124;line-height:1.05}
+  .gcount{display:block;margin-top:2px;font-size:12px;color:#70757a}
+  .gstars{display:block;white-space:nowrap;line-height:1}
+  .gstars .on{color:#fbbc04}
+  .gstars .off{color:#dadce0}
+  .gbars{display:grid;gap:3px}
+  .gbar{display:grid;grid-template-columns:10px minmax(0,1fr);gap:8px;align-items:center}
+  .gbn{font-size:11px;color:#70757a;text-align:right}
+  .gbt{display:block;height:9px;border-radius:5px;background:#e8eaed;overflow:hidden}
+  /* the fill must be a block: as an inline element it ignores width and the
+     bar renders empty, which is exactly how this broke before */
+  .gbt i{display:block;height:100%;border-radius:5px;background:#fbbc04}
+  .gchips{display:flex;flex-wrap:wrap;gap:7px;padding:12px 18px 14px;border-bottom:1px solid #e8eaed}
+  .gchip{font-size:12px;color:#3c4043;background:#f1f3f4;border-radius:999px;padding:6px 11px;white-space:nowrap}
+  .gchip b{font-weight:500;color:#70757a}
+  .grev{padding:15px 18px 17px}
+  .grtop{display:flex;align-items:center;gap:11px}
+  .gav{flex:0 0 auto;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+    color:#fff;font-size:15px;font-weight:500}
+  .gav.av-r{background:#d93025}
+  .gav.av-s{background:#1e8e3e}
+  .grwho b{display:block;font-size:13.5px;font-weight:500;color:#202124;line-height:1.3}
+  .grwho span{display:block;font-size:11.5px;color:#70757a}
+  .grmeta{display:flex;align-items:center;gap:9px;margin-top:11px;font-size:12px}
+  .grmeta .gstars{font-size:13px}
+  .gwhen{color:#70757a}
+  .grtext{margin:9px 0 0;font-size:13.5px;line-height:1.55;color:#3c4043;max-width:none}
+  .grfoot{display:flex;align-items:center;gap:16px;margin-top:12px;font-size:12px;color:#5f6368}
+  .greply{color:#1a73e8;font-weight:500}
+  .gowner{margin-top:14px;background:#f8f9fa;border-radius:8px;padding:12px 14px}
+  .gob{margin:0 0 4px;font-size:12.5px;font-weight:500;color:#202124;max-width:none}
+  .gowner p{margin:0;font-size:13px;line-height:1.5;color:#5f6368;max-width:none}
+  .gimpact{margin-top:16px;padding-left:16px}
+  .gimpact.bad{border-left:3px solid var(--rust)}
+  .gimpact.good{border-left:3px solid var(--teal)}
+  .gimpact p{margin:0;font-size:.97rem;line-height:1.55;color:var(--grey);max-width:none}
+  .gimpact p + p{margin-top:9px}
+  .gimpact b{color:var(--ink)}
+  .gclose{margin-top:40px;font-size:1.1rem;font-weight:500;max-width:34em}
+  .gclose mark{background:var(--marker);color:var(--ink);padding:.05em .15em}
+
+  @media (max-width:900px){
+    .gtoggle{display:inline-flex;gap:4px;background:#fff;border:1.5px solid var(--ink);border-radius:999px;
+      padding:4px;margin-top:26px}
+    .gtab{font:inherit;font-size:.95rem;font-weight:700;padding:9px 26px;border:0;border-radius:999px;
+      background:transparent;color:var(--ink);cursor:pointer;transition:background .18s ease,color .18s ease}
+    .gtab#gt-before[aria-selected="true"]{background:var(--rust);color:#fff}
+    .gtab#gt-after[aria-selected="true"]{background:var(--teal);color:#fff}
+    /* both cards share one grid cell, so the stage reserves the taller card's
+       height and nothing below it moves when they swap */
+    .gstage{grid-template-columns:minmax(0,1fr);gap:0;margin-top:18px}
+    .gcol{grid-area:1/1;opacity:0;visibility:hidden;
+      transition:opacity .3s ease,visibility 0s linear .3s}
+    .gstage[data-side="before"] #gp-before,.gstage[data-side="after"] #gp-after{
+      opacity:1;visibility:visible;transition-delay:0s,0s}
+    .gtag{display:none}
+    .gclose{margin-top:32px;font-size:1.04rem}
+    @media (prefers-reduced-motion:reduce){
+      .gcol{transition:none}
+    }
+  }
 
   .revwhy{margin-top:48px;border-top:2px solid var(--ink);padding-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
   .revwhy h3{font-size:1.08rem;margin-bottom:9px}
@@ -720,9 +786,7 @@
     .hero-copy{padding-bottom:0}
     .top nav{display:none}
     .top .brand img{height:26px}
-    .revs,.revwhy{grid-template-columns:1fr;gap:16px}
-    .revwhy{gap:28px;margin-top:36px}
-    .rev{padding:22px 20px}
+    .revwhy{grid-template-columns:1fr;gap:28px;margin-top:36px}
     .three,.leaks,.work,.cases,.trust,.contact,.calcgrid{grid-template-columns:1fr}
     .calcgrid{gap:44px}
     .bio{grid-template-columns:1fr}
