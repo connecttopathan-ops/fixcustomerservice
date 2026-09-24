@@ -412,7 +412,9 @@
   .chartfig svg{width:100%;height:auto;display:block}
   .chartfig figcaption{margin-top:18px;color:var(--grey);font-size:.95rem;max-width:44em;line-height:1.5}
   .chartfig figcaption b{color:var(--ink)}
-  @media (max-width:820px){.chartfig{padding:16px 12px 14px;overflow-x:auto}.chartfig svg{min-width:660px}}
+  /* the svg scales to the container via its viewBox; pinning a min-width made
+     the figure its own scroll container and cut the right of the chart off */
+  @media (max-width:820px){.chartfig{padding:16px 12px 14px}}
 
 
   /* ---- motion ---- */
