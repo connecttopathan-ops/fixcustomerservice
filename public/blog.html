@@ -651,14 +651,28 @@
   .plink:hover{background:var(--black);transform:translateY(-1px)}
   .plink .car{color:var(--marker);margin-left:6px}
   .pcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:22px}
-  /* the corner glow is painted by the background rather than a pseudo-element:
-     a box bled off the corner, however it was offset, left the tile reporting a
-     scrollWidth wider than it is */
-  .ptile{color:#fff;border-radius:14px;padding:22px 24px 26px;min-height:268px;
+  /* photo tiles. Everything that bleeds is kept inside the border box: a box
+     hanging off the corner leaves the tile reporting a scrollWidth wider than
+     it is, whichever way it is offset */
+  .ptile{color:#fff;border-radius:14px;padding:22px 24px 26px;min-height:320px;
     display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;
-    background:radial-gradient(circle at calc(100% + 12px) -12px,rgba(251,221,92,.10),rgba(251,221,92,0) 132px),var(--ink)}
-  .ptile .ptag{margin:0;font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#9E988C}
-  .ptile .ptag.who{font-size:1.02rem;font-weight:800;letter-spacing:-.015em;text-transform:none;color:#fff}
+    background:var(--ink)}
+  /* the three layers are stacked explicitly. Leaving any of them on z-index
+     auto put the photograph above the scrim, which is not visible as a bug so
+     much as text that quietly misses contrast over the bright parts */
+  .ptile .pbg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+  /* the scrim is what makes the figure readable over a photograph, so it is
+     heavy at the bottom where the number and its sentence sit */
+  .ptile::after{content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,rgba(20,19,16,.38) 0%,rgba(20,19,16,.66) 40%,rgba(20,19,16,.88) 74%,rgba(20,19,16,.93) 100%)}
+  .ptile > .pchip,.ptile > .pfig{position:relative;z-index:2}
+  /* a white plate behind the mark: both client logos are dark on transparent,
+     and recolouring someone else's logo is not ours to do */
+  .pchip{margin:0;display:flex}
+  .pchip > span{display:inline-flex;align-items:center;background:#fff;border-radius:8px;padding:8px 11px;
+    box-shadow:0 1px 10px rgba(0,0,0,.28)}
+  .pchip img{display:block;height:19px;width:auto}
+  .pchip .ptxt{font-size:.72rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ink);line-height:1}
   .ptile .pfig{margin:0}
   .ptile .pnum{display:block;font-weight:800;font-size:clamp(2.9rem,5.2vw,3.9rem);letter-spacing:-.04em;line-height:.95;
     color:var(--marker);font-variant-numeric:tabular-nums}
@@ -704,6 +718,12 @@
     color:var(--ink);background:var(--marker);border-radius:4px;padding:6px 9px;margin-top:2px}
   .how h3{font-size:1.2rem}
   .how p{margin:8px 0 0;color:var(--grey);font-size:1.03rem;max-width:44em}
+  /* pricing: an unnumbered band, so the 01-17 run is not disturbed */
+  .pricing .eyebrow{margin-bottom:20px}
+  .pricing .btn{margin-top:30px}
+  .pricing .alt{margin:16px 0 0;color:var(--grey);font-size:.98rem}
+  .pricing .alt a{color:var(--ink);text-decoration:none;border-bottom:2px solid var(--mark)}
+  .pricing .alt a:hover{background:var(--mark)}
   .callbox{margin-top:56px;border-top:2px solid var(--black);padding-top:28px}
   .callbox ul{margin:18px 0 0;padding-left:19px;color:var(--grey)}
   .callbox li{margin-bottom:9px;font-size:1.02rem}
@@ -794,7 +814,7 @@
     .revwhy{grid-template-columns:1fr;gap:28px;margin-top:36px}
     .three,.leaks,.work,.cases,.trust,.contact,.calcgrid{grid-template-columns:1fr}
     .pcards{grid-template-columns:1fr;gap:14px}
-    .ptile{min-height:0;padding:20px 20px 22px}
+    .ptile{min-height:250px;padding:20px 20px 22px}
     .ptile .pcap{font-size:.99rem}
     .pbar{gap:14px}
     .calcgrid{gap:44px}
@@ -883,6 +903,7 @@
     <a href="/#cost">What it's costing you</a>
     <a href="/#proof">Case studies</a>
     <a href="/#how">How it works</a>
+    <a href="/#pricing">Pricing</a>
     <a class="strong" href="/#talk">Book a call</a>
   </nav>
 </div>
