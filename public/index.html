@@ -31,7 +31,7 @@
 <meta name="twitter:description" content="Thirteen years running support operations. Any business, any size.">
 <meta name="twitter:image" content="https://fixcustomerservice.com/og-image.jpg">
 <meta name="theme-color" content="#141310">
-<meta name="build" content="2026-09-24-v33">
+<meta name="build" content="2026-09-24-v34">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1046,6 +1046,99 @@
         <p class="calc-alt">or <a href="#talk">book a call</a></p>
       </div>
     </div>
+
+    <!-- ============================================================
+         LIVE QUEUE, RESPONSE TIMES AGEING
+         Self-contained: its own style and script live with it, on purpose.
+         Do not fold them into the page stylesheet or the main script.
+         ============================================================ -->
+    <div style="margin-top:52px">
+      <style>
+      .fcs-q{--ink:#141310;--yel:#FBDD5C;--cream:#F5F2EB;--paper:#fff;--mut:#6E6B64;--line:#E2DED2;--red:#B0432C;--teal:#0E6B57;
+       color:var(--ink);box-sizing:border-box}
+      .fcs-q *,.fcs-q *::before,.fcs-q *::after{box-sizing:inherit}
+      .fcs-q .fcs-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+      @media(max-width:640px){.fcs-q .fcs-pair{grid-template-columns:1fr}}
+      .fcs-q .fcs-col{border:1px solid var(--line);border-radius:18px;padding:15px;background:var(--paper);min-height:250px;display:flex;flex-direction:column}
+      .fcs-q .fcs-ph{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+      .fcs-q .fcs-ph h3{font-size:.95rem;margin:0;font-weight:700}
+      .fcs-q .fcs-badge{font-size:.66rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}
+      .fcs-q .fcs-b1{background:#FBEDE9;color:var(--red)}
+      .fcs-q .fcs-b2{background:#E8F5EF;color:var(--teal)}
+      .fcs-q .fcs-pc{font-size:.76rem;color:var(--mut);margin:2px 0 12px}
+      .fcs-q .fcs-list{flex:1}
+      .fcs-q .fcs-msg{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--mut);border-radius:10px;
+       padding:7px 10px;margin-bottom:6px;font-size:.79rem;display:flex;justify-content:space-between;gap:8px;animation:fcsDrop .35s cubic-bezier(.2,1.4,.5,1)}
+      @keyframes fcsDrop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+      .fcs-q .fcs-msg .t{font-variant-numeric:tabular-nums;color:var(--mut);white-space:nowrap;font-weight:700}
+      .fcs-q .fcs-msg.warm{border-left-color:#D9A441}.fcs-q .fcs-msg.warm .t{color:#9A7418}
+      .fcs-q .fcs-msg.hot{border-left-color:var(--red)}.fcs-q .fcs-msg.hot .t{color:var(--red)}
+      .fcs-q .fcs-msg.done{border-left-color:var(--teal);opacity:.5}.fcs-q .fcs-msg.done .t{color:var(--teal)}
+      .fcs-q .fcs-tot{margin-top:9px;font-size:.79rem;font-weight:700}
+      .fcs-q .fcs-tot.bad{color:var(--red)}.fcs-q .fcs-tot.good{color:var(--teal)}
+      @media (prefers-reduced-motion:reduce){.fcs-q .fcs-msg{animation:none}}
+      /* the block shipped with a prefers-color-scheme:dark palette. The site has
+         no dark mode, so it is left out: it would turn this one figure dark on a
+         cream page. */
+      </style>
+
+      <div class="fcs-q" id="fcsQueue">
+        <div class="fcs-pair">
+          <div class="fcs-col">
+            <div class="fcs-ph"><h3>Now</h3><span class="fcs-badge fcs-b1">ageing</span></div>
+            <div class="fcs-pc">Nobody replying. Waits compound.</div>
+            <div class="fcs-list" data-q="bad"></div>
+            <div class="fcs-tot bad" data-q="tbad">0 waiting</div>
+          </div>
+          <div class="fcs-col">
+            <div class="fcs-ph"><h3>After</h3><span class="fcs-badge fcs-b2">within target</span></div>
+            <div class="fcs-pc">Same volume, same people.</div>
+            <div class="fcs-list" data-q="good"></div>
+            <div class="fcs-tot good" data-q="tgood">0 in progress</div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      (function(){
+      var root=document.getElementById('fcsQueue'); if(!root) return;
+      var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var TXT=["Where is my order?","Refund request","Invoice question","Do you deliver to Sharjah?",
+       "Callback about pricing","Card not working","Change delivery date","Cancel my order"];
+      var bad=root.querySelector('[data-q="bad"]'),good=root.querySelector('[data-q="good"]');
+      var tbad=root.querySelector('[data-q="tbad"]'),tgood=root.querySelector('[data-q="tgood"]');
+      var i=0,add=null,tick=null;
+      function mk(side){
+        var d=document.createElement('div');d.className='fcs-msg';
+        var a=document.createElement('span');a.textContent=TXT[i++%TXT.length];
+        var b=document.createElement('span');b.className='t';b.textContent='0m';
+        d.appendChild(a);d.appendChild(b);d.dataset.age='0';
+        side.insertBefore(d,side.firstChild);
+        while(side.children.length>5) side.removeChild(side.lastChild);
+        return d;}
+      function start(){
+        if(add) return;
+        add=setInterval(function(){
+          mk(bad); var g=mk(good);
+          setTimeout(function(){g.className='fcs-msg done';g.querySelector('.t').textContent='✓ 4m';},2600);
+        },1300);
+        tick=setInterval(function(){
+          var w=0;
+          Array.prototype.forEach.call(bad.children,function(el){
+            var a=+el.dataset.age+7;el.dataset.age=a;
+            el.querySelector('.t').textContent = a<60? a+'m' : Math.floor(a/60)+'h '+(a%60)+'m';
+            el.classList.toggle('warm',a>=30&&a<90);el.classList.toggle('hot',a>=90);w++;});
+          tbad.textContent=w+' waiting · oldest still unanswered';
+          var g=Array.prototype.filter.call(good.children,function(e){return !e.classList.contains('done')}).length;
+          tgood.textContent=g+' in progress · average first reply 4 min';
+        },700);}
+      function stop(){clearInterval(add);clearInterval(tick);add=null;}
+      if(reduce){mk(bad);mk(bad);mk(bad);var g=mk(good);g.className='fcs-msg done';g.querySelector('.t').textContent='✓ 4m';
+       tbad.textContent='3 waiting · oldest still unanswered';tgood.textContent='average first reply 4 min';}
+      else new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?start():stop();})},{threshold:.2}).observe(root);
+      })();
+      </script>
+    </div>
   </div>
 </div>
 
@@ -1085,6 +1178,151 @@
         <div class="leak-top"><span class="lchip" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span><h3>Growth feels risky instead of good</h3><span class="leak-minus" aria-hidden="true">&minus;</span></div>
         <p class="leak-body">Because more customers means more chaos, growth stops being something to chase.</p>
       </div>
+    </div>
+
+    <!-- ============================================================
+         ONE ISSUE, TWO THREADS
+         Self-contained: its own style and script live with it, on purpose.
+         Do not fold them into the page stylesheet or the main script.
+         ============================================================ -->
+    <div style="margin-top:44px">
+      <style>
+      .fcs-tw{--ink:#141310;--yel:#FBDD5C;--cream:#F5F2EB;--paper:#fff;--mut:#6E6B64;--line:#E2DED2;--red:#B0432C;--teal:#0E6B57;
+       color:var(--ink);box-sizing:border-box}
+      .fcs-tw *,.fcs-tw *::before,.fcs-tw *::after{box-sizing:inherit}
+      .fcs-tw .fcs-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+      @media(max-width:640px){.fcs-tw .fcs-pair{grid-template-columns:1fr}}
+      .fcs-tw .fcs-panel{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:18px;display:flex;flex-direction:column}
+      .fcs-tw .fcs-ph{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:2px}
+      .fcs-tw .fcs-ph h3{font-size:1rem;margin:0;font-weight:700}
+      .fcs-tw .fcs-badge{font-size:.66rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}
+      .fcs-tw .fcs-b1{background:#FBEDE9;color:var(--red)}
+      .fcs-tw .fcs-b2{background:#E8F5EF;color:var(--teal)}
+      .fcs-tw .fcs-pc{font-size:.78rem;color:var(--mut);margin-bottom:13px}
+      .fcs-tw .fcs-thread{flex:1;min-height:330px}
+      .fcs-tw .fcs-gap{text-align:center;font-size:.72rem;color:var(--red);font-weight:700;margin:9px 0}
+      .fcs-tw .fcs-gap.sm{color:var(--mut)}
+      .fcs-tw .fcs-b{max-width:88%;padding:8px 11px;border-radius:13px;font-size:.81rem;line-height:1.45;margin-bottom:7px;animation:fcsIn .3s ease}
+      @keyframes fcsIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+      .fcs-tw .fcs-b.cust{background:#EFEBE1;border-bottom-left-radius:4px}
+      .fcs-tw .fcs-b.biz{background:var(--ink);color:var(--cream);margin-left:auto;border-bottom-right-radius:4px}
+      .fcs-tw .fcs-b .fcs-meta{display:block;font-size:.67rem;opacity:.62;margin-top:3px}
+      .fcs-tw .fcs-who{font-size:.66rem;font-weight:700;color:var(--mut);margin:0 0 3px 2px;text-align:right}
+      .fcs-tw .fcs-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:15px;padding-top:13px;border-top:1px solid var(--line)}
+      .fcs-tw .fcs-m .k{font-size:.65rem;color:var(--mut);line-height:1.25}
+      .fcs-tw .fcs-m .v{font-size:1.15rem;font-weight:700;font-variant-numeric:tabular-nums;min-height:1.2em}
+      .fcs-tw .fcs-m .v.bad{color:var(--red)}.fcs-tw .fcs-m .v.good{color:var(--teal)}
+      .fcs-tw .fcs-verdict{margin-top:12px;font-size:.82rem;font-weight:700;min-height:1.2em}
+      .fcs-tw .fcs-verdict.bad{color:var(--red)}.fcs-tw .fcs-verdict.good{color:var(--teal)}
+      .fcs-tw .fcs-ctl{display:flex;gap:9px;margin-top:16px}
+      .fcs-tw .fcs-ctl button{font:inherit;font-weight:600;font-size:.83rem;padding:8px 16px;border-radius:999px;border:1px solid var(--ink);background:var(--ink);color:var(--cream);cursor:pointer}
+      .fcs-tw .fcs-ctl button.sec{background:transparent;color:var(--ink)}
+      @media (prefers-reduced-motion:reduce){.fcs-tw .fcs-b{animation:none}}
+      /* the block shipped with a prefers-color-scheme:dark palette. The site has
+         no dark mode, so it is left out: it would turn this one figure dark on a
+         cream page. */
+      </style>
+
+      <div class="fcs-tw" id="fcsThreads">
+        <div class="fcs-pair">
+          <div class="fcs-panel">
+            <div class="fcs-ph"><h3>Most businesses</h3><span class="fcs-badge fcs-b1">6 touches</span></div>
+            <div class="fcs-pc">Replies arrive. Nothing resolves.</div>
+            <div class="fcs-thread" data-thread="left"></div>
+            <div class="fcs-metrics">
+              <div class="fcs-m"><div class="k">First reply</div><div class="v" data-k="l-first"></div></div>
+              <div class="fcs-m"><div class="k">Resolved in</div><div class="v bad" data-k="l-res"></div></div>
+              <div class="fcs-m"><div class="k">Touches</div><div class="v bad" data-k="l-touch">0</div></div>
+              <div class="fcs-m"><div class="k">People</div><div class="v bad" data-k="l-ppl">0</div></div>
+            </div>
+            <div class="fcs-verdict bad" data-k="l-verdict"></div>
+          </div>
+          <div class="fcs-panel">
+            <div class="fcs-ph"><h3>After the rebuild</h3><span class="fcs-badge fcs-b2">3 touches</span></div>
+            <div class="fcs-pc">Same team. One conversation.</div>
+            <div class="fcs-thread" data-thread="right"></div>
+            <div class="fcs-metrics">
+              <div class="fcs-m"><div class="k">First reply</div><div class="v" data-k="r-first"></div></div>
+              <div class="fcs-m"><div class="k">Resolved in</div><div class="v good" data-k="r-res"></div></div>
+              <div class="fcs-m"><div class="k">Touches</div><div class="v good" data-k="r-touch">0</div></div>
+              <div class="fcs-m"><div class="k">People</div><div class="v good" data-k="r-ppl">1</div></div>
+            </div>
+            <div class="fcs-verdict good" data-k="r-verdict"></div>
+          </div>
+        </div>
+        <div class="fcs-ctl"><button type="button" data-a="replay">Replay</button><button type="button" class="sec" data-a="skip">Show the end</button></div>
+      </div>
+
+      <script>
+      (function(){
+      var root=document.getElementById('fcsThreads'); if(!root) return;
+      var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var L=[{s:'c',t:'My card was charged twice for the same order.',time:'Sat 09:14'},
+       {gap:'1 day, 4 hours with no reply'},
+       {s:'b',t:'Hi, could you send your order number?',time:'Sun 13:02',who:'Agent 1'},
+       {s:'c',t:'It was in my first message. #48812.',time:'Sun 13:06'},
+       {gap:'2 days, passed to another team'},
+       {s:'b',t:'Can you confirm the last 4 digits of the card?',time:'Tue 11:40',who:'Agent 2'},
+       {s:'c',t:'4417. This is the third time I have explained this.',time:'Tue 11:52'},
+       {gap:'2 days, 6 hours'},
+       {s:'b',t:'Refund raised. 5 to 7 working days.',time:'Thu 17:20',who:'Agent 3'}];
+      var R=[{s:'c',t:'My card was charged twice for the same order.',time:'Sat 09:14'},
+       {gap:'6 minutes',sm:1},
+       {s:'b',t:'I can see order #48812 charged twice on the card ending 4417. Refunding the duplicate now, you will see it in 3 working days. Nothing else needed from you.',time:'Sat 09:20',who:'Agent 1'},
+       {s:'c',t:'That was easy. Thank you.',time:'Sat 09:24'}];
+      var lt=root.querySelector('[data-thread="left"]'), rt=root.querySelector('[data-thread="right"]');
+      function q(k){return root.querySelector('[data-k="'+k+'"]');}
+      function set(k,v){var e=q(k); if(e) e.textContent=v;}
+      function row(m){
+        if(m.gap){var g=document.createElement('div');g.className='fcs-gap'+(m.sm?' sm':'');g.textContent=m.gap;return g;}
+        var w=document.createElement('div');
+        if(m.who){var h=document.createElement('div');h.className='fcs-who';h.textContent=m.who;w.appendChild(h);}
+        var b=document.createElement('div');b.className='fcs-b '+(m.s==='c'?'cust':'biz');
+        b.appendChild(document.createTextNode(m.t));
+        var sp=document.createElement('span');sp.className='fcs-meta';sp.textContent=m.time;b.appendChild(sp);
+        w.appendChild(b);return w;}
+      var tA,tB;
+      function finish(){
+        clearInterval(tA);clearInterval(tB);
+        lt.innerHTML='';rt.innerHTML='';
+        L.forEach(function(m){lt.appendChild(row(m))});R.forEach(function(m){rt.appendChild(row(m))});
+        set('l-first','1d 4h');set('l-res','6 days');set('l-touch','6');set('l-ppl','3');
+        set('r-first','6 min');set('r-res','10 min');set('r-touch','3');set('r-ppl','1');
+        set('l-verdict','Still not refunded. One issue became six conversations.');
+        set('r-verdict','Resolved first time. No follow-up, no repeat contact.');}
+      function play(){
+        clearInterval(tA);clearInterval(tB);
+        lt.innerHTML='';rt.innerHTML='';
+        ['l-first','l-res','r-first','r-res'].forEach(function(k){set(k,'')});
+        ['l-touch','l-ppl','r-touch'].forEach(function(k){set(k,'0')});
+        set('r-ppl','0');set('l-verdict','');set('r-verdict','');
+        if(reduce){finish();return;}
+        var i=0,j=0;
+        tA=setInterval(function(){
+          if(i>=L.length){clearInterval(tA);return;}
+          lt.appendChild(row(L[i]));
+          var msgs=L.slice(0,i+1).filter(function(m){return !m.gap});
+          set('l-touch',msgs.length);
+          var p={};msgs.forEach(function(m){if(m.who)p[m.who]=1});set('l-ppl',Object.keys(p).length);
+          if(i>=2)set('l-first','1d 4h');
+          if(i===L.length-1){set('l-res','6 days');set('l-verdict','Still not refunded. One issue became six conversations.');}
+          i++;},900);
+        tB=setInterval(function(){
+          if(j>=R.length){clearInterval(tB);return;}
+          rt.appendChild(row(R[j]));
+          var msgs=R.slice(0,j+1).filter(function(m){return !m.gap});
+          set('r-touch',msgs.length);
+          var p={};msgs.forEach(function(m){if(m.who)p[m.who]=1});set('r-ppl',Object.keys(p).length);
+          if(j>=2)set('r-first','6 min');
+          if(j===R.length-1){set('r-res','10 min');set('r-verdict','Resolved first time. No follow-up, no repeat contact.');}
+          j++;},900);}
+      root.querySelector('[data-a="replay"]').addEventListener('click',play);
+      root.querySelector('[data-a="skip"]').addEventListener('click',finish);
+      var started=false;
+      new IntersectionObserver(function(es){es.forEach(function(e){
+        if(e.isIntersecting&&!started){started=true;play();}})},{threshold:.2}).observe(root);
+      })();
+      </script>
     </div>
     <p class="bridge">And then there's what it does in public. <a href="#public">That's next &rarr;</a></p>
   </div>
