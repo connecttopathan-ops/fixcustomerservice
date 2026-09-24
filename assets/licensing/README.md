@@ -15,16 +15,3 @@ The eight line icons in the checklist cards (clock, repeat, trending-up,
 chart-column, star, log-out, briefcase, bot) are from Lucide
 (https://lucide.dev), embedded inline as SVG. Lucide is ISC-licensed:
 free for commercial use. Licence text: https://lucide.dev/license
-
-## Scenario photos (public/scenario-*.webp, section 06 "Where we usually start")
-
-Stock photos from Pexels, used as illustration beside clearly labelled
-scenarios. Nobody pictured is a client or is quoted. Pexels licence: free
-for commercial use, no attribution required. Each was cropped to 800x640 WebP.
-
-- scenario-retail.webp: pexels.com/photo/7289733
-- scenario-clinic.webp: pexels.com/photo/4269206
-- scenario-b2b.webp: pexels.com/photo/4487359
-
-Keep the "Scenario · stock photo" caption on every card. Never put a name,
-job title or first-person quote next to these photos.
