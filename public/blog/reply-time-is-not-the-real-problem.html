@@ -669,6 +669,31 @@
   .latest h3 a:hover{border-bottom-color:var(--mark)}
 
   /* proof */
+  /* headline figures, stat tiles. Every number here is repeated in the two
+     cases below with the work that produced it, so nothing stands on its own */
+  .pband{margin-top:46px}
+  .pbar{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    padding-bottom:14px;border-bottom:2px solid var(--ink)}
+  .pbar .plab{margin:0;font-size:.82rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .plink{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.92rem;
+    padding:10px 18px;border-radius:999px;white-space:nowrap;transition:background .18s ease,transform .14s ease}
+  .plink:hover{background:var(--black);transform:translateY(-1px)}
+  .plink .car{color:var(--marker);margin-left:6px}
+  .pcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:22px}
+  /* the corner glow is painted by the background rather than a pseudo-element:
+     a box bled off the corner, however it was offset, left the tile reporting a
+     scrollWidth wider than it is */
+  .ptile{color:#fff;border-radius:14px;padding:22px 24px 26px;min-height:268px;
+    display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;
+    background:radial-gradient(circle at calc(100% + 12px) -12px,rgba(251,221,92,.10),rgba(251,221,92,0) 132px),var(--ink)}
+  .ptile .ptag{margin:0;font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#9E988C}
+  .ptile .ptag.who{font-size:1.02rem;font-weight:800;letter-spacing:-.015em;text-transform:none;color:#fff}
+  .ptile .pfig{margin:0}
+  .ptile .pnum{display:block;font-weight:800;font-size:clamp(2.9rem,5.2vw,3.9rem);letter-spacing:-.04em;line-height:.95;
+    color:var(--marker);font-variant-numeric:tabular-nums}
+  .ptile .pcap{display:block;margin-top:12px;font-size:1.02rem;line-height:1.4;color:#EFEAE0;max-width:none}
+  .ptile .pcap b{color:#fff;font-weight:700}
+  .pnote{margin:18px 0 0;font-size:.93rem;color:var(--grey);max-width:52em}
   .cases{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:52px}
   .case{border-top:2px solid var(--black);padding-top:26px}
   .case .tag{display:block;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
@@ -797,6 +822,10 @@
     .top .brand img{height:26px}
     .revwhy{grid-template-columns:1fr;gap:28px;margin-top:36px}
     .three,.leaks,.work,.cases,.trust,.contact,.calcgrid{grid-template-columns:1fr}
+    .pcards{grid-template-columns:1fr;gap:14px}
+    .ptile{min-height:0;padding:20px 20px 22px}
+    .ptile .pcap{font-size:.99rem}
+    .pbar{gap:14px}
     .calcgrid{gap:44px}
     .bio{grid-template-columns:1fr}
     .leaks{gap:12px}

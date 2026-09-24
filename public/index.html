@@ -31,7 +31,7 @@
 <meta name="twitter:description" content="Thirteen years running support operations. Any business, any size.">
 <meta name="twitter:image" content="https://fixcustomerservice.com/og-image.jpg">
 <meta name="theme-color" content="#141310">
-<meta name="build" content="2026-09-24-v34">
+<meta name="build" content="2026-09-24-v35">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -634,6 +634,31 @@
   .latest h3 a:hover{border-bottom-color:var(--mark)}
 
   /* proof */
+  /* headline figures, stat tiles. Every number here is repeated in the two
+     cases below with the work that produced it, so nothing stands on its own */
+  .pband{margin-top:46px}
+  .pbar{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    padding-bottom:14px;border-bottom:2px solid var(--ink)}
+  .pbar .plab{margin:0;font-size:.82rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .plink{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.92rem;
+    padding:10px 18px;border-radius:999px;white-space:nowrap;transition:background .18s ease,transform .14s ease}
+  .plink:hover{background:var(--black);transform:translateY(-1px)}
+  .plink .car{color:var(--marker);margin-left:6px}
+  .pcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:22px}
+  /* the corner glow is painted by the background rather than a pseudo-element:
+     a box bled off the corner, however it was offset, left the tile reporting a
+     scrollWidth wider than it is */
+  .ptile{color:#fff;border-radius:14px;padding:22px 24px 26px;min-height:268px;
+    display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;
+    background:radial-gradient(circle at calc(100% + 12px) -12px,rgba(251,221,92,.10),rgba(251,221,92,0) 132px),var(--ink)}
+  .ptile .ptag{margin:0;font-size:.74rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#9E988C}
+  .ptile .ptag.who{font-size:1.02rem;font-weight:800;letter-spacing:-.015em;text-transform:none;color:#fff}
+  .ptile .pfig{margin:0}
+  .ptile .pnum{display:block;font-weight:800;font-size:clamp(2.9rem,5.2vw,3.9rem);letter-spacing:-.04em;line-height:.95;
+    color:var(--marker);font-variant-numeric:tabular-nums}
+  .ptile .pcap{display:block;margin-top:12px;font-size:1.02rem;line-height:1.4;color:#EFEAE0;max-width:none}
+  .ptile .pcap b{color:#fff;font-weight:700}
+  .pnote{margin:18px 0 0;font-size:.93rem;color:var(--grey);max-width:52em}
   .cases{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:52px}
   .case{border-top:2px solid var(--black);padding-top:26px}
   .case .tag{display:block;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
@@ -762,6 +787,10 @@
     .top .brand img{height:26px}
     .revwhy{grid-template-columns:1fr;gap:28px;margin-top:36px}
     .three,.leaks,.work,.cases,.trust,.contact,.calcgrid{grid-template-columns:1fr}
+    .pcards{grid-template-columns:1fr;gap:14px}
+    .ptile{min-height:0;padding:20px 20px 22px}
+    .ptile .pcap{font-size:.99rem}
+    .pbar{gap:14px}
     .calcgrid{gap:44px}
     .bio{grid-template-columns:1fr}
     .leaks{gap:12px}
@@ -1495,6 +1524,28 @@
     <p class="eyebrow"><span class="sno">06</span> &middot; Case studies</p>
     <h2>Two rebuilds, and what changed.</h2>
     <p class="lead">Both from the same Dubai fintech. The work behind these cases was led by our founder while heading the support function, and the numbers come from tracked KPIs, not estimates.</p>
+    <div class="pband">
+      <div class="pbar">
+        <p class="plab">From client work</p>
+        <a class="plink" href="https://www.infobip.com/customer/edenred" target="_blank" rel="noopener">Read the public case study<span class="car" aria-hidden="true">&rsaquo;</span></a>
+      </div>
+      <div class="pcards">
+        <article class="ptile">
+          <p class="ptag who">Foodwork</p>
+          <p class="pfig"><span class="pnum">80%</span><span class="pcap"><b>faster response times</b> to the customers who get in touch</span></p>
+        </article>
+        <article class="ptile">
+          <p class="ptag who">Clickster</p>
+          <p class="pfig"><span class="pnum">30%</span><span class="pcap"><b>more new enquiries converted</b>, from the same enquiries they were already getting</span></p>
+        </article>
+        <article class="ptile">
+          <p class="ptag">Fintech &middot; Payroll &middot; UAE</p>
+          <p class="pfig"><span class="pnum">96%</span><span class="pcap"><b>less waiting for a reply</b>, across a cardholder base that grew to 1.5 million</span></p>
+        </article>
+      </div>
+      <p class="pnote">The fintech figure comes from twelve months of tracked KPIs rather than an estimate, and the work behind it is written out in full below.</p>
+    </div>
+
     <div class="cases">
       <div class="case">
         <span class="tag">Fintech · Payroll · UAE</span>
