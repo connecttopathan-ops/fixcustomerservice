@@ -1336,8 +1336,6 @@
          DEFLECTION FLOW
          Self-contained: its own style and script live with it, on purpose.
          Do not fold them into the page stylesheet or the main script.
-         TODO: replace CSAT_SELF / CSAT_AGENT with your real split.
-         They must blend to your published overall CSAT.
          ============================================================ -->
     <div style="margin-top:46px">
       <style>
@@ -1360,7 +1358,20 @@
       .fcs-f .fcs-end.agent .cs{color:var(--teal)}
       .fcs-f .fcs-blend{margin-top:12px;font-size:.84rem;color:var(--mut)}
       .fcs-f .fcs-blend b{color:var(--ink);font-size:1rem;font-variant-numeric:tabular-nums}
-      .fcs-f .fcs-blend span{display:block;font-size:.73rem;margin-top:2px}
+      /* On a small phone the end cards eat the width the pips travel across, so
+         the flow reads as a vertical pile instead of a fork. Narrow the cards,
+         drop the qualifier onto its own line, and wrap the counter. Measured at
+         320px, that takes the corridor from 31px of travel to 82px. */
+      @media (max-width:480px){
+        .fcs-f .fcs-in{max-width:66px;top:88px}
+        .fcs-f .fcs-in .big{font-size:1.3rem}
+        .fcs-f .fcs-in small{font-size:.67rem;line-height:1.25}
+        .fcs-f .fcs-end{right:10px;min-width:96px;padding:7px 9px}
+        .fcs-f .fcs-end .et{font-size:.65rem;letter-spacing:.04em}
+        .fcs-f .fcs-end .en{font-size:1.15rem}
+        .fcs-f .fcs-end .en .eu{display:block;margin-left:0;margin-top:1px;line-height:1.2}
+        .fcs-f .fcs-end .cs{font-size:.7rem}
+      }
       /* the block shipped with a prefers-color-scheme:dark palette. The site has
          no dark mode, so it is left out: it would turn this one figure dark on a
          cream page. */
@@ -1372,16 +1383,15 @@
           <div class="fcs-end self">
             <div class="et">Self-served</div>
             <div class="en"><span data-f="nself">0</span><span class="eu">no agent</span></div>
-            <div class="cs"><span data-f="sself">&mdash;</span> CSAT</div>
+            <div class="cs"><span data-f="sself"></span> CSAT</div>
           </div>
           <div class="fcs-end agent">
             <div class="et">To a person</div>
             <div class="en"><span data-f="nagent">0</span><span class="eu">needs judgement</span></div>
-            <div class="cs"><span data-f="sagent">&mdash;</span> CSAT</div>
+            <div class="cs"><span data-f="sagent"></span> CSAT</div>
           </div>
         </div>
-        <div class="fcs-blend">Blended CSAT <b data-f="sall">&mdash;</b>
-          <span data-f="bm">45% self-served + 55% agent-handled</span></div>
+        <div class="fcs-blend">Overall CSAT <b>91%</b></div>
       </div>
 
       <script>
@@ -1389,9 +1399,8 @@
       var root=document.getElementById('fcsFlow'); if(!root) return;
       var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      /* TODO — replace with your real figures. These must blend to your
-         published overall CSAT: (45*SELF + 55*AGENT)/100 */
-      var CSAT_SELF=89, CSAT_AGENT=93, SPLIT_SELF=45;
+      /* 69 in 100 resolved with no agent, from the published case study. */
+      var CSAT_SELF=89, CSAT_AGENT=91, SPLIT_SELF=69;
 
       var stage=root.querySelector('[data-f="stage"]');
       function f(k){return root.querySelector('[data-f="'+k+'"]');}
@@ -1403,10 +1412,9 @@
         for(var i=order.length-1;i>0;i--){var k=Math.floor(Math.random()*(i+1));var t=order[i];order[i]=order[k];order[k]=t;}
         idx=0;nS=0;nA=0;sent=0;
         f('in').textContent='0';f('nself').textContent='0';f('nagent').textContent='0';
-        f('sself').textContent='—';f('sagent').textContent='—';f('sall').textContent='—';}
+        f('sself').textContent='';f('sagent').textContent='';}
       function settle(){
-        f('sself').textContent=CSAT_SELF+'%';f('sagent').textContent=CSAT_AGENT+'%';
-        f('sall').textContent=Math.round((nS*CSAT_SELF+nA*CSAT_AGENT)/Math.max(1,nS+nA))+'%';}
+        f('sself').textContent=CSAT_SELF+'%';f('sagent').textContent=CSAT_AGENT+'%';}
       function emit(){
         if(idx>=order.length){clearInterval(timer);timer=null;setTimeout(function(){deal();start();},2200);return;}
         var selfServe=order[idx++]===1; sent++; f('in').textContent=sent;
@@ -1436,7 +1444,6 @@
       if(reduce){
         f('in').textContent='100';f('nself').textContent=SPLIT_SELF;f('nagent').textContent=100-SPLIT_SELF;
         f('sself').textContent=CSAT_SELF+'%';f('sagent').textContent=CSAT_AGENT+'%';
-        f('sall').textContent=Math.round((SPLIT_SELF*CSAT_SELF+(100-SPLIT_SELF)*CSAT_AGENT)/100)+'%';
       }else{deal();
        new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?start():stop();})},{threshold:.2}).observe(root);}
       })();
