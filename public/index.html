@@ -31,7 +31,7 @@
 <meta name="twitter:description" content="Thirteen years running support operations. Any business, any size.">
 <meta name="twitter:image" content="https://fixcustomerservice.com/og-image.jpg">
 <meta name="theme-color" content="#141310">
-<meta name="build" content="2026-09-24-v34">
+<meta name="build" content="2026-09-24-v35">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -515,6 +515,8 @@
   /* section 05 - illustrative profile cards */
   /* a real profile has a category line under the name; the disclosure takes
      that slot, so it reads as card chrome rather than a sticker */
+  .illus-note{margin:22px 0 0;max-width:46em;font-size:.95rem;color:var(--grey);padding:12px 16px;border:1px dashed #CFC6B5;border-radius:6px;background:#fff}
+  .illus-note b{color:var(--ink)}
   .gsub{margin:3px 0 0;font-size:12.5px;font-weight:400;color:var(--grey);max-width:none}
   .gtoggle{display:none}
   .gstage{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px;align-items:start}
@@ -634,6 +636,49 @@
   .latest h3 a:hover{border-bottom-color:var(--mark)}
 
   /* proof */
+  /* testimonials (hidden until filled) */
+  .subhead{font-size:clamp(1.4rem,2.4vw,1.8rem);font-weight:800;letter-spacing:-.025em;line-height:1.1;margin:0}
+  .tmls{margin-top:88px}
+  .tmls[hidden]{display:none}
+  .tml-list{display:grid;gap:28px;margin-top:28px}
+  .tml{display:grid;grid-template-columns:220px minmax(0,1fr);background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+  .tml-ph{margin:0;background:var(--paper);aspect-ratio:4/5;position:relative}
+  .tml-ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .tml-ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.2rem;font-weight:800;color:var(--teal);letter-spacing:-.04em;background:#E9F1EE}
+  .tml-body{padding:34px 38px;display:flex;flex-direction:column;justify-content:center}
+  .tml-q{margin:0;font-size:1.18rem;line-height:1.5;color:var(--ink);position:relative;padding-top:34px}
+  .tml-q::before{content:"\201C";position:absolute;top:-14px;left:-4px;font-size:4.2rem;line-height:1;color:var(--gold);font-weight:800}
+  .tml-who{margin:22px 0 0;font-size:.98rem;color:var(--grey)}
+  .tml-who b{display:block;color:var(--ink);font-size:1.04rem}
+  .tml-who a{color:var(--grey);text-decoration:none;border-bottom:2px solid var(--mark);font-size:.9rem;display:inline-block;margin-top:8px}
+  .tml-who a:hover{background:var(--mark);color:var(--ink)}
+  .tml-src{margin:14px 0 0;font-size:.88rem;color:var(--faint)}
+  .tml.preview{outline:2px dashed var(--rust);outline-offset:4px}
+  /* scenarios with stock faces, labelled */
+  .scen{margin-top:88px}
+  .scen-lead{margin:14px 0 0;max-width:46em;color:var(--grey);font-size:1.02rem}
+  .scen-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:30px}
+  .scard{background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+  .sph{margin:0;position:relative;aspect-ratio:4/3;background:var(--paper)}
+  .sph img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
+  .sph figcaption{position:absolute;left:12px;bottom:12px;background:rgba(20,19,16,.78);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:4px}
+  .sbody{padding:22px 24px 26px}
+  .stag{margin:0 0 8px;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  .sbody h4{margin:0 0 16px;font-size:1.12rem;font-weight:800;letter-spacing:-.015em;line-height:1.25}
+  .slbl{margin:0 0 6px;font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--rust)}
+  .slbl.good{color:var(--teal);margin-top:16px}
+  .sbody ul{margin:0;padding-left:1.1em;color:var(--grey);font-size:.96rem}
+  .sbody li{margin:0 0 4px}
+  .sout{margin:0;color:var(--grey);font-size:.96rem}
+  @media (max-width:900px){
+    .scen-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+    .sph{aspect-ratio:16/10}
+    .tml{grid-template-columns:minmax(0,1fr)}
+    .tml-ph{aspect-ratio:auto;height:260px}
+    .tml-ph img{object-position:50% 25%}
+    .tml-body{padding:26px 22px 28px}
+    .tmls,.scen{margin-top:64px}
+  }
   .cases{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:52px}
   .case{border-top:2px solid var(--black);padding-top:26px}
   .case .tag{display:block;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
@@ -1387,7 +1432,8 @@
   <div class="wrap">
     <p class="eyebrow"><span class="sno">05</span> &middot; Where it shows up in public</p>
     <h2>Your next customer reads your last customer's bad day.</h2>
-    <p class="lead">Almost every one-star review is about service rather than the product. Here is the same business, six months apart.</p>
+    <p class="lead">Almost every one-star review is about service rather than the product. Here is the pattern, shown on a made-up business before and after its replies get fast.</p>
+    <p class="illus-note"><b>Illustration, not a client.</b> Northwind Traders is fictional. We wrote these reviews to show a pattern we see often; they are not from real customers.</p>
 
 
     <div class="gtoggle" role="tablist" aria-label="Before and after the fix">
@@ -1401,7 +1447,7 @@
         <div class="gcard">
             <div class="ghead">
               <p class="gbiz">Northwind Traders</p>
-              <p class="gsub">Illustrative &middot; slow response times</p>
+              <p class="gsub">Fictional business &middot; slow replies</p>
               <div class="gtabs" role="presentation"><span>Overview</span><span class="on">Reviews</span><span>Photos</span></div>
             </div>
             <div class="grate">
@@ -1417,10 +1463,10 @@
             <div class="gchips"><span class="gchip">no reply <b>41</b></span><span class="gchip">waiting <b>28</b></span><span class="gchip">phone <b>19</b></span></div>
             <div class="grev">
               <div class="grtop">
-                <span class="gav av-r" aria-hidden="true">R</span>
-                <span class="grwho"><b>R. M.</b><span>Local Guide &middot; 14 reviews</span></span>
+                <span class="gav av-r" aria-hidden="true">1</span>
+                <span class="grwho"><b>Example one-star review</b><span>Written by us to illustrate</span></span>
               </div>
-              <div class="grmeta"><span class="gstars" role="img" aria-label="Rated 1 out of 5"><span class="on">&#9733;</span><span class="off">&#9733;</span><span class="off">&#9733;</span><span class="off">&#9733;</span><span class="off">&#9733;</span></span><span class="gwhen">3 months ago</span></div>
+              <div class="grmeta"><span class="gstars" role="img" aria-label="Rated 1 out of 5"><span class="on">&#9733;</span><span class="off">&#9733;</span><span class="off">&#9733;</span><span class="off">&#9733;</span><span class="off">&#9733;</span></span><span class="gwhen">before the fix</span></div>
               <p class="grtext">Product is fine but good luck getting hold of anyone. Called four times over two days, no answer. Sent a WhatsApp on Friday and got a reply Monday afternoon asking me to call. Nobody seems to know what anyone else has said. If you need help after you have paid, look elsewhere.</p>
               <div class="grfoot"><span class="glike">&#9825; 12</span><span class="greply">Reply</span></div>
             </div>
@@ -1434,7 +1480,7 @@
         <div class="gcard">
             <div class="ghead">
               <p class="gbiz">Northwind Traders</p>
-              <p class="gsub">Illustrative &middot; expected change once replies are fast</p>
+              <p class="gsub">Fictional business &middot; the change we expect once replies are fast</p>
               <div class="gtabs" role="presentation"><span>Overview</span><span class="on">Reviews</span><span>Photos</span></div>
             </div>
             <div class="grate">
@@ -1450,14 +1496,14 @@
             <div class="gchips"><span class="gchip">quick response <b>57</b></span><span class="gchip">helpful <b>34</b></span><span class="gchip">whatsapp <b>22</b></span></div>
             <div class="grev">
               <div class="grtop">
-                <span class="gav av-s" aria-hidden="true">S</span>
-                <span class="grwho"><b>S. B.</b><span>Local Guide &middot; 31 reviews</span></span>
+                <span class="gav av-s" aria-hidden="true">5</span>
+                <span class="grwho"><b>Example five-star review</b><span>Written by us to illustrate</span></span>
               </div>
-              <div class="grmeta"><span class="gstars" role="img" aria-label="Rated 5 out of 5"><span class="on">&#9733;</span><span class="on">&#9733;</span><span class="on">&#9733;</span><span class="on">&#9733;</span><span class="on">&#9733;</span></span><span class="gwhen">2 weeks ago</span></div>
+              <div class="grmeta"><span class="gstars" role="img" aria-label="Rated 5 out of 5"><span class="on">&#9733;</span><span class="on">&#9733;</span><span class="on">&#9733;</span><span class="on">&#9733;</span><span class="on">&#9733;</span></span><span class="gwhen">six months after</span></div>
               <p class="grtext">Messaged on a Saturday evening expecting nothing until Monday. Had an answer in under ten minutes, and the person already had my order number without me repeating it. Sorted the whole thing in one conversation. Easiest company I have dealt with this year.</p>
               <div class="grfoot"><span class="glike">&#9825; 31</span><span class="greply">Reply</span></div>
             <div class="gowner">
-              <p class="gob">Response from the owner</p>
+              <p class="gob">Example owner response</p>
               <p>Thank you for taking the time to write this. Replying quickly, on whichever channel you used, is the thing we set out to fix this year. We are glad it showed.</p>
             </div>
             </div>
@@ -1525,6 +1571,70 @@
           <p>Turnaround dropped from days to under three hours, and response time for priority clients went from nearly three hours to under thirty minutes.</p>
           <span>Twelve months of tracked KPIs, available on request</span>
         </div>
+      </div>
+    </div>
+
+    <!-- Testimonials. Stays hidden until the JSON list below has at least one entry.
+         Only quote people who have agreed, in the words they published (e.g. a LinkedIn
+         recommendation). Photo: their LinkedIn photo with permission, saved to
+         public/testimonials/, portrait crop about 4:5. Leave "photo" empty to show initials.
+         Preview the layout with placeholder content: /?preview=testimonials#proof -->
+    <script type="application/json" id="tml-data">[]</script>
+    <div class="tmls" id="tmls" hidden>
+      <h3 class="subhead">What people who have worked with us say</h3>
+      <div class="tml-list"></div>
+      <p class="tml-src">From LinkedIn recommendations, quoted with permission.</p>
+    </div>
+
+    <div class="scen">
+      <h3 class="subhead">Where we usually start</h3>
+      <p class="scen-lead">Three kinds of business we see often, and the pattern we expect to find inside each. These are scenarios, not clients: the photos are stock images and nobody pictured is quoted.</p>
+      <div class="scen-grid">
+        <article class="scard">
+          <figure class="sph"><img src="/scenario-retail.webp" alt="Stock photo used to illustrate an online retailer" width="800" height="640" loading="lazy" decoding="async"><figcaption>Scenario &middot; stock photo</figcaption></figure>
+          <div class="sbody">
+            <p class="stag">Online retail &middot; ~3,000 messages a month</p>
+            <h4>A growing shop answering WhatsApp, Instagram and email from one phone</h4>
+            <p class="slbl">What we usually find</p>
+            <ul>
+              <li>Close to half of all messages ask where an order is</li>
+              <li>Weekend messages wait until Monday</li>
+              <li>Refunds stall on an email to finance</li>
+            </ul>
+            <p class="slbl good">Where it usually goes</p>
+            <p class="sout">Order status answered without a person, weekend cover for what is left, and a refund rule the team can apply on the spot.</p>
+          </div>
+        </article>
+        <article class="scard">
+          <figure class="sph"><img src="/scenario-clinic.webp" alt="Stock photo used to illustrate a clinic group" width="800" height="640" loading="lazy" decoding="async"><figcaption>Scenario &middot; stock photo</figcaption></figure>
+          <div class="sbody">
+            <p class="stag">Healthcare &middot; multi-site clinic group</p>
+            <h4>Front desks handling bookings, phones and walk-ins at once</h4>
+            <p class="slbl">What we usually find</p>
+            <ul>
+              <li>Phones ring out in the morning peak</li>
+              <li>Rescheduling takes a call that could have been a tap</li>
+              <li>Each site answers the same questions its own way</li>
+            </ul>
+            <p class="slbl good">Where it usually goes</p>
+            <p class="sout">Booking changes moved to messaging, one set of answers across sites, and staffing matched to when calls actually arrive.</p>
+          </div>
+        </article>
+        <article class="scard">
+          <figure class="sph"><img src="/scenario-b2b.webp" alt="Stock photo used to illustrate a B2B distributor" width="800" height="640" loading="lazy" decoding="async"><figcaption>Scenario &middot; stock photo</figcaption></figure>
+          <div class="sbody">
+            <p class="stag">B2B &middot; a few hundred trade accounts</p>
+            <h4>Account managers doing support from their own inboxes</h4>
+            <p class="slbl">What we usually find</p>
+            <ul>
+              <li>No shared view of what a client has already asked</li>
+              <li>No response-time target, so the loudest client wins</li>
+              <li>Accounts leave without anyone seeing it coming</li>
+            </ul>
+            <p class="slbl good">Where it usually goes</p>
+            <p class="sout">One queue with an owner, response targets by account tier, and a monthly look at which clients are going quiet.</p>
+          </div>
+        </article>
       </div>
     </div>
   </div>
@@ -2334,6 +2444,32 @@
   function hideError() {
     errorBox.hidden = true;
   }
+})();
+</script>
+<script>
+/* Testimonials: render from #tml-data. Hidden while the list is empty. */
+(function(){
+  var box=document.getElementById('tmls'),src=document.getElementById('tml-data');
+  if(!box||!src)return;
+  var items=[];try{items=JSON.parse(src.textContent)||[]}catch(e){items=[]}
+  var preview=/[?&]preview=testimonials\b/.test(location.search);
+  if(!items.length&&preview){items=[{quote:'[Placeholder. The recommendation text goes here, in the words the person published on LinkedIn. Two to four sentences reads best.]',name:'[Full name]',title:'[Job title]',company:'[Company]',photo:'',url:'#',_preview:1}]}
+  if(!items.length)return;
+  var list=box.querySelector('.tml-list');
+  function el(t,c,txt){var n=document.createElement(t);if(c)n.className=c;if(txt!=null)n.textContent=txt;return n}
+  items.forEach(function(t){
+    var card=el('article','tml'+(t._preview?' preview':''));
+    var ph=el('figure','tml-ph');
+    if(t.photo){var im=el('img');im.src=t.photo;im.alt=t.name||'';im.loading='lazy';im.decoding='async';ph.appendChild(im)}
+    else{var ini=(t.name||'').replace(/\[|\]/g,'').split(/\s+/).filter(Boolean).map(function(w){return w[0]}).slice(0,2).join('').toUpperCase();ph.appendChild(el('span','tml-ini',ini||'\u201C'));ph.setAttribute('aria-hidden','true')}
+    var body=el('div','tml-body');
+    body.appendChild(el('blockquote','tml-q',t.quote||''));
+    var who=el('p','tml-who');who.appendChild(el('b',null,t.name||''));
+    who.appendChild(document.createTextNode([t.title,t.company].filter(Boolean).join(', ')));
+    if(t.url&&/^(https:\/\/|#)/.test(t.url)){who.appendChild(document.createElement('br'));var a=el('a',null,'Read it on LinkedIn \u2192');a.href=t.url;a.rel='noopener';a.target='_blank';who.appendChild(a)}
+    body.appendChild(who);card.appendChild(ph);card.appendChild(body);list.appendChild(card);
+  });
+  box.hidden=false;
 })();
 </script>
 </body>
