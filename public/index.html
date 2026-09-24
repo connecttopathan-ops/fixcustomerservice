@@ -31,7 +31,7 @@
 <meta name="twitter:description" content="Thirteen years running support operations. Any business, any size.">
 <meta name="twitter:image" content="https://fixcustomerservice.com/og-image.jpg">
 <meta name="theme-color" content="#141310">
-<meta name="build" content="2026-09-24-v36">
+<meta name="build" content="2026-09-24-v37">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -938,6 +938,110 @@
     </div>
   </div>
 </div>
+
+<!-- ============================================================
+     HERO BADGES
+     Self-contained: its own style and script live with it, on purpose.
+     Do not fold them into the page stylesheet or the main script.
+     Every element it touches is absolutely positioned, so none of this
+     can shift the page. The .kchips row, which is in flow on mobile and
+     sits above the fold, is deliberately left alone for that reason.
+     ============================================================ -->
+<style>
+/* the resting state only exists once the script has decided to run, so a
+   page with no JavaScript keeps the badges exactly as the markup has them */
+.stage.hero-anim .fbadge,.stage.hero-anim .mbadge,.stage.hero-anim .tickfly{
+  opacity:0;transform:translateY(16px) scale(.97);
+  transition:opacity .62s cubic-bezier(.22,.7,.2,1),transform .62s cubic-bezier(.22,.7,.2,1)}
+.stage.hero-anim .fbadge.hin,.stage.hero-anim .mbadge.hin,.stage.hero-anim .tickfly.hin{
+  opacity:1;transform:none}
+/* once a badge has landed, the transition hands over to a slow drift. Five
+   pixels over eight seconds: enough that the hero is not a screenshot, not
+   enough to pull the eye off the headline */
+@keyframes heroDrift{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.stage.hero-anim .fbadge.hfloat,.stage.hero-anim .mbadge.hfloat{
+  transition:none;animation:heroDrift 8s ease-in-out infinite}
+/* not scoped to .hero-anim: the class is only ever added by the script, and
+   the counting figures need steady digit widths whether or not they drift */
+.hnum{font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){
+  .stage.hero-anim .fbadge,.stage.hero-anim .mbadge,.stage.hero-anim .tickfly{
+    opacity:1;transform:none;transition:none;animation:none}
+}
+</style>
+<script>
+(function(){
+var stage=document.querySelector('.hero-visual .stage');
+var chips=document.querySelector('.hero-copy .kchips');
+if(!stage&&!chips) return;
+if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+/* Count a figure up from zero. Widths are pinned first, because the floating
+   badges are anchored to their right edge and the chips sit in the page flow:
+   either way a number gaining a digit mid-count would shift something. The
+   pinning has to wait for the webfont, or it measures the fallback face and
+   the real one overflows it. Anything that is not a single figure, like the
+   SLA badge's 75% to 98%, is left alone. */
+function collect(root){
+  var out=[];
+  [].slice.call(root.querySelectorAll('b')).forEach(function(el){
+    var m=el.textContent.match(/^(\D*?)(\d+)(\D*)$/);
+    if(!m) return;
+    out.push({el:el,pre:m[1],to:+m[2],post:m[3]});
+  });
+  return out;
+}
+function pin(cs){cs.forEach(function(c){c.el.classList.add('hnum');c.el.style.minWidth=c.el.offsetWidth+'px';});}
+function count(c,dur){
+  var t0=performance.now();
+  (function step(now){
+    var k=Math.min(1,(now-t0)/dur);
+    c.el.textContent=c.pre+Math.round(c.to*(1-Math.pow(1-k,3)))+c.post;
+    if(k<1)requestAnimationFrame(step);
+  })(t0);
+}
+var fonts=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();
+
+function watch(root,go){
+  if(!root) return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){io.disconnect();fonts.then(go);}});},{threshold:.25});
+  io.observe(root);
+}
+
+/* the floating badges: land, count, then drift */
+watch(stage,function(){
+  var badges=[].slice.call(stage.querySelectorAll('.fbadge,.mbadge'));
+  var tick=stage.querySelector('.tickfly');
+  var cs=[];
+  badges.forEach(function(b){cs=cs.concat(collect(b));});
+  pin(cs);
+  stage.classList.add('hero-anim');
+  cs.forEach(function(c){c.el.textContent=c.pre+'0'+c.post;});
+  /* the resting state has to be painted before the landed state, or there is
+     nothing for the browser to transition from */
+  requestAnimationFrame(function(){requestAnimationFrame(function(){
+    if(tick) setTimeout(function(){tick.classList.add('hin');},60);
+    badges.forEach(function(b,i){
+      setTimeout(function(){
+        b.classList.add('hin');
+        setTimeout(function(){b.style.animationDelay=(i*1.4)+'s';b.classList.add('hfloat');},760);
+      },140+i*130);
+    });
+    cs.forEach(function(c,i){setTimeout(function(){count(c,900);},200+i*130);});
+  });});
+});
+
+/* the chips in the copy column, which is what a phone sees. They are in the
+   page flow, so they only count: no entrance, nothing that could move text */
+watch(chips,function(){
+  var cs=collect(chips);
+  pin(cs);
+  cs.forEach(function(c){c.el.textContent=c.pre+'0'+c.post;});
+  cs.forEach(function(c,i){setTimeout(function(){count(c,900);},120+i*110);});
+});
+})();
+</script>
 
 <div class="credstrip">
   <div class="wrap strip-in">
