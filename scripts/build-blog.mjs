@@ -288,7 +288,7 @@ async function writeHomepageBlock(posts) {
     ? `
 <section>
   <div class="wrap">
-    <p class="eyebrow"><span class="sno">16</span> &middot; Latest writing</p>
+    <p class="eyebrow"><span class="sno">15</span> &middot; Latest writing</p>
     <h2>Notes on running customer service.</h2>
     <div class="three latest">
       ${posts

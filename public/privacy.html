@@ -7,8 +7,17 @@
 <meta name="description" content="How Fix Customer Service handles the information you send through this website.">
 <link rel="canonical" href="https://fixcustomerservice.com/privacy">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18431660031"></script>
+<!-- Google tag (gtag.js). Consent mode defaults only: gtag.js itself is not
+     loaded until someone agrees to it, in /consent.js. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', functionality_storage: 'granted',
+    security_storage: 'granted', wait_for_update: 500
+  });
+</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -38,6 +47,12 @@
   li{margin-bottom:7px}
   a{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:2px solid var(--marker)}
   footer{border-top:1px solid var(--rule);padding:26px 0 60px;color:var(--grey);font-size:.9rem}
+  .fbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .fbar p{margin:0}
+  .flinks{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+  .flinks a,.flink{color:var(--grey);text-decoration:none;border-bottom:0;font-weight:400}
+  .flinks a:hover,.flink:hover{color:var(--ink)}
+  .flink{font:inherit;background:none;border:0;padding:0;cursor:pointer}
 </style>
 </head>
 <body>
@@ -89,7 +104,10 @@
 </main>
 
 <footer>
-  <div class="wrap">fixcustomerservice.com · Abdullah Khan · Dubai, UAE</div>
+  <div class="wrap fbar">
+    <p>&copy; 2026 Fix Customer Service. All rights reserved.</p>
+    <p class="flinks"><a href="/">Home</a><a href="/privacy">Privacy policy</a><button type="button" class="flink" data-cookie-open>Cookie settings</button><a href="/llms.txt">llms.txt</a><a href="/sitemap.xml">Sitemap</a></p>
+  </div>
 </footer>
 <style>
   /* floating WhatsApp widget, every page: circle + one-time proactive bubble */
@@ -166,5 +184,6 @@
 })();
 </script>
 <!-- WA:END -->
+<script defer src="/consent.js"></script>
 </body>
 </html>

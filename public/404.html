@@ -7,8 +7,17 @@
 <meta name="robots" content="noindex">
 <meta name="description" content="That page does not exist. Head back to the homepage or get in touch about your customer service.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18431660031"></script>
+<!-- Google tag (gtag.js). Consent mode defaults only: gtag.js itself is not
+     loaded until someone agrees to it, in /consent.js. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', functionality_storage: 'granted',
+    security_storage: 'granted', wait_for_update: 500
+  });
+</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -118,5 +127,6 @@
 })();
 </script>
 <!-- WA:END -->
+<script defer src="/consent.js"></script>
 </body>
 </html>

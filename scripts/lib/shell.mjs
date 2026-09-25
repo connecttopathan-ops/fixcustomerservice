@@ -13,14 +13,16 @@ import path from 'node:path';
 export const SITE = 'https://fixcustomerservice.com';
 
 /** Google Ads tag. Kept here so every generated page carries the same one. */
-const GTAG = `<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18431660031"></script>
+const GTAG = `<!-- Google tag (gtag.js). Consent mode defaults only: gtag.js itself is not
+     loaded until someone agrees to it, in the consent gate at the end of the body. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18431660031');
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', functionality_storage: 'granted',
+    security_storage: 'granted', wait_for_update: 500
+  });
 </script>`;
 
 const FONTS = [
@@ -125,6 +127,7 @@ ${shell.waFloat}
 })();
 </script>
 ${bodyEnd}
+<script defer src="/consent.js"></script>
 </body>
 </html>
 `;

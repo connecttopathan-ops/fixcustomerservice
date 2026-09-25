@@ -8,14 +8,16 @@
 <link rel="canonical" href="https://fixcustomerservice.com/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="image" href="/hero-agent-cutout.webp" fetchpriority="high">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18431660031"></script>
+<!-- Google tag (gtag.js). Consent mode defaults only: gtag.js itself is not
+     loaded until someone agrees to it, in the consent gate at the end of the body. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18431660031');
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', functionality_storage: 'granted',
+    security_storage: 'granted', wait_for_update: 500
+  });
 </script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Fix Customer Service">
@@ -31,7 +33,7 @@
 <meta name="twitter:description" content="Thirteen years running support operations. Any business, any size.">
 <meta name="twitter:image" content="https://fixcustomerservice.com/og-image.jpg">
 <meta name="theme-color" content="#141310">
-<meta name="build" content="2026-09-24-v37">
+<meta name="build" content="2026-09-25-v38">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -66,6 +68,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap"></noscript>
 <style>
+  /* A stand-in for Schibsted Grotesk with the same metrics. The webfont is
+     loaded asynchronously, so the page paints in a fallback first and reflows
+     when the real face arrives: that swap was the whole of the site's layout
+     shift. size-adjust and the vertical overrides are measured against Arial,
+     which Helvetica and Liberation Sans match, so the stand-in occupies the
+     same space and the swap costs nothing.
+     Measured 2026-09-25 at 100px: average advance 57.2462 against Arial's
+     56.5167, ascent 98, descent 26. */
+  @font-face{font-family:"Schibsted Fallback";src:local("Arial"),local("Helvetica Neue"),local("Liberation Sans");
+    size-adjust:101.29%;ascent-override:96.75%;descent-override:25.67%;line-gap-override:0%}
   :root{
     --ink:#141310;          /* warm near-black for text */
     --deep:#0F1A16;         /* deep ink-green for the loud band */
@@ -89,9 +101,9 @@
      hidden) keeps position:sticky working on the top bar */
   html,body{overflow-x:clip}
   body{margin:0;background:var(--white);color:var(--black);
-    font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+    font-family:"Schibsted Grotesk","Schibsted Fallback",system-ui,sans-serif;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
 
-  /* type scale — six real steps, not three */
+  /* type scale: six real steps, not three */
   h1{font-size:clamp(3rem,5.2vw,4.3rem);font-weight:800;letter-spacing:-.032em;line-height:1;margin:0}
   h2{font-size:clamp(2.1rem,4.8vw,3.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.02;margin:0;max-width:17ch}
   h3{font-size:1.35rem;font-weight:700;letter-spacing:-.018em;line-height:1.2;margin:0}
@@ -112,7 +124,7 @@
   @keyframes sweep{to{background-size:100% 100%}}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero mark{animation:none;background-size:100% 100%}}
 
-  /* icons — custom marks, only where they aid scanning */
+  /* icons: custom marks, only where they aid scanning */
   .ic{width:26px;height:26px;flex:0 0 auto;stroke:currentColor;stroke-width:1.6;fill:none;
       stroke-linecap:round;stroke-linejoin:round;display:block;color:var(--ink);
       margin:0 0 14px;overflow:visible}
@@ -136,7 +148,7 @@
   .calcband .eyebrow{color:#A9B8B2}
   .calcband .eyebrow .sno{color:var(--marker)}
 
-  /* buttons — one filled style, one quiet */
+  /* buttons: one filled style, one quiet */
   .btn{display:inline-block;background:var(--black);color:#fff;text-decoration:none;font-weight:700;font-size:1.06rem;
     padding:19px 32px;border-radius:4px;border:0;cursor:pointer;transition:transform .12s ease}
   .btn:hover{background:#252525}
@@ -292,7 +304,7 @@
   .check-cta{margin:0}
   .check-cta a{font-weight:700;color:var(--black);text-decoration:none;border-bottom:3px solid var(--mark)}
 
-  /* calculator — full bleed, the loudest thing after the hero */
+  /* calculator: full bleed, the loudest thing after the hero */
   .calcband{background:var(--deep);color:#fff;padding:96px 0}
   .calcband h2{color:#fff}
   .calcband .lead{color:#A9B8B2}
@@ -371,7 +383,7 @@
     text-transform:uppercase;color:#b3afa4}
   .ba-foot{margin:auto 0 0;max-width:none;padding-top:20px;font-size:1rem;color:#CFDAD5}
   .ba-foot b{color:#fff;font-weight:700;white-space:nowrap}
-  /* "now" — chips landing wherever, nothing lining up */
+  /* "now": chips landing wherever, nothing lining up */
   .scatter{flex:1 1 auto;display:grid;grid-template-columns:repeat(3,max-content);grid-auto-rows:1fr;
     gap:8px 16px;justify-content:start;align-items:center}
   .nchip{display:inline-flex;align-items:center;gap:9px;background:#1F1E1A;border:1.5px solid #3A382F;border-radius:8px;
@@ -383,7 +395,7 @@
   .scatter .nchip:nth-child(4){transform:rotate(1.6deg);align-self:end;margin-left:30px}
   .scatter .nchip:nth-child(5){transform:rotate(-1.1deg);align-self:start}
   .scatter .nchip:nth-child(6){transform:rotate(.8deg);align-self:center;margin-left:10px}
-  /* "after" — one row per message, same shape every time */
+  /* "after": one row per message, same shape every time */
   .inbox-rows{display:grid;gap:8px}
   .irow{display:grid;grid-template-columns:92px minmax(0,1fr) 26px 58px;align-items:center;gap:14px;
     background:#1F1E1A;border:1.5px solid #3A382F;border-radius:10px;padding:11px 16px}
@@ -434,9 +446,9 @@
   .inds span:hover{background:var(--ink);color:#fff}
   details summary::after{transition:transform .2s ease}
   details[open] summary::after{transform:rotate(180deg)}
-  .verify a,.check-cta a,.bridge a,.contact .or a{background-image:linear-gradient(var(--marker),var(--marker));
+  .check-cta a,.bridge a,.contact .or a{background-image:linear-gradient(var(--marker),var(--marker));
     background-size:0% 3px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .25s ease}
-  .verify a:hover,.check-cta a:hover,.bridge a:hover,.contact .or a:hover{background-size:100% 3px}
+  .check-cta a:hover,.bridge a:hover,.contact .or a:hover{background-size:100% 3px}
 
   .chartfig .anim{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
   .chartfig.go .anim{transition:stroke-dashoffset 1.4s cubic-bezier(.3,.6,.2,1) var(--d,0s);stroke-dashoffset:0}
@@ -734,11 +746,6 @@
   .compare.kpi td:last-child{color:var(--ink);font-weight:500;padding-left:18px;border-left:3px solid var(--gold)}
 
   /* me */
-  .bio{display:grid;grid-template-columns:190px 1fr;gap:44px;align-items:start;margin-top:46px}
-  .photo{width:190px;aspect-ratio:5/6;height:auto;object-fit:cover;border-radius:8px;display:block;background:var(--paper);align-self:start;justify-self:start}
-  .bio p{font-size:1.07rem}
-  .verify{margin-top:30px;border-top:1px solid var(--rule);padding-top:22px;display:grid;gap:11px;font-size:1rem;color:var(--grey)}
-  .verify a{font-weight:700;color:var(--black);border-bottom:3px solid var(--mark);text-decoration:none}
 
   /* trust */
   .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;margin-top:52px}
@@ -750,7 +757,7 @@
   summary{cursor:pointer;font-weight:700;font-size:1.08rem;list-style:none;display:flex;justify-content:space-between;gap:20px}
   summary::-webkit-details-marker{display:none}
   summary::after{content:"+";font-weight:800;font-size:1.35rem;line-height:1}
-  details[open] summary::after{content:"–"}
+  details[open] summary::after{content:"\2212"}
   details p{margin:13px 0 0;color:var(--grey);font-size:1.01rem}
 
   /* contact */
@@ -770,11 +777,38 @@
   .booked p{color:var(--grey);margin:0 0 20px}
   .booked .btn{width:100%;text-align:center}
 
-  footer{border-top:1px solid var(--rule);padding:34px 0 112px;color:var(--grey);font-size:.92rem}
+  footer{border-top:1px solid var(--rule);padding:56px 0 112px;color:var(--grey);font-size:.92rem}
   footer a{color:var(--grey)}
+  .fcols{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px}
+  .flogo img{width:200px;height:auto;display:block}
+  .fdesc{margin:18px 0 0;font-size:.95rem;line-height:1.55;max-width:34em}
+  .fwa{display:inline-flex;align-items:center;gap:9px;margin-top:20px;background:var(--ink);color:#fff;
+    text-decoration:none;font-weight:700;font-size:.93rem;padding:11px 17px;border-radius:999px;
+    transition:background .18s ease,transform .14s ease}
+  .fwa:hover{background:var(--black);transform:translateY(-1px);color:#fff}
+  .fwa svg{width:17px;height:17px;fill:var(--marker);flex:0 0 auto}
+  .faddr{margin:22px 0 0;font-size:.9rem;line-height:1.7}
+  .faddr a{text-decoration:none;border-bottom:1px solid var(--rule)}
+  .fnav{display:flex;flex-direction:column;align-items:flex-start;gap:11px}
+  .fnav .fh{margin:0 0 5px;font-size:.76rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--ink)}
+  .fnav a{text-decoration:none;font-size:.93rem;line-height:1.35}
+  .fnav a:hover{color:var(--ink)}
+  .fbar{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+    margin-top:48px;padding-top:22px;border-top:1px solid var(--rule);font-size:.88rem}
+  .fbar p{margin:0;max-width:none}
+  .flinks{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+  .flinks a,.flink{text-decoration:none}
+  .flinks a:hover,.flink:hover{color:var(--ink)}
+  /* the cookie link has to be a button: it opens a panel rather than going
+     anywhere, and screen readers should not be told otherwise */
+  .flink{font:inherit;color:var(--grey);background:none;border:0;padding:0;cursor:pointer}
 
   @media (pointer:coarse){
-    .check-cta a,.verify a,.bridge a,.contact .or a,footer a{display:inline-block;padding:9px 0;margin:-9px 0}
+    .check-cta a,.bridge a,.contact .or a{display:inline-block;padding:9px 0;margin:-9px 0}
+    .fcols{grid-template-columns:1fr 1fr;gap:34px 26px}
+    .fbrand{grid-column:1/-1}
+    .fbar{margin-top:36px}
+    .fnav a,.flinks a,.flink{display:inline-block;padding:6px 0;margin:-6px 0}
   }
   .sticky{display:none}
   @media (max-width:820px){
@@ -812,7 +846,6 @@
     .ptile .pcap{font-size:.99rem}
     .pbar{gap:14px}
     .calcgrid{gap:44px}
-    .bio{grid-template-columns:1fr}
     .leaks{gap:12px}
     .leak{padding:16px}
     .ba{margin-top:32px}
@@ -834,7 +867,6 @@
     .isla{grid-column:2;grid-row:1}
     .isubj{grid-column:1;grid-row:2;white-space:normal}
     .iwho{grid-column:2;grid-row:2;justify-self:end}
-    .photo{width:150px}
     .band{grid-template-columns:1fr;gap:12px;padding:26px 0}
     .how > div{grid-template-columns:28px 1fr;gap:16px;padding:24px 0}
     .how .num{font-size:1rem}
@@ -2013,27 +2045,9 @@ watch(chips,function(){
   </div>
 </section>
 
-<section class="paper">
-  <div class="wrap">
-    <p class="eyebrow"><span class="sno">13</span> &middot; Who you'd work with</p>
-    <h2>Who you would be working with.</h2>
-    <div class="bio">
-      <img class="photo" src="abdullah.jpg" srcset="abdullah-small.jpg 300w, abdullah.jpg 600w" sizes="(max-width:820px) 150px, 190px" width="600" height="720" loading="lazy" decoding="async" alt="Abdullah Khan, customer service operations consultant based in Dubai">
-      <div>
-        <p>Fix Customer Service was founded by Abdullah Khan, who spent thirteen years in customer service, the last seven at a Dubai fintech, building and running the department from the frontline through to leading the function.</p>
-        <p>That background sets how we work. Thousands of messages a week, angry customers, regulators watching, a team that kept growing and a budget that didn't. What works when the queue is real is very different from what works in a presentation.</p>
-        <p>We keep the practice deliberately small and senior. There is no junior team and no account manager between you and the people rebuilding your support. It also means we say when the answer is "you don't need us for this."</p>
-        <div class="verify">
-          <div><a href="https://www.linkedin.com/in/abdullahkhan08/">Full career history on LinkedIn →</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section>
   <div class="wrap">
-    <p class="eyebrow"><span class="sno">14</span> &middot; Before you let a stranger near your customers</p>
+    <p class="eyebrow"><span class="sno">13</span> &middot; Before you let a stranger near your customers</p>
     <h2>Your data, handled properly.</h2>
     <div class="trust">
       <div>
@@ -2054,7 +2068,7 @@ watch(chips,function(){
 
 <section class="paper">
   <div class="narrow">
-    <p class="eyebrow"><span class="sno">15</span> &middot; Questions</p>
+    <p class="eyebrow"><span class="sno">14</span> &middot; Questions</p>
     <h2>What people ask first.</h2>
     <div style="margin-top:38px">
       <details><summary>What does it cost?</summary><p>Fixed price, agreed before anything starts. Never hourly, never a surprise. The size depends on how big your operation is and how much of the work your own team takes on. We'll give you a straight number on the free call, and the first look is small enough that most businesses treat it as a test.</p></details>
@@ -2072,7 +2086,7 @@ watch(chips,function(){
 <!-- BLOG:START -->
 <section>
   <div class="wrap">
-    <p class="eyebrow"><span class="sno">16</span> &middot; Latest writing</p>
+    <p class="eyebrow"><span class="sno">15</span> &middot; Latest writing</p>
     <h2>Notes on running customer service.</h2>
     <div class="three latest">
       <div>
@@ -2093,7 +2107,7 @@ watch(chips,function(){
 
 <section id="talk">
   <div class="wrap">
-    <p class="eyebrow"><span class="sno">17</span> &middot; Get in touch</p>
+    <p class="eyebrow"><span class="sno">16</span> &middot; Get in touch</p>
     <h2>Let's talk about your customer service.</h2>
     <div class="contact">
       <div class="wa">
@@ -2153,7 +2167,38 @@ watch(chips,function(){
 </section>
 
 <footer>
-  <div class="wrap">fixcustomerservice.com · Abdullah Khan · Dubai, UAE · <a href="/privacy">Privacy policy</a> · <a href="https://www.linkedin.com/in/abdullahkhan08/">LinkedIn</a></div>
+  <div class="wrap fcols">
+    <div class="fbrand">
+      <a class="flogo" href="/" aria-label="Fix Customer Service home"><img src="/logo-horizontal.svg" alt="Fix Customer Service" width="481" height="90" loading="lazy" decoding="async"></a>
+      <p class="fdesc">Customer service operations for businesses of any size. We find what is broken in the way you answer customers, put a number on it, and fix it with your team.</p>
+      <a class="fwa" href="https://wa.me/971522771875?text=Hi%2C%20I%27d%20like%20to%20talk%20about%20our%20customer%20service." target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C9.06 3 3.4 8.66 3.4 15.64c0 2.23.58 4.4 1.69 6.31L3.3 28.7l6.92-1.75a12.6 12.6 0 0 0 5.82 1.44h.01c6.98 0 12.64-5.66 12.64-12.64C28.69 8.66 23.02 3 16.04 3zm0 22.98h-.01c-1.83 0-3.63-.49-5.2-1.42l-.37-.22-3.86.98 1.03-3.76-.24-.39a10.44 10.44 0 0 1-1.6-5.55c0-5.77 4.7-10.46 10.47-10.46 2.8 0 5.42 1.09 7.4 3.07a10.4 10.4 0 0 1 3.06 7.4c0 5.77-4.7 10.35-10.68 10.35z"/></svg>Message us on WhatsApp</a>
+      <p class="faddr">Fix Customer Service<br>Dubai, United Arab Emirates<br><a href="tel:+971522771875">+971 52 277 1875</a></p>
+    </div>
+    <nav class="fnav" aria-label="Site">
+      <p class="fh">Fix Customer Service</p>
+      <a href="/customer-service-audit">The audit</a>
+      <a href="/#cost">What it's costing you</a>
+      <a href="/#proof">Case studies</a>
+      <a href="/#how">How it works</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/#talk">Get in touch</a>
+    </nav>
+    <nav class="fnav" aria-label="Writing">
+      <p class="fh">Writing</p>
+      <a href="/blog">All writing</a>
+      <a href="/blog/reply-time-is-not-the-real-problem">Reply time is not the real problem</a>
+      <a href="/blog/how-to-calculate-cost-per-contact">How to calculate cost per contact</a>
+    </nav>
+    <nav class="fnav" aria-label="Elsewhere">
+      <p class="fh">Elsewhere</p>
+      <a href="https://www.linkedin.com/in/abdullahkhan08/" rel="noopener">LinkedIn</a>
+      <a href="https://www.infobip.com/customer/edenred" rel="noopener">Published case study</a>
+    </nav>
+  </div>
+  <div class="wrap fbar">
+    <p>&copy; 2026 Fix Customer Service. All rights reserved.</p>
+    <p class="flinks"><a href="/privacy">Privacy policy</a><button type="button" class="flink" data-cookie-open>Cookie settings</button><a href="/llms.txt">llms.txt</a><a href="/sitemap.xml">Sitemap</a></p>
+  </div>
 </footer>
 
 <div class="sticky"><a class="btn" href="#talk">Book a free call</a></div>
@@ -2533,5 +2578,6 @@ watch(chips,function(){
   }
 })();
 </script>
+<script defer src="/consent.js"></script>
 </body>
 </html>

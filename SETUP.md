@@ -20,7 +20,7 @@ Sheet. Until the two secrets below are set, the form returns
    openssl rand -hex 32
    ```
 
-   Keep it — you need the same value in step 3. Do not paste it into a chat,
+   Keep it, you need the same value in step 3. Do not paste it into a chat,
    an issue, or a screenshot: it is the only thing standing between the
    public internet and your sheet.
 5. Save.
@@ -36,7 +36,7 @@ you do not need to set up columns yourself.
    like `https://script.google.com/macros/s/AKfy.../exec`.
 
 "Anyone" is required because Cloudflare calls it unauthenticated. The shared
-secret is what actually protects it — a request without the right secret is
+secret is what actually protects it: a request without the right secret is
 rejected before anything is written.
 
 ## 3. Give the Worker the two secrets
@@ -51,7 +51,7 @@ npx wrangler secret put SHEETS_SHARED_SECRET   # paste the same random string
 Or in the dashboard: **Workers & Pages → fix-cs-cx-ab → Settings → Variables
 and Secrets**. They must be Secrets, not plaintext variables.
 
-Secrets are not applied by a git push — set them once, and they persist
+Secrets are not applied by a git push: set them once, and they persist
 across deployments.
 
 ## 4. Check it
@@ -108,7 +108,7 @@ Then `npx wrangler dev`.
 | Response | Cause |
 | --- | --- |
 | `503 not_configured` | `SHEETS_WEBHOOK_URL` is not set on the Worker |
-| `502 upstream_error` | Apps Script rejected it — usually the secret does not match, or the deployment was never updated to a new version |
+| `502 upstream_error` | Apps Script rejected it, usually the secret does not match, or the deployment was never updated to a new version |
 | `502 upstream_unreachable` | Apps Script did not respond within 8 seconds |
 | `400 missing_fields` | Name, business, email or concern was empty |
 
