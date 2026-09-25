@@ -140,7 +140,7 @@ const BLOG_CSS = `<style>
   .post-body{margin-top:44px;font-size:18px;line-height:1.65;color:var(--ink)}
   .post-body > *:first-child{margin-top:0}
   .post-body p{margin:0 0 24px}
-  .post-body h2{font-weight:800;font-size:1.72rem;letter-spacing:-.03em;line-height:1.1;margin:52px 0 16px}
+  .post-body h2{max-width:none;font-weight:800;font-size:1.72rem;letter-spacing:-.03em;line-height:1.1;margin:52px 0 16px}
   .post-body h3{font-weight:700;font-size:1.24rem;letter-spacing:-.02em;margin:38px 0 12px}
   .post-body ul,.post-body ol{margin:0 0 24px;padding-left:22px}
   .post-body li{margin:0 0 10px}
@@ -153,6 +153,15 @@ const BLOG_CSS = `<style>
   .post-body pre code{background:none;padding:0;font-size:.92rem;line-height:1.55}
   .post-body img{max-width:100%;height:auto;border-radius:6px}
   .post-body hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
+  .post-hero{margin:36px 0 0}
+  .post-hero img{width:100%;height:auto;display:block;border-radius:8px}
+  .post-body figure{margin:34px 0}
+  .post-body figure svg{width:100%;height:auto;display:block;background:#fff;border:1px solid var(--rule);border-radius:8px}
+  .post-body figcaption{font-size:.9rem;color:var(--grey);margin-top:10px;line-height:1.5}
+  .post-body table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:.95rem;line-height:1.45;display:block;overflow-x:auto}
+  .post-body th,.post-body td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--rule)}
+  .post-body th{font-weight:700;border-bottom:2px solid var(--ink);white-space:nowrap}
+  .post-body tbody tr:nth-child(even){background:var(--paper)}
   .post-nav{max-width:var(--narrow);margin:0 auto;padding:0 26px 8px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
   .post-nav a{display:block;text-decoration:none;color:var(--ink);border-top:2px solid var(--ink);padding-top:14px}
   .post-nav span{display:block;font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-bottom:6px}
@@ -188,6 +197,7 @@ function postBody(post, html, prev, next) {
   <p class="post-meta"><time datetime="${post.date}">${fmtDate(post.date)}</time> &middot; ${post.readingMinutes} min read</p>
   <h1>${esc(post.title)}</h1>
   <p class="post-lead">${esc(post.description)}</p>
+  ${post.image ? `<figure class="post-hero"><img src="/${esc(post.image)}" alt="" width="1200" height="630"></figure>` : ''}
   <div class="post-body">
 ${html}
   </div>

@@ -28,5 +28,8 @@
 
 ## Writing
 
+- [Customer service audit checklist](https://fixcustomerservice.com/blog/customer-service-audit-checklist): 25 questions to find what your customer service is really costing you. Score your team in about an hour, using numbers you already have.
+- [WhatsApp Business app vs API](https://fixcustomerservice.com/blog/whatsapp-business-app-vs-api): The free app suits one or two people. The API suits a team. How to tell which one your support needs, and when it is time to move.
+- [WhatsApp pricing from 1 October 2026](https://fixcustomerservice.com/blog/whatsapp-pricing-october-2026): From 1 October, Meta charges for customer service replies sent through the WhatsApp API. What changes, who pays, and what to do this week.
 - [Reply time is not the real problem](https://fixcustomerservice.com/blog/reply-time-is-not-the-real-problem): Faster replies fix the symptom. Look at contact rate and first contact resolution first, or you will pay to answer messages you should never receive.
 - [How to calculate cost per contact](https://fixcustomerservice.com/blog/how-to-calculate-cost-per-contact): Work out what each customer message really costs you, using figures you already have. No new tooling, about twenty minutes.

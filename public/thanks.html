@@ -30,10 +30,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;800&display=swap" rel="stylesheet">
 <style>
+  /* same metrically matched stand-in as the rest of the site, so this page
+     does not reflow when the webfont arrives either */
+  @font-face{font-family:"Schibsted Fallback";src:local("Arial"),local("Helvetica Neue"),local("Liberation Sans");
+    size-adjust:101.29%;ascent-override:96.75%;descent-override:25.67%;line-gap-override:0%}
+
   :root{--ink:#141310;--grey:#5F594F;--marker:#FBDD5C;--rule:#E6DFD3}
   *{box-sizing:border-box}
   body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fff;color:var(--ink);
-    font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:18px;line-height:1.55;padding:24px}
+    font-family:"Schibsted Grotesk","Schibsted Fallback",system-ui,sans-serif;font-size:18px;line-height:1.55;padding:24px}
   main{max-width:560px}
   h1{font-weight:800;letter-spacing:-.03em;line-height:1;font-size:clamp(2.4rem,9vw,4rem);margin:0 0 18px}
   mark{background:linear-gradient(transparent 10%,var(--marker) 10%,var(--marker) 88%,transparent 88%);padding:0 .1em}
