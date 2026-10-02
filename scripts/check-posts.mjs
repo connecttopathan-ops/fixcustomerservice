@@ -33,6 +33,7 @@ for (const file of files) {
   const body = raw
     .replace(/^---[\s\S]*?\n---\n/, '')
     .replace(/<script[\s\S]*?<\/script>/g, '')
+    .replace(/```[\s\S]*?```/g, ' ')
     .replace(/<svg[\s\S]*?<\/svg>/g, ' ')
     .replace(/<[^>]+>/g, ' ');
 
@@ -50,6 +51,7 @@ for (const file of files) {
   const prose = body
     .split('\n')
     .filter((l) => !/^\s*(\||#|---)/.test(l))
+    .map((l) => (/^\s*([-*]|\d+\.)\s/.test(l) || /:\s*$/.test(l) ? l.replace(/\s*$/, '.') : l))
     .join(' ')
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/[*_`]/g, '');
