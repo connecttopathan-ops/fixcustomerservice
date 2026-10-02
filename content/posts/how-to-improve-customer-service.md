@@ -2,8 +2,8 @@
 title: How to improve customer service
 description: Eight customer service improvement strategies, in the order that works. With a free infographic, real results and a plan you can start this week.
 slug: how-to-improve-customer-service
-date: 2026-10-05
-updated: 2026-10-05
+date: 2026-10-02
+updated: 2026-10-02
 tags: [improvement, operations]
 readingMinutes: 10
 image: blog/how-to-improve-customer-service.jpg
@@ -214,5 +214,5 @@ Quick wins show within weeks. Bigger changes, such as removing common contact re
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"VideoObject","name":"How to improve customer service in 8 steps","description":"A 54-second summary of the eight customer service improvement steps, in the order that works, with real results from two support rebuilds.","thumbnailUrl":"https://fixcustomerservice.com/blog/how-to-improve-customer-service-video.jpg","uploadDate":"2026-10-05","duration":"PT54S","contentUrl":"https://fixcustomerservice.com/blog/how-to-improve-customer-service.mp4","publisher":{"@type":"Organization","name":"Fix Customer Service","url":"https://fixcustomerservice.com"}}
+{"@context":"https://schema.org","@type":"VideoObject","name":"How to improve customer service in 8 steps","description":"A 54-second summary of the eight customer service improvement steps, in the order that works, with real results from two support rebuilds.","thumbnailUrl":"https://fixcustomerservice.com/blog/how-to-improve-customer-service-video.jpg","uploadDate":"2026-10-02","duration":"PT54S","contentUrl":"https://fixcustomerservice.com/blog/how-to-improve-customer-service.mp4","publisher":{"@type":"Organization","name":"Fix Customer Service","url":"https://fixcustomerservice.com"}}
 </script>
